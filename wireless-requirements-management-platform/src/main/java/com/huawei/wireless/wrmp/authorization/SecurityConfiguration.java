@@ -1,5 +1,6 @@
 package com.huawei.wireless.wrmp.authorization;
 
+import com.huawei.wireless.wrmp.authorization.handlers.MyAccessDeniedHandler;
 import com.mouse.web.authorization.ldap.WebLdapSecurityConfigurerAdapter;
 import com.mouse.web.authorization.ll.WebLdapAndLocalSecurityConfigurerAdapter;
 import org.apache.commons.logging.Log;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 public class SecurityConfiguration extends WebLdapAndLocalSecurityConfigurerAdapter {
     private static final Log LOGGER = LogFactory.getLog(SecurityConfiguration.class);
     @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
+    private MyAccessDeniedHandler accessDeniedHandler;
 
     @Override
     public String getPermits() {

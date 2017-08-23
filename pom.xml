@@ -12,5 +12,11 @@
         <module>wireless-requirements-management-platform</module>
     </modules>
 
+    <distributionManagement>
+        <repository>
+            <id>local_nexus</id>
+            <url>http://192.168.0.95:18080/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
 
 </project>
