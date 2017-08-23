@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebLdapAndLocalSecurityConfigurerAdap
         String permits = this.getPermits();
         String[] matchers = StringUtils.isEmpty(permits) ? new String[0] : getPermits().split("[,]");
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
-        http.authenticationProvider(getAuthenticationProvider()).addFilterBefore(filter, FilterSecurityInterceptor.class)
+        http.addFilterBefore(filter, FilterSecurityInterceptor.class)
                 .authorizeRequests()
                 .antMatchers(matchers).permitAll()
                 .anyRequest().authenticated()
