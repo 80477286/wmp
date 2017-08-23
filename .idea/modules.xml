@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wireless-requirements-management-platform/wireless-requirements-management-platform.iml" filepath="$PROJECT_DIR$/wireless-requirements-management-platform/wireless-requirements-management-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wmp.iml" filepath="$PROJECT_DIR$/wmp.iml" />
+    </modules>
+  </component>
+</project>
