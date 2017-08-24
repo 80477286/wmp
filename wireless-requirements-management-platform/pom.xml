@@ -74,6 +74,12 @@
         </dependency>
         <dependency>
             <groupId>com.mouse.web</groupId>
+            <artifactId>web-extjs</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mouse.web</groupId>
             <artifactId>web-authorization</artifactId>
             <version>1.0</version>
         </dependency>

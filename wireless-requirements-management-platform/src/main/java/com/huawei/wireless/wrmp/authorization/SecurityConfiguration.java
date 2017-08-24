@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebLocalSecurityConfigurerAdapter {
 
     @Override
     public String getPermits() {
-        return "/,/about,/index,/index.html,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico";
+        return "/,/about,/index,/index.html,/extends/*,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico";
     }
 
     @Override
@@ -44,5 +44,4 @@ public class SecurityConfiguration extends WebLocalSecurityConfigurerAdapter {
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .and().csrf().disable();
     }
-
 }
