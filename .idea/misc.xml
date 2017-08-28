@@ -6,6 +6,13 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/oss-client/pom.xml" />
+        <option value="$PROJECT_DIR$/oss-client1/pom.xml" />
+        <option value="$PROJECT_DIR$/sso-server/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">

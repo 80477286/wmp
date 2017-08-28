@@ -10,8 +10,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="wireless-requirements-management-platform" target="1.5" />
-      <module name="wmp" target="1.5" />
+      <module name="ossclient" target="1.6" />
+      <module name="ossclient1" target="1.6" />
+      <module name="ssoserver" target="1.6" />
+      <module name="wireless-requirements-management-platform" target="1.6" />
+      <module name="wmp" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -10,6 +10,8 @@
     <version>1.0</version>
     <modules>
         <module>wireless-requirements-management-platform</module>
+        <module>sso-server</module>
+        <module>oss-client1</module>
     </modules>
 
     <distributionManagement>
@@ -18,5 +20,9 @@
             <url>http://192.168.0.95:18080/nexus/content/repositories/releases/</url>
         </repository>
     </distributionManagement>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.2.RELEASE</version>
+    </parent>
 </project>
