@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
+
 /**
  * Created by cwx183898 on 2017/8/8.
  */
@@ -16,7 +18,7 @@ public class WrmpApplication {
     }
 
     @GetMapping({"/", "/index"})
-    public String index() {
+    public String index(Principal principal) {
         return "/index";
     }
 

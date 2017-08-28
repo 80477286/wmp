@@ -1,5 +1,7 @@
 package com.chinasoft.wmp.sso.server.controller;
 
+import com.mouse.web.authorization.local.user.model.User;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,11 @@ public class GlobalController {
 
     @RequestMapping({"/me"})
     @ResponseBody
-    public Map<String, String> me(Principal principal) {
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("name", principal.getName());
+    public Map<String, Object> me(Principal principal) {
+        OAuth2Authentication oa = (OAuth2Authentication) principal;
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("name", oa.getName());
+        map.put("principal", oa.getUserAuthentication().getPrincipal());
         return map;
     }
 
