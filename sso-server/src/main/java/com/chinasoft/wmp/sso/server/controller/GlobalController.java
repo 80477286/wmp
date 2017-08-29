@@ -21,16 +21,6 @@ public class GlobalController {
         return "/index";
     }
 
-    @RequestMapping({"/me"})
-    @ResponseBody
-    public Map<String, Object> me(Principal principal) {
-        OAuth2Authentication oa = (OAuth2Authentication) principal;
-        Map<String, Object> map = new LinkedHashMap<>();
-        map.put("name", oa.getName());
-        map.put("principal", oa.getUserAuthentication().getPrincipal());
-        return map;
-    }
-
 
     @GetMapping("/login")
     public String login() {

@@ -18,7 +18,6 @@ import org.springframework.util.StringUtils;
 import java.util.Arrays;
 
 @Configuration
-@EnableOAuth2Client
 @EnableAuthorizationServer
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfiguration extends WebLocalSecurityConfigurerAdapter {

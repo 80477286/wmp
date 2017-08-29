@@ -30,10 +30,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
 
         http.authorizeRequests().antMatchers(matchers).permitAll();
-        http.authorizeRequests().anyRequest().fullyAuthenticated();
+        http.authorizeRequests().anyRequest().authenticated();
 
         http.formLogin().loginPage("/login").permitAll();
         http.logout().logoutSuccessUrl("/").permitAll();
-        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        http.csrf().disable();//csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }
