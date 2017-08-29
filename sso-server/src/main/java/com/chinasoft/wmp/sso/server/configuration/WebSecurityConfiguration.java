@@ -37,7 +37,7 @@ public class WebSecurityConfiguration extends WebLocalSecurityConfigurerAdapter 
         http.addFilterBefore(filter, FilterSecurityInterceptor.class);
 
         http.authorizeRequests().antMatchers(matchers).permitAll();
-        http.authorizeRequests().anyRequest().fullyAuthenticated();
+        http.authorizeRequests().anyRequest().authenticated();
 
         http.formLogin().loginPage("/login").permitAll();
         http.logout().permitAll();

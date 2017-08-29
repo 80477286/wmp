@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
@@ -32,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest().fullyAuthenticated();
 
         http.formLogin().loginPage("/login").permitAll();
-        http.logout().permitAll();
-        http.csrf().disable();
+        http.logout().logoutSuccessUrl("/").permitAll();
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }
