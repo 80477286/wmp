@@ -14,14 +14,6 @@ import java.util.Map;
 
 @Controller
 public class GlobalController {
-
-
-    @GetMapping("/")
-    public String index() {
-        return "/index";
-    }
-
-
     @GetMapping("/login")
     public String login() {
         return "/login";
