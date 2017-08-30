@@ -8,15 +8,12 @@ Ext.define('App.authorization.user.UserViewModel', {
             dataIndex: 'id',
             hidden: true
         }, {
-            header: '姓名',
-            dataIndex: 'name'
-        }, {
             header: '用户名',
             dataIndex: 'username'
         }, {
-            header: 'W3帐号',
-            dataIndex: 'w3Username'
-        }, {
+            header: '姓名',
+            dataIndex: 'name'
+        }, , {
             header: '锁定',
             dataIndex: 'locked'
         }, {
@@ -51,11 +48,6 @@ Ext.define('App.authorization.user.UserViewModel', {
                 vtype: 'tx',
                 opt: 'like'
             }, {
-                "field": "w3Username",
-                "name": "W3帐号",
-                vtype: 'tx',
-                opt: 'like'
-            }, {
                 "field": "locked",
                 "name": "锁定",
                 vtype: 'bl',
@@ -85,7 +77,7 @@ Ext.define('App.authorization.user.UserViewModel', {
                 },
                 reader: {
                     type: 'json',
-                    rootProperty: 'content',
+                    rootProperty: 'data',
                     totalProperty: 'total'
                 }
             }

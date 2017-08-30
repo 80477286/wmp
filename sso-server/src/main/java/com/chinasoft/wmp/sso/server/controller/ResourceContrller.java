@@ -1,21 +1,40 @@
 package com.chinasoft.wmp.sso.server.controller;
 
+import com.mouse.web.authorization.local.resource.model.Resource;
+import com.mouse.web.authorization.local.resource.service.IResourceService;
+import com.mouse.web.authorization.local.role.model.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class ResourceContrller {
-    @RequestMapping({"/me"})
+    @Autowired
+    private IResourceService resourceService;
+
+    @RequestMapping({"/oauth2/resource/get_all_resources"})
+    public Map<String, List<String>> getAllResources(Principal principal) {
+        Map<String, List<String>> data = new HashMap<String, List<String>>();
+        List<Resource> resources = resourceService.findAll();
+        for (Resource resource : resources) {
+            List<String> list = new ArrayList<String>();
+            List<Role> roles = resource.getRoles();
+            if (roles != null) {
+                for (Role role : roles) {
+                    list.add(role.getId());
+                }
+            }
+            data.put(resource.getUrl(), list);
+        }
+        return data;
+    }
+
+    @RequestMapping({"/oauth2/me"})
     public Map<String, Object> me(Principal principal) {
         OAuth2Authentication oa = (OAuth2Authentication) principal;
         Map<String, Object> map = new LinkedHashMap<>();
@@ -25,16 +44,4 @@ public class ResourceContrller {
         return map;
     }
 
-
-    @RequestMapping({"/get_config_attributes"})
-    public List<ConfigAttribute> getConfigAttributes(Principal principal) {
-        List<ConfigAttribute> cas = new ArrayList<ConfigAttribute>(0);
-        cas.add(new ConfigAttribute() {
-            @Override
-            public String getAttribute() {
-                return "1";
-            }
-        });
-        return cas;
-    }
 }

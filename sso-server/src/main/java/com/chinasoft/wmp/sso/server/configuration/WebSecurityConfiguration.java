@@ -24,11 +24,6 @@ public class WebSecurityConfiguration extends WebLocalSecurityConfigurerAdapter 
     private static final Log LOGGER = LogFactory.getLog(WebSecurityConfiguration.class);
 
     @Override
-    public String getPermits() {
-        return "/,/about,/index,/index.html,/extends/*,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico";
-    }
-
-    @Override
     protected void configure(HttpSecurity http) throws Exception {
         String permits = this.getPermits();
         String[] matchers = StringUtils.isEmpty(permits) ? new String[0] : getPermits().split("[,]");
