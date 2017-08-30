@@ -22,6 +22,15 @@ Ext.define('App.authorization.user.view.UserEditor', {
         maxLength: 32
     }, {
         xtype: 'textfield',
+        name: 'password',
+        fieldLabel: '密码',
+        allowBlank: false,
+        blankText: '密码不能为喔！',
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
+        maxLength: 32,
+        inputType: 'password'
+    }, {
+        xtype: 'textfield',
         name: 'name',
         fieldLabel: '姓名',
         maxLength: 32
@@ -30,13 +39,6 @@ Ext.define('App.authorization.user.view.UserEditor', {
         name: 'email',
         fieldLabel: '邮箱',
         maxLength: 128
-    }, {
-        xtype: 'booleancombobox',
-        name: 'locked',
-        fieldLabel: '帐号锁定',
-        allowBlank: false,
-        blankText: '帐号锁定字段不能为喔！',
-        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
         xtype: 'datefield',
         name: 'accountExpiringDate',
@@ -54,6 +56,13 @@ Ext.define('App.authorization.user.view.UserEditor', {
         fieldLabel: '密码失效时间',
         allowBlank: false,
         blankText: '密码失效时间不能为喔！',
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'booleancombobox',
+        name: 'locked',
+        fieldLabel: '帐号锁定',
+        allowBlank: false,
+        blankText: '帐号锁定字段不能为喔！',
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
         name: 'roles',

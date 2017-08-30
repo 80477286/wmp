@@ -68,13 +68,7 @@ Ext.define('App.authorization.user.UserViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                api: {
-                    create: 'authorization/user/save',
-                    read: 'authorization/user/query',
-                    update: 'authorization/user/save',
-                    destroy: 'authorization/user/delete',
-                    get: 'authorization/user/get_by_id'
-                },
+                url: '/authorization/user?query',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',
