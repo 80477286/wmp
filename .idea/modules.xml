@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/sso-server/sso-server.iml" filepath="$PROJECT_DIR$/sso-server/sso-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/wireless-requirements-management-platform/wireless-requirements-management-platform.iml" filepath="$PROJECT_DIR$/wireless-requirements-management-platform/wireless-requirements-management-platform.iml" />
       <module fileurl="file://$PROJECT_DIR$/wmp.iml" filepath="$PROJECT_DIR$/wmp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wmp_cloud_server/wmp_cloud_server.iml" filepath="$PROJECT_DIR$/wmp_cloud_server/wmp_cloud_server.iml" />
     </modules>
   </component>
 </project>
