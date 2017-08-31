@@ -4,7 +4,7 @@ spring:
   application:
     name: oss-server
   datasource:
-    url: jdbc:mysql://192.168.0.95:3306/SpringSecurityTest?characterEncoding=utf8
+    url: jdbc:mysql://192.168.0.95:3306/wmp_wrmp?characterEncoding=utf8
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
