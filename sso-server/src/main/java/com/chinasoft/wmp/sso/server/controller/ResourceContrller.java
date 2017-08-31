@@ -20,7 +20,7 @@ public class ResourceContrller {
     @RequestMapping({"/oauth2/resource/get_all_resources"})
     public Map<String, List<String>> getAllResources(Principal principal) {
         Map<String, List<String>> data = new HashMap<String, List<String>>();
-        List<Resource> resources = resourceService.findAll();
+        List<Resource> resources = resourceService.query();
         for (Resource resource : resources) {
             List<String> list = new ArrayList<String>();
             List<Role> roles = resource.getRoles();
