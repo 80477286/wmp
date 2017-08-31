@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.test.RestTemplateHolder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +22,8 @@ import java.util.Arrays;
 @EnableOAuth2Sso
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private static final Log LOGGER = LogFactory.getLog(SecurityConfiguration.class);
+    @Autowired
+    private LocalSecurityFilter localSecurityFilter;
 
     public String getPermits() {
         return "/,/about,/index,/index.html,/extends/*,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico";
@@ -32,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         String permits = this.getPermits();
         String[] matchers = StringUtils.isEmpty(permits) ? new String[0] : getPermits().split("[,]");
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
-
+        http.addFilterBefore(localSecurityFilter, FilterSecurityInterceptor.class);
         http.authorizeRequests().antMatchers(matchers).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
 
