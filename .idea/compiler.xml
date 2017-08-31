@@ -6,12 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="hrm_services" />
         <module name="sso-server" />
         <module name="wireless-requirements-management-platform" />
         <module name="wmp_cloud_server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="hrm_services" target="1.7" />
       <module name="ossclient" target="1.6" />
       <module name="ossclient1" target="1.6" />
       <module name="sso-server" target="1.8" />

@@ -18,6 +18,7 @@
         <module>wireless-requirements-management-platform</module>
         <module>sso-server</module>
         <module>wmp_cloud_server</module>
+        <module>hrm_services</module>
     </modules>
 
     <distributionManagement>

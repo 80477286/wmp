@@ -9,14 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>wmp_cloud_server</artifactId>
-
-
+    <artifactId>hrm_services</artifactId>
     <properties>
         <my.build.directory>${basedir}/../build/${project.name}</my.build.directory>
-        <main.class>com.huawei.cloud.server.CloudServerApplication</main.class>
+        <main.class>com.huawei.cloud.user.UserApplication</main.class>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -31,15 +28,31 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -160,7 +173,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <!--输出项目信息-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
