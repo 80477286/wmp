@@ -48,6 +48,7 @@ Ext.application({
         window.app.optsQueue = [];
         Ext.Ajax.disableCachingParam = 'dc';
 
+        this.custominit();
         this.checkBrowser();
         // 配置Ajax请求事件处理函数
         Ext.Ajax.on({
@@ -261,5 +262,91 @@ Ext.application({
                 }
             })
         }
+    }, custominit: function () {
+        window.onkeydown = function (e) {
+            if (event.keyCode == 8) {
+                if (e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA"
+                    && e.target.className != "dotitem") {
+                    if (app.app.optsQueue.length > 1) {
+                        var lastIndex = app.app.optsQueue.length - 2;
+                        var item = app.app.optsQueue[lastIndex];
+                        Ext.Array.removeAt(app.app.optsQueue, lastIndex, 10);
+                        app.app._mainView.down('North').fireEvent('menuclick',
+                            item.clazz, item.options)
+                    }
+                    console.log(app.app._mainView)
+                    if (Ext.isFunction(e.stopEvent)) {
+                        e.stopEvent();
+                    }
+                    if (Ext.isFunction(e.preventDefault)) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        };
+
+        Ext.override(Ext.grid.plugin.RowEditing, {
+            onCellClick: function (view, cell, colIdx, record, row, rowIdx, e) {
+                if (this.clicksToEdit === false || this.clicksToMoveEditor === false) {
+                    return;
+                }
+                // Make sure that the column has an editor. In the case of
+                // CheckboxModel,
+                // calling startEdit doesn't make sense when the checkbox is
+                // clicked.
+                // Also, cancel editing if the element that was clicked was a
+                // tree expander.
+                var expanderSelector = view.expanderSelector,
+                    // Use getColumnManager() in this context because colIdx
+                    // includes hidden columns.
+                    columnHeader = view.ownerCt.getColumnManager().getHeaderAtIndex(colIdx), editor = columnHeader
+                        .getEditor(record);
+
+                if (this.shouldStartEdit(editor)
+                    && (!expanderSelector || !e.getTarget(expanderSelector))) {
+                    view.ownerGrid.setActionableMode(true, e.position);
+                }
+            }
+        });
+
+// 解决Model创建后日期字段相关8小时问题
+// 重写Model日期格式转换问题
+// 原数据带T，原来在处理这样的日期时会导致时间+8小时问题
+// 将原数据的T替换成“ ”解决。
+        Ext.override(Ext.data.field.Date, {
+            convert: function (v) {
+                if (!Ext.isEmpty(arguments) && Ext.isString(arguments[0])
+                    && !Ext.isEmpty(arguments[0])) {
+                    arguments[0] = arguments[0].replace(/T/g, ' ')
+                }
+                return this.callParent(arguments);
+            }
+        });
+
+        Ext.override(Ext.util.Format, {
+            percent: function (value, formatString) {
+                var me = this;
+                if (value == -987654321) {
+                    return '-';
+                }
+                var xxx = me.number(value * 100, formatString || '0')
+                    + me.percentSign;
+                return xxx;
+            },
+            round: function (value, precision) {
+                var result = Number(value);
+                if (result == -987654321) {
+                    return '-';
+                }
+                if (typeof precision === 'number') {
+                    precision = Math.pow(10, precision);
+                    result = Math.round(value * precision) / precision;
+                } else if (precision === undefined) {
+                    result = Math.round(result);
+                }
+                return result;
+            }
+        });
+
     }
 });
