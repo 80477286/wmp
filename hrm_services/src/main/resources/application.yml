@@ -38,3 +38,13 @@ spring:
         cache:
           use_second_level_cache: false
           use_query_cache: false
+
+security:
+  oauth2:
+    client:
+      client-id: acmex
+      client-secret: acmesecretx
+      access-token-uri: http://localhost:8080/oauth/token
+      user-authorization-uri: http://localhost:8080/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:8080/oauth2/me
