@@ -2,6 +2,7 @@ package com.huawei.wireless.wrmp.authorization;
 
 import org.apache.log4j.Logger;
 import org.apache.tomcat.util.http.parser.Authorization;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,12 @@ import java.util.*;
 @Service
 public class LocalSecurityMetadataSource implements
         FilterInvocationSecurityMetadataSource {
+    @Value("${security.oauth2.resource.resources-uri}")
+    private String resourcesUri;
+
+    @Value("${security.oauth2.resource.resources-cachetime}")
+    private int resourcesCachetime = 120;
+
     protected static final Logger LOG = Logger
             .getLogger(LocalSecurityMetadataSource.class);
 
@@ -43,10 +50,10 @@ public class LocalSecurityMetadataSource implements
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
         if (authentication != null && authentication.isAuthenticated()) {
-            if (cachedResources == null || cacheTimestamp == null || (new Date().getTime() - cacheTimestamp) > 10 * 1000) {
+            if (cachedResources == null || cacheTimestamp == null || (new Date().getTime() - cacheTimestamp) > resourcesCachetime * 1000) {
                 if (OAuth2AuthenticationDetails.class.isAssignableFrom(authentication.getDetails().getClass())) {
                     String token = ((OAuth2AuthenticationDetails) authentication.getDetails()).getTokenValue();
-                    cachedResources = (Map<String, List<String>>) restTemplate.getForObject("http://192.168.0.152:8080/oauth2/resource/get_all_resources?access_token=" + token, Map.class);
+                    cachedResources = (Map<String, List<String>>) restTemplate.getForObject(resourcesUri + "?access_token=" + token, Map.class);
                     cacheTimestamp = new Date().getTime();
                 }
             }

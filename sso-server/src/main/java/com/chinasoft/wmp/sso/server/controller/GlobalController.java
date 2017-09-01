@@ -21,7 +21,7 @@ import java.util.Map;
 public class GlobalController {
     @GetMapping("/login")
     public String login() {
-        return "/login";
+        return "login";
     }
 
     @RequestMapping("/get_current_user")
