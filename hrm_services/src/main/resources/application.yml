@@ -4,7 +4,7 @@ server:
 eureka:
   client:
       service-url:
-        defaultZone: http://localhost:8011/eureka
+        defaultZone: http://192.168.0.95:18001/eureka
   instance:
     #此配置建议只试用开发和测试环境
     #心跳间隔时间,默认是30秒
@@ -38,13 +38,3 @@ spring:
         cache:
           use_second_level_cache: false
           use_query_cache: false
-
-security:
-  oauth2:
-    client:
-      client-id: acmex
-      client-secret: acmesecretx
-      access-token-uri: http://localhost:8080/oauth/token
-      user-authorization-uri: http://localhost:8080/oauth/authorize
-    resource:
-      user-info-uri: http://localhost:8080/oauth2/me

@@ -14,7 +14,7 @@
 
     <properties>
         <my.build.directory>${basedir}/../build/${project.name}</my.build.directory>
-        <main.class>com.huawei.cloud.server.CloudServerApplication</main.class>
+        <main.class>com.chinasoft.wmp.cloud.server.CloudServerApplication</main.class>
     </properties>
 
     <dependencyManagement>

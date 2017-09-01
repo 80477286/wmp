@@ -33,6 +33,8 @@ security:
       client-secret: acmesecretx
       scope: read,write
       auto-approve-scopes: '.*'
+    authorization:
+      check-token-access: permitAll()
 
 logging:
   level:

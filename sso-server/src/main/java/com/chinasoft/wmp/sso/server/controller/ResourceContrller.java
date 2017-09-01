@@ -17,7 +17,7 @@ public class ResourceContrller {
     @Autowired
     private IResourceService resourceService;
 
-    @RequestMapping({"/oauth2/resource/get_all_resources"})
+    @RequestMapping({"/resource/get_all_resources"})
     public Map<String, List<String>> getAllResources(Principal principal) {
         Map<String, List<String>> data = new HashMap<String, List<String>>();
         List<Resource> resources = resourceService.query();
@@ -34,7 +34,7 @@ public class ResourceContrller {
         return data;
     }
 
-    @RequestMapping({"/oauth2/me"})
+    @RequestMapping({"/resource/me"})
     public Map<String, Object> me(Principal principal) {
         OAuth2Authentication oa = (OAuth2Authentication) principal;
         Map<String, Object> map = new LinkedHashMap<>();

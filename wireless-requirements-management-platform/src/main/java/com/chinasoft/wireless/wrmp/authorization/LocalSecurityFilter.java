@@ -1,4 +1,4 @@
-package com.huawei.wireless.wrmp.authorization;
+package com.chinasoft.wireless.wrmp.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.SecurityMetadataSource;

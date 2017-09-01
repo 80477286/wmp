@@ -1,4 +1,4 @@
-package com.huawei.wireless.wrmp;
+package com.chinasoft.wireless.wrmp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

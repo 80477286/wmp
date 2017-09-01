@@ -9,9 +9,9 @@ security:
       access-token-uri: http://192.168.0.95:19000/oauth/token
       user-authorization-uri: http://192.168.0.95:19000/oauth/authorize
     resource:
-      user-info-uri: http://192.168.0.95:19000/oauth2/me
+      user-info-uri: http://192.168.0.95:19000/resource/me
       #资源获取地址
-      resources-uri: http://192.168.0.95:19000/oauth2/resource/get_all_resources
+      resources-uri: http://192.168.0.95:19000/resource/get_all_resources
       #资源缓存时间，单位：秒
       resources-cachetime: 10
 
