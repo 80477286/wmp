@@ -19,6 +19,9 @@ public class WrmpApplication {
 
     @GetMapping({"/", "/index"})
     public String index(Principal principal) {
+        if (principal != null) {
+            System.out.println(principal.getName());
+        }
         return "/index";
     }
 
