@@ -19,6 +19,7 @@
         <module>sso-server</module>
         <module>wmp_cloud_server</module>
         <module>hrm_services</module>
+        <module>wireless-measurement-platform</module>
     </modules>
 
     <distributionManagement>
