@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableJpaRepositories(basePackages = {"com.mouse", "com.chinasoft.wmp"}, repositoryFactoryBeanClass = RepositoryFactory.class)
+@ComponentScan(basePackages = {"com.mouse", "com.chinasoft.wmp"})
 public class HrmApplication extends ResourceServerConfigurerAdapter {
     public static void main(String[] args) {
         SpringApplication.run(HrmApplication.class, args);
