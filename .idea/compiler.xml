@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hrm_services" />
-        <module name="sso-server" />
         <module name="wireless-measurement-platform" />
         <module name="wireless-requirements-management-platform" />
-        <module name="wmp_cloud_server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
