@@ -30,6 +30,7 @@ public class HrmController extends BaseController<Employee, String> {
 
     @Override
     @RequestMapping(params = "query")
+    @JSON(excludeProperties = {".*\\.cdt"})
     public Page<Employee> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return super.query(params, pageable);
     }
