@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/hrm/employee")
 public class HrmController extends BaseController<Employee, String> {
     @Autowired
     private IEmployeeService service;
