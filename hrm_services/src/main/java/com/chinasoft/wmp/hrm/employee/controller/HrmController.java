@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,5 +33,14 @@ public class HrmController extends BaseController<Employee, String> {
     @JSON(excludeProperties = {".*\\.cdt"})
     public Page<Employee> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return super.query(params, pageable);
+    }
+
+    @RequestMapping("/update")
+    @JSON
+    public String update(String address, String name) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", name);
+        map.put("address", address);
+        return "你好啊";
     }
 }

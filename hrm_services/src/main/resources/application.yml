@@ -11,10 +11,11 @@ eureka:
     leaseRenewalIntervalInSeconds: 1
     #最后一次心跳时间后leaseExpirationDurationInSeconds秒就认为是下线了，默认是90秒
     leaseExpirationDurationInSeconds: 2
+    preferIpAddress: true
 
 spring:
   application:
-    name: hrm_services
+    name: hrm-service
 
   datasource:
     url: jdbc:mysql://192.168.0.95:3306/WMP_HRM?characterEncoding=utf8
