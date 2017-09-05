@@ -39,6 +39,7 @@ public class FeignClientsConfigurationCustom {
                 if (oAuth2Authentication == null) {
                     return;
                 }
+                requestTemplate.method("POST");
                 OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) oAuth2Authentication.getDetails();
                 String token = details.getTokenValue();
                 String tokenType = details.getTokenType();
