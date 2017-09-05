@@ -18,6 +18,16 @@
             <version>1.5.2.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+        </dependency>
         <!--主要提供一些服务器信息或状态查询-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -27,10 +37,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
@@ -51,6 +57,11 @@
         <dependency>
             <groupId>com.mouse.web</groupId>
             <artifactId>web-extjs</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mouse.web</groupId>
+            <artifactId>web-base</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
