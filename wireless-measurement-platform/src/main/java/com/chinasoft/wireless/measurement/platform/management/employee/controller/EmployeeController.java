@@ -33,7 +33,8 @@ public class EmployeeController {
 
 
     @RequestMapping(value = "/employees", method = RequestMethod.POST)
-    public Page<Employee> getAllEmployees(@MapParam Map<String, Object> params) {
-        return employeeService.query(params);
+    public Object getAllEmployees(@MapParam Map<String, Object> params) {
+        String map = employeeService.update("重庆", "大锤");
+        return map;
     }
 }

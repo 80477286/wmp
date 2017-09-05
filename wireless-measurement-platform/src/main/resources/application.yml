@@ -19,10 +19,14 @@ logging:
     org.springframework.security: DEBUG
     org.springframework.web: DEBUG
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     service-url:
       defaultZone: http://192.168.0.95:18001/eureka
 spring:
+  application:
+    name: wmp
   datasource:
     url: jdbc:mysql://192.168.0.95:3306/WMP_HRM?characterEncoding=utf8
     username: root

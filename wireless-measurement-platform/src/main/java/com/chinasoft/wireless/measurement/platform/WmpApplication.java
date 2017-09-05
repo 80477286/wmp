@@ -4,6 +4,7 @@ import com.mouse.web.supports.jpa.repository.RepositoryFactory;
 import com.mouse.web.supports.mvc.argumentsresolver.EntityParamMethodArgumentResolver;
 import com.mouse.web.supports.mvc.argumentsresolver.MapParamMethodArgumentResolver;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.WebMvcRegistrationsAdapter;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -22,14 +23,15 @@ import java.util.List;
 /**
  *
  */
+@EnableEurekaClient
 @SpringBootApplication
 @Controller
 @EnableFeignClients
-@EnableEurekaClient
 @EnableHystrix
 @EnableHystrixDashboard
 @ComponentScan(basePackages = {"com.mouse", "com.chinasoft"})
 @EnableJpaRepositories(repositoryFactoryBeanClass = RepositoryFactory.class)
+
 public class WmpApplication {
     public static void main(String[] args) {
         SpringApplication.run(WmpApplication.class, args);
