@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableEurekaClient
 @EnableJpaRepositories(basePackages = {"com.mouse", "com.chinasoft.wmp"}, repositoryFactoryBeanClass = RepositoryFactory.class)
 @ComponentScan(basePackages = {"com.mouse", "com.chinasoft.wmp"})
-public class HrmApplication extends ResourceServerConfigurerAdapter {
+public class HrmApplication {
     public static void main(String[] args) {
         SpringApplication.run(HrmApplication.class, args);
     }
