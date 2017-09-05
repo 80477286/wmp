@@ -18,6 +18,7 @@
         <module>wireless-requirements-management-platform</module>
         <module>hrm_services</module>
         <module>wireless-measurement-platform</module>
+        <module>version_services</module>
     </modules>
 
     <distributionManagement>

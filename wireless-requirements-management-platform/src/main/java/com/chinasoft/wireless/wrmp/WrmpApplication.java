@@ -17,7 +17,7 @@ import java.security.Principal;
  */
 @SpringBootApplication
 @Controller
-@ComponentScan(basePackages = {"com.mouse"})
+@ComponentScan(basePackages = {"com.mouse", "com.chinasoft"})
 @EnableJpaRepositories(repositoryFactoryBeanClass = RepositoryFactory.class)
 public class WrmpApplication {
     public static void main(String[] args) {
