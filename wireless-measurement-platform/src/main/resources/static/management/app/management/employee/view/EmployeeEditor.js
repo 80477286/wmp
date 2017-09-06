@@ -10,20 +10,19 @@ Ext.define("App.management.employee.view.EmployeeEditor", {
         entity: 'employee'
     },
     defaults: {
-        columnWidth: 1
+        columnWidth: 1,
+        xtype: 'textfield'
     },
     items: [{
         xtype: 'hidden',
         name: 'id'
     }, {
-        xtype: 'textfield',
         name: 'name',
         fieldLabel: '名称',
         allowBlank: false,
         blankText: '名称不能为空',
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
         name: 'chinasoftNumber',
         fieldLabel: '中软编号',
         blankText: '中软编号不能为空',
