@@ -1,8 +1,9 @@
 package com.chinasoft.wmp.version.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Version {
+public class Version implements Serializable {
     private static final long serialVersionUID = -6937181247598900789L;
 
     protected String id;
