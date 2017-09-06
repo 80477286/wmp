@@ -1,5 +1,6 @@
-package com.chinasoft.wireless.measurement.platform.management.employee.controller;
+package com.chinasoft.wireless.measurement.platform.hrm.employee.controller;
 
+import com.chinasoft.wireless.measurement.platform.hrm.employee.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -20,13 +21,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/management")
+@RequestMapping(value = "/hrm/employee")
 public class EmployeeController {
 
     @Autowired
     DiscoveryClient client;
 
-    @RequestMapping(value = "/employees", method = RequestMethod.POST)
+    @RequestMapping(value = "/query", method = RequestMethod.POST)
     public Object getAllEmployees(@RequestParam LinkedMultiValueMap<String, Object> params) {
         List<ServiceInstance> instances = client.getInstances("hrm-service");
         if (instances != null && !instances.isEmpty()) {
@@ -43,4 +44,19 @@ public class EmployeeController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/get_by_id", method = RequestMethod.POST)
+    public Object getOne(String id) {
+        List<ServiceInstance> instances = client.getInstances("hrm-service");
+        if (instances != null && !instances.isEmpty()) {
+            OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
+            String token = details.getTokenValue();
+            ServiceInstance instance = instances.get(0);
+            URI uri = instance.getUri();
+            return (new RestTemplate()).getForEntity(uri.toString() + "/hrm/employee/get_by_id?id=" + id + "?access_token=" + token, Employee.class).getBody();
+        }
+        return null;
+    }
+
+
 }

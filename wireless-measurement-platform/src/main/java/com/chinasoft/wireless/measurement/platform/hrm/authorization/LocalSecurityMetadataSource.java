@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.measurement.platform.management.authorization;
+package com.chinasoft.wireless.measurement.platform.hrm.authorization;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
