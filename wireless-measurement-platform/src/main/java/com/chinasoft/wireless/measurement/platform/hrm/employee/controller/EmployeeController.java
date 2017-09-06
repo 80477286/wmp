@@ -80,14 +80,19 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public Object delete(String id) {
+    public Object delete(String[] ids) {
         List<ServiceInstance> instances = client.getInstances("hrm-service");
         if (instances != null && !instances.isEmpty()) {
             OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
             String token = details.getTokenValue();
+            String type = details.getTokenType();
             ServiceInstance instance = instances.get(0);
             URI uri = instance.getUri();
-            return (new RestTemplate()).getForEntity(uri.toString() + "/hrm/employee/delete?id=" + id + "&access_token=" + token, Map.class).getBody();
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+            httpHeaders.add("Authorization", type + " " + token);
+            HttpEntity entity = new HttpEntity(ids, httpHeaders);
+            return (new RestTemplate()).postForEntity(uri.toString() + "/hrm/employee/deletes", entity, Map.class).getBody();
         }
         return null;
     }

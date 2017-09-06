@@ -49,4 +49,9 @@ public class HrmController extends BaseController<Employee, String> {
         return super.delete(id);
     }
 
+    @JSON(excludeProperties = {".*\\.cdt"})
+    @RequestMapping(value = "/deletes", method = RequestMethod.POST)
+    public boolean delete(@RequestBody String[] ids) {
+        return super.delete(ids);
+    }
 }
