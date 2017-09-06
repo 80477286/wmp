@@ -10,8 +10,10 @@ import com.mouse.web.supports.mvc.request.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -25,9 +27,9 @@ public class VersionController extends BaseController<Version, String> {
         return service;
     }
 
-    @RequestMapping(value = "/query1")
+    @RequestMapping(value = "/query")
     @JSON(excludeProperties = {".*\\.cdt"})
-    public Page<Version> query(@MapParam Map<String, Object> params) {
+    public Page<Version> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return null;//super.query(params, pageable);
     }
 }
