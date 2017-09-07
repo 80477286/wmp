@@ -18,7 +18,22 @@ public class VersionController {
 
 
     @RequestMapping(value = "/vm/version/query")
-    public Map getAllEmployees(@RequestParam LinkedMultiValueMap params) {
+    public Map query(@RequestParam LinkedMultiValueMap params) {
         return versionService.query(params);
+    }
+
+    @RequestMapping(value = "/vm/version/get_by_id")
+    public Map getById(@RequestParam LinkedMultiValueMap params) {
+        return versionService.getById(params);
+    }
+
+    @RequestMapping(value = "/vm/version/save")
+    public Map save(@RequestParam LinkedMultiValueMap params) {
+        return versionService.save(params);
+    }
+
+    @RequestMapping(value = "/vm/version/deletes")
+    public Map deletes(@RequestParam LinkedMultiValueMap params) {
+        return versionService.deletes(params);
     }
 }

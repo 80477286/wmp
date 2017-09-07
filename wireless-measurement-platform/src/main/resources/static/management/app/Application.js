@@ -175,9 +175,12 @@ Ext.application({
                 var detail = null;
                 var url = options.url;
                 if (!Ext.String.startsWith(url, 'http')) {
-                    url = window.location.href.substring(0,
-                        window.location.href.lastIndexOf('/') + 1)
-                        + url;
+                    var host = window.location.origin;
+                    if (!Ext.String.startsWith(url, "/")) {
+                        host = window.location.href.substring(0,
+                            window.location.href.lastIndexOf('/') + 1);
+                    }
+                    url = host + url;
                 }
                 if (isDebug) {
                     detail = {
@@ -191,7 +194,8 @@ Ext.application({
                 if (status === 0 && resp.timedout === true) {
                     var error = '请求超时：' + url;
                     Extend.Msg.error('错误(status=' + status + ')', error);
-                } else if (status === 404) {
+                }
+                else if (status === 404) {
                     var error = '请求地址未找到：' + url;
                     Extend.Msg
                         .error('错误(status=' + status + ')', error, detail);
@@ -234,7 +238,8 @@ Ext.application({
                     + 'Internet Explorer 11 32位：<a  style="color:blue;" href="software/Internet Explorer11_ ForWin7_32bit_201610.exe">Internet Explorer 11 for Win7_32bit</a><br/>'
                     + 'Internet Explorer 11 64位：<a  style="color:blue;" href="software/Internet Explorer11_ ForWin7_64bit_201610.exe">Internet Explorer 11 for Win7_64bit</a>');
         }
-    },
+    }
+    ,
     checkAuthorities: function (view) {
         var mainView = this.getMainView();
         var target = view || mainView;
@@ -262,7 +267,9 @@ Ext.application({
                 }
             })
         }
-    }, custominit: function () {
+    }
+    ,
+    custominit: function () {
         window.onkeydown = function (e) {
             if (event.keyCode == 8) {
                 if (e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA"
@@ -349,4 +356,5 @@ Ext.application({
         });
 
     }
-});
+})
+;

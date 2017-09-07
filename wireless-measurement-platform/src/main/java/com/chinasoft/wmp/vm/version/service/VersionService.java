@@ -23,10 +23,33 @@ import java.util.Map;
 public class VersionService {
     @Autowired
     private DiscoveryClient client;
+    private static final String SERVER_ID = "version-services";
+
 
     public Map query(@RequestParam LinkedMultiValueMap params) {
-        OAuth2RestTemplate rt;
-        List<ServiceInstance> instances = client.getInstances("version-services");
+        Map result = postForEntity(SERVER_ID, "/vm/version/query", params);
+        return result;
+    }
+
+    public Map getById(@RequestParam LinkedMultiValueMap params) {
+        Map result = postForEntity(SERVER_ID, "/vm/version/get_by_id", params);
+        return result;
+    }
+
+    public Map save(@RequestParam LinkedMultiValueMap params) {
+        Map result = postForEntity(SERVER_ID, "/vm/version/save", params);
+        return result;
+    }
+
+
+    public Map deletes(@RequestParam LinkedMultiValueMap params) {
+        Map result = postForEntity(SERVER_ID, "/vm/version/deletes", params);
+        return result;
+    }
+
+
+    public Map postForEntity(String serverId, String url, @RequestParam LinkedMultiValueMap params) {
+        List<ServiceInstance> instances = client.getInstances(serverId);
         if (instances != null && !instances.isEmpty()) {
             ServiceInstance instance = instances.get(0);
             URI uri = instance.getUri();
@@ -39,7 +62,7 @@ public class VersionService {
             headers.set("Authorization", tokenType + " " + token);
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             HttpEntity entity = new HttpEntity(params, headers);
-            Map result = (new RestTemplate()).postForEntity(uri.toString() + "/vm/version/query", entity, Map.class).getBody();
+            Map result = (new RestTemplate()).postForEntity(uri.toString() + url, entity, Map.class).getBody();
             return result;
         }
         return null;

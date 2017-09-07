@@ -11,25 +11,6 @@ Ext.define('App.version.viewmodel.VersionViewModel', {
             header: '版本名称',
             dataIndex: 'name'
         }, {
-            header: '平台',
-            dataIndex: 'platform',
-            renderer: function (v, m, r) {
-                if (!Ext.isEmpty(r.get('platform'))) {
-                    return r.get('platform').name
-                } else {
-                    return '';
-                }
-            }
-        }, {
-            header: '版本项目编码',
-            dataIndex: 'projectCode'
-        }, {
-            header: '华为PO',
-            dataIndex: 'huaweiPo'
-        }, {
-            header: '合作方PO',
-            dataIndex: 'chinasoftPo'
-        }, {
             header: '合作方版本经理',
             dataIndex: 'versionManager'
         }, {
@@ -54,15 +35,6 @@ Ext.define('App.version.viewmodel.VersionViewModel', {
                 }
             }
         }, {
-            header: 'TMSS版本映射',
-            dataIndex: 'tmssVersionMapping'
-        }, {
-            header: 'DTS版本映射',
-            dataIndex: 'dtsVersionMapping'
-        }, {
-            header: '业务版本映射',
-            dataIndex: 'bizVersionMapping'
-        }, {
             header: '描述',
             dataIndex: 'description'
         }],
@@ -70,21 +42,6 @@ Ext.define('App.version.viewmodel.VersionViewModel', {
             fields: [{
                 "name": "名称",
                 "field": "name",
-                vtype: 's',
-                opt: 'like'
-            }, {
-                "name": "华为PO",
-                "field": "huaweiPo",
-                vtype: 's',
-                opt: 'like'
-            }, {
-                "name": "项目编码",
-                "field": "projectCode",
-                vtype: 's',
-                opt: 'like'
-            }, {
-                "name": "合作方PO",
-                "field": "chinasoftPo",
                 vtype: 's',
                 opt: 'like'
             }, {
