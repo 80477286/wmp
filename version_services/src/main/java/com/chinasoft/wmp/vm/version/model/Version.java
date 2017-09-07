@@ -1,17 +1,16 @@
 package com.chinasoft.wmp.vm.version.model;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import com.mouse.web.supports.model.BaseEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import java.util.Date;
 
 @Entity
 @DynamicInsert(true)
@@ -23,15 +22,6 @@ public class Version extends BaseEntity {
 
     @Column(nullable = false, length = 256)
     private String name;
-
-    @Column(nullable = false, length = 256)
-    private String projectCode;
-
-    @Column(nullable = false, length = 64)
-    private String huaweiPo;
-
-    @Column(nullable = false, length = 64)
-    private String chinasoftPo;
 
     @Column(nullable = false, length = 64)
     private String versionManager;
@@ -49,19 +39,8 @@ public class Version extends BaseEntity {
     private Integer status;
 
     @Column(columnDefinition = "TEXT")
-    private String tmssVersionMapping;
-
-    @Column(columnDefinition = "TEXT")
-    private String dtsVersionMapping;
-
-    @Column(columnDefinition = "TEXT")
-    private String bizVersionMapping;
-
-    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(length = 36)
-    private String pmhrid;
 
     public String getName() {
         return name;
@@ -79,29 +58,6 @@ public class Version extends BaseEntity {
         this.description = description;
     }
 
-    public String getProjectCode() {
-        return projectCode;
-    }
-
-    public void setProjectCode(String projectCode) {
-        this.projectCode = projectCode;
-    }
-
-    public String getHuaweiPo() {
-        return huaweiPo;
-    }
-
-    public void setHuaweiPo(String huaweiPo) {
-        this.huaweiPo = huaweiPo;
-    }
-
-    public String getChinasoftPo() {
-        return chinasoftPo;
-    }
-
-    public void setChinasoftPo(String chinasoftPo) {
-        this.chinasoftPo = chinasoftPo;
-    }
 
     public String getVersionManager() {
         return versionManager;
@@ -143,36 +99,5 @@ public class Version extends BaseEntity {
         this.status = status;
     }
 
-    public String getPmhrid() {
-        return pmhrid;
-    }
-
-    public void setPmhrid(String pmhrid) {
-        this.pmhrid = pmhrid;
-    }
-
-    public String getTmssVersionMapping() {
-        return tmssVersionMapping;
-    }
-
-    public void setTmssVersionMapping(String tmssVersionMapping) {
-        this.tmssVersionMapping = tmssVersionMapping;
-    }
-
-    public String getDtsVersionMapping() {
-        return dtsVersionMapping;
-    }
-
-    public void setDtsVersionMapping(String dtsVersionMapping) {
-        this.dtsVersionMapping = dtsVersionMapping;
-    }
-
-    public String getBizVersionMapping() {
-        return bizVersionMapping;
-    }
-
-    public void setBizVersionMapping(String bizVersionMapping) {
-        this.bizVersionMapping = bizVersionMapping;
-    }
 
 }

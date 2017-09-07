@@ -14,9 +14,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableEurekaClient
 @EnableJpaRepositories(basePackages = {"com.mouse", "com.chinasoft.wmp"}, repositoryFactoryBeanClass = RepositoryFactory.class)
 @ComponentScan(basePackages = {"com.mouse", "com.chinasoft.wmp"})
-public class VersionApplication {
+public class VmApplication {
     public static void main(String[] args) {
-        SpringApplication.run(VersionApplication.class, args);
+        SpringApplication.run(VmApplication.class, args);
     }
 
 }

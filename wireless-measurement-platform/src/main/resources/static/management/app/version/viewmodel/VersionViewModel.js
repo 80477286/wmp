@@ -112,7 +112,7 @@ Ext.define('App.version.viewmodel.VersionViewModel', {
             remoteSort: true,
             proxy: {
                 type: 'majax',
-                url: '/version/query',
+                url: '/vm/version/query',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

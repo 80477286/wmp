@@ -18,7 +18,7 @@ import java.security.Principal;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {"com.mouse", "com.chinasoft"})
-@EnableJpaRepositories(repositoryFactoryBeanClass = RepositoryFactory.class)
+@EnableJpaRepositories(basePackages = {"com.mouse", "com.chinasoft"}, repositoryFactoryBeanClass = RepositoryFactory.class)
 public class WmpApplication {
     public static void main(String[] args) {
         SpringApplication.run(WmpApplication.class, args);

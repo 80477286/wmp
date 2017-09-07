@@ -1,10 +1,8 @@
-package com.chinasoft.wmp.version.service;
+package com.chinasoft.wmp.vm.version.service;
 
-import com.chinasoft.wmp.version.model.Version;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -41,7 +39,7 @@ public class VersionService {
             headers.set("Authorization", tokenType + " " + token);
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             HttpEntity entity = new HttpEntity(params, headers);
-            Map result = (new RestTemplate()).postForEntity(uri.toString() + "/version/query", entity, Map.class).getBody();
+            Map result = (new RestTemplate()).postForEntity(uri.toString() + "/vm/version/query", entity, Map.class).getBody();
             return result;
         }
         return null;
