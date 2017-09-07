@@ -16,8 +16,6 @@ Ext.define("App.main.view.North", {
     },
     initComponent: function () {
         var me = this;
-        var title = Ext.select('title');
-        title.setHtml('RFMP_系统配置')
         var vm = this.getViewModel();
         // vm.bind('{user}', function(user) {
         // if (!Ext.isEmpty(val) && val.name.indexOf('登录') == -1
