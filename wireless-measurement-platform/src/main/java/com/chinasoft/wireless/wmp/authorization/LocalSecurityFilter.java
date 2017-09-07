@@ -1,4 +1,4 @@
-package com.chinasoft.wmp.authorization;
+package com.chinasoft.wireless.wmp.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.SecurityMetadataSource;

@@ -1,4 +1,4 @@
-package com.chinasoft.wmp.authorization;
+package com.chinasoft.wireless.wmp.authorization;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

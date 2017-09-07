@@ -1,4 +1,4 @@
-package com.chinasoft.wmp.authorization;
+package com.chinasoft.wireless.wmp.authorization;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
