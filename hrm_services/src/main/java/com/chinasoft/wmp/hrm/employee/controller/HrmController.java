@@ -24,34 +24,4 @@ public class HrmController extends BaseController<Employee, String> {
         return service;
     }
 
-    @RequestMapping("/query")
-    @JSON(excludeProperties = {".*\\.cdt"})
-    public Page<Employee> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
-        Page<Employee> page = super.query(params, pageable);
-        return page;
-    }
-
-    @JSON(excludeProperties = {".*\\.cdt"})
-    @RequestMapping(value = "/get_by_id", method = RequestMethod.GET)
-    public Employee getById(@RequestParam("id") String id) {
-        return super.getById(id);
-    }
-
-    @JSON(excludeProperties = {".*\\.cdt"})
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public Employee save(@RequestBody Employee employee) {
-        return super.save(employee);
-    }
-
-    @JSON(excludeProperties = {".*\\.cdt"})
-    @RequestMapping(value = "/delete")
-    public boolean delete(@RequestParam("id") String id) {
-        return super.delete(id);
-    }
-
-    @JSON(excludeProperties = {".*\\.cdt"})
-    @RequestMapping(value = "/deletes", method = RequestMethod.POST)
-    public boolean delete(@RequestBody String[] ids) {
-        return super.delete(ids);
-    }
 }

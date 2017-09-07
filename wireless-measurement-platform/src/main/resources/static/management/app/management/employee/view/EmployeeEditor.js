@@ -6,7 +6,8 @@ Ext.define("App.management.employee.view.EmployeeEditor", {
             title: '修改人力信息',
             width: 1024,
             height: 600
-        }
+        },
+        entity: 'user'
     },
     defaults: {
         columnWidth: 1,
