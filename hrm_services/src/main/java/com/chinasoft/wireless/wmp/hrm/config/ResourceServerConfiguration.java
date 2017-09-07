@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 
 @Configuration
 @EnableResourceServer
-@EnableJpaRepositories(basePackages = {"com.chinasoft.wireless.wmp"}, repositoryFactoryBeanClass = ExtendRepositoryFactory.class)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Value("${security.oauth2.check.check-token-uri}")

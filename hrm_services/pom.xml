@@ -12,7 +12,7 @@
     <artifactId>hrm_services</artifactId>
     <properties>
         <my.build.directory>${basedir}/../build/${project.name}</my.build.directory>
-        <main.class>com.chinasoft.cloud.user.UserApplication</main.class>
+        <main.class>com.chinasoft.WmpApplication</main.class>
     </properties>
     <dependencyManagement>
         <dependencies>
