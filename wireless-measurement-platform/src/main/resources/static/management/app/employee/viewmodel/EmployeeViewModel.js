@@ -1,7 +1,7 @@
-Ext.define('App.management.employee.viewmodel.EmployeeViewModel', {
+Ext.define('App.employee.viewmodel.EmployeeViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.employee_viewmodel',
-    requires: ['App.management.employee.model.EmployeeModel'],
+    requires: ['App.employee.model.EmployeeModel'],
     data: {
         columns: [{
             header: 'ID',
@@ -47,7 +47,7 @@ Ext.define('App.management.employee.viewmodel.EmployeeViewModel', {
     stores: {
         Query: {
             autoLoad: false,
-            model: 'App.management.employee.model.EmployeeModel',
+            model: 'App.employee.model.EmployeeModel',
             pageSize: 5,
             remoteSort: true,
             sorters: [{

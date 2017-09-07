@@ -18,7 +18,7 @@ Ext.define('App.main.viewmodel.NorthModel', {
             clazz: 'App.authorization.role.view.RoleList',
             iconCls: 'menu_item_role_managument'
         }, {
-            clazz: 'App.management.employee.view.EmployeeList',
+            clazz: 'App.employee.view.EmployeeList',
             name: '人力资源管理',
             iconCls: 'menu_item_role_managument'
         }, {

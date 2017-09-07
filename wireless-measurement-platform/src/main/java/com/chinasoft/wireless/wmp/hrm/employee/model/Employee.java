@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.measurement.platform.hrm.employee.model;
+package com.chinasoft.wireless.wmp.hrm.employee.model;
 
 
 import java.util.Date;

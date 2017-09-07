@@ -1,4 +1,4 @@
-Ext.define("App.management.employee.view.EmployeeEditor", {
+Ext.define("App.employee.view.EmployeeEditor", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.employee_editor',
     config: {
