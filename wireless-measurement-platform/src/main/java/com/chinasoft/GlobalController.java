@@ -14,7 +14,12 @@ import java.util.Map;
 @Controller
 public class GlobalController {
     @GetMapping({"/index", "/"})
-    public String index(Principal principal) {
-        return "/index";
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping({"/management"})
+    public String management() {
+        return "management";
     }
 }

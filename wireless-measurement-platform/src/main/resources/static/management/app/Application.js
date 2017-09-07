@@ -1,6 +1,6 @@
 Ext.application({
     name: 'App',
-    appFolder: 'app',
+    appFolder: 'management/app',
     autoCreateViewport: 'App.main.view.Viewport',
     login: function (preOpts) {
         if (!Ext.getCmp('login_window')) {
