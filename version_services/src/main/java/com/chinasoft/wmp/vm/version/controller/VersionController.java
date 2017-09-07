@@ -24,10 +24,4 @@ public class VersionController extends BaseController<Version, String> {
     public IVersionService getService() {
         return service;
     }
-
-    @RequestMapping(value = "/query")
-    @JSON(excludeProperties = {".*\\.cdt"})
-    public Page<Version> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
-        return null;//super.query(params, pageable);
-    }
 }
