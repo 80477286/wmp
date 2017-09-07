@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.measurement.platform.hrm.authorization;
+package com.chinasoft.wmp.authorization;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

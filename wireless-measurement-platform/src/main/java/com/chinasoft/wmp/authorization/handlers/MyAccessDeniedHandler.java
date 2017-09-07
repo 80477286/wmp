@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.measurement.platform.hrm.authorization.handlers;
+package com.chinasoft.wmp.authorization.handlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

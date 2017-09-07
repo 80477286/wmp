@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.measurement.platform.hrm.authorization;
+package com.chinasoft.wmp.authorization;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

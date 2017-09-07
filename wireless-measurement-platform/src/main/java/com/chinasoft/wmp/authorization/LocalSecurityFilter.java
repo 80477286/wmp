@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.measurement.platform.hrm.authorization;
+package com.chinasoft.wmp.authorization;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.SecurityMetadataSource;
