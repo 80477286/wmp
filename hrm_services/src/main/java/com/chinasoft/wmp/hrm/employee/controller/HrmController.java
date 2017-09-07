@@ -7,15 +7,10 @@ import com.mouse.web.supports.mvc.bind.annotation.EntityParam;
 import com.mouse.web.supports.mvc.bind.annotation.JSON;
 import com.mouse.web.supports.mvc.bind.annotation.MapParam;
 import com.mouse.web.supports.mvc.request.PageParam;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,18 +24,34 @@ public class HrmController extends BaseController<Employee, String> {
         return service;
     }
 
-    @RequestMapping(params = "query")
+    @RequestMapping("/query")
     @JSON(excludeProperties = {".*\\.cdt"})
     public Page<Employee> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
-        return super.query(params, pageable);
+        Page<Employee> page = super.query(params, pageable);
+        return page;
     }
 
-    @RequestMapping("/update")
-    @JSON
-    public String update(String address, String name) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", name);
-        map.put("address", address);
-        return "你好啊";
+    @JSON(excludeProperties = {".*\\.cdt"})
+    @RequestMapping(value = "/get_by_id", method = RequestMethod.GET)
+    public Employee getById(@RequestParam("id") String id) {
+        return super.getById(id);
+    }
+
+    @JSON(excludeProperties = {".*\\.cdt"})
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public Employee save(@RequestBody Employee employee) {
+        return super.save(employee);
+    }
+
+    @JSON(excludeProperties = {".*\\.cdt"})
+    @RequestMapping(value = "/delete")
+    public boolean delete(@RequestParam("id") String id) {
+        return super.delete(id);
+    }
+
+    @JSON(excludeProperties = {".*\\.cdt"})
+    @RequestMapping(value = "/deletes", method = RequestMethod.POST)
+    public boolean delete(@RequestBody String[] ids) {
+        return super.delete(ids);
     }
 }

@@ -56,7 +56,7 @@ Ext.define('App.management.employee.viewmodel.EmployeeViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/management/employees?query',
+                url: '/hrm/employee/query',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

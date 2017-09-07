@@ -17,8 +17,8 @@ Ext.define("App.management.employee.view.EmployeeList", {
     },
     editor: {
         formClass: 'App.management.employee.view.EmployeeEditor',
-        save: '/authorization/role?save',
-        get: '/authorization/role?get_by_id',
-        del: '/authorization/role?delete'
+        save: '/hrm/employee/save',
+        get: '/hrm/employee/get_by_id',
+        del: '/hrm/employee/delete'
     }
 });
