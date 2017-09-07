@@ -1,4 +1,4 @@
-package com.chinasoft.wmp.version.config;
+package com.chinasoft.wmp.vm.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

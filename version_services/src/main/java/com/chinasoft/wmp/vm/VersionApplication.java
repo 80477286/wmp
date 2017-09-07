@@ -1,4 +1,4 @@
-package com.chinasoft.wmp.version;
+package com.chinasoft.wmp.vm;
 
 import com.mouse.web.supports.jpa.repository.RepositoryFactory;
 import org.springframework.boot.SpringApplication;
