@@ -158,7 +158,7 @@
     <orderEntry type="library" name="Maven: xmlpull:xmlpull:1.1.3.1" level="project" />
     <orderEntry type="library" name="Maven: xpp3:xpp3_min:1.1.4c" level="project" />
     <orderEntry type="library" name="Maven: com.mouse.web:web-extjs:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.webjars:extjs:6.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars:extjs:6.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.mouse.web:web-base:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.11" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.6" level="project" />

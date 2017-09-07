@@ -48,7 +48,7 @@ Ext.define('App.management.employee.viewmodel.EmployeeViewModel', {
         Query: {
             autoLoad: false,
             model: 'App.management.employee.model.EmployeeModel',
-            pageSize: 25,
+            pageSize: 5,
             remoteSort: true,
             sorters: [{
                 property: 'cdt',
