@@ -21,11 +21,8 @@
         <table class="table table-bordered table-hover table-condensed">
             <thead>
             <tr>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
+                <td>ID</td>
+                <td>名称</td>
             </tr>
             </thead>
             <tbody>
@@ -38,36 +35,31 @@
             .warning	标识警告或需要用户注意
             .danger	    标识危险或潜在的带来负面影响的动作
             -->
-            <tr class="active">
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-            </tr>
-            <tr class="success">
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-            </tr>
-            <tr class="warning">
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-            </tr>
-            <tr class="info">
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
-                <td>测试列</td>
+            <tr th:each="item:${data}">
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.name}"></td>
             </tr>
             </tbody>
         </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="previous">
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li class="next">
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 

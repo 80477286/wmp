@@ -1,7 +1,5 @@
-
 server:
   port: 8021
-
 
 eureka:
   client:
@@ -14,8 +12,6 @@ eureka:
     #最后一次心跳时间后leaseExpirationDurationInSeconds秒就认为是下线了，默认是90秒
     leaseExpirationDurationInSeconds: 2
     preferIpAddress: true
-
-
 
 spring:
   application:
