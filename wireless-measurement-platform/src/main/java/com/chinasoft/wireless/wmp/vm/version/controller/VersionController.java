@@ -1,6 +1,6 @@
 package com.chinasoft.wireless.wmp.vm.version.controller;
 
-import com.chinasoft.wireless.wmp.vm.version.service.VersionService;
+import com.chinasoft.wireless.wmp.vm.version.service.RemoteServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +8,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -17,7 +16,7 @@ import java.util.Map;
 public class VersionController {
 
     @Autowired
-    private VersionService versionService;
+    private RemoteServiceClient versionService;
 
     @RequestMapping(value = "/index")
     public String index(@RequestParam LinkedMultiValueMap params, Model mv) {

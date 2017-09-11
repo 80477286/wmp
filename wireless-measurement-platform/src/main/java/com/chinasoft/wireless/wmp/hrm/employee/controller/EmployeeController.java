@@ -1,25 +1,12 @@
 package com.chinasoft.wireless.wmp.hrm.employee.controller;
 
-import com.chinasoft.wireless.utils.MicroServiceClient;
 import com.chinasoft.wireless.wmp.hrm.employee.service.EmployeeService;
-import com.chinasoft.wireless.wmp.vm.version.service.VersionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.net.URI;
-import java.util.List;
 import java.util.Map;
 
 @Controller

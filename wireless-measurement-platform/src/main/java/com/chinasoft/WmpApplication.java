@@ -12,6 +12,7 @@ import java.security.Principal;
 /**
  *
  */
+
 @EnableEurekaClient
 @SpringBootApplication
 @EnableDiscoveryClient
