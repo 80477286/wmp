@@ -8,24 +8,28 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping(value = "/hrm/employee")
 public class EmployeeController {
 
     @Autowired
     DiscoveryClient client;
 
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "hrm/employee/index";
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/query", method = RequestMethod.POST)
     public Object getAllEmployees(@RequestParam LinkedMultiValueMap<String, Object> params) {
         List<ServiceInstance> instances = client.getInstances("hrm-service");
@@ -44,6 +48,7 @@ public class EmployeeController {
         return null;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/get_by_id", method = RequestMethod.POST)
     public Object getOne(@RequestParam LinkedMultiValueMap<String, Object> params) {
         List<ServiceInstance> instances = client.getInstances("hrm-service");
@@ -62,6 +67,7 @@ public class EmployeeController {
         return null;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public Object save(@RequestParam LinkedMultiValueMap<String, Object> params) {
         List<ServiceInstance> instances = client.getInstances("hrm-service");
@@ -80,6 +86,7 @@ public class EmployeeController {
         return null;
     }
 
+    @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public Object delete(@RequestParam LinkedMultiValueMap<String, Object> params) {
         List<ServiceInstance> instances = client.getInstances("hrm-service");

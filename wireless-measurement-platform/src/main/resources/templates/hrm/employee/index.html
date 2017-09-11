@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>无线度量平台管理</title>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container-fluid">
+    <!--
+    响应式表格：其会在小屏幕设备上（小于768px）水平滚动。当屏幕大于 768px 宽度时，水平滚动条消失。
+    -->
+    <div class="table-responsive">
+        <!--
+         table-condensed:紧凑表格
+         table-bordered：加边框
+        table-hover：可以让 <tbody> 中的每一行对鼠标悬停状态作出响应。
+        -->
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+            <tr>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <!--
+            Class	    描述
+            .active	    鼠标悬停在行或单元格上时所设置的颜色
+            .success	标识成功或积极的动作
+            .info	    标识普通的提示信息或动作
+            .warning	标识警告或需要用户注意
+            .danger	    标识危险或潜在的带来负面影响的动作
+            -->
+            <tr class="active">
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+            </tr>
+            <tr class="success">
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+            </tr>
+            <tr class="warning">
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+            </tr>
+            <tr class="info">
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+                <td>测试列</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
