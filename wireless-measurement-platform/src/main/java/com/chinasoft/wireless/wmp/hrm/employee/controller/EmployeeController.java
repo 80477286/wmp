@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.net.URI;
 import java.util.List;
@@ -25,7 +26,9 @@ public class EmployeeController {
     DiscoveryClient client;
 
     @RequestMapping(value = "/index")
-    public String index() {
+    public String index(ModelAndView mv) {
+
+
         return "hrm/employee/index";
     }
 
