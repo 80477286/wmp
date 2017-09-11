@@ -11,7 +11,7 @@ import java.util.Map;
 
 @SuppressWarnings("ALL")
 @Service
-public class RemoteServiceClient {
+public class VersionServiceClient {
     private static final String SERVER_ID = "version-services";
     @Autowired
     private CloudServiceClient client;

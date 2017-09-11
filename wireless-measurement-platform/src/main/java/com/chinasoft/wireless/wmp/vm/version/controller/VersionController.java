@@ -1,6 +1,6 @@
 package com.chinasoft.wireless.wmp.vm.version.controller;
 
-import com.chinasoft.wireless.wmp.vm.version.service.RemoteServiceClient;
+import com.chinasoft.wireless.wmp.vm.version.service.VersionServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import java.util.Map;
 public class VersionController {
 
     @Autowired
-    private RemoteServiceClient versionService;
+    private VersionServiceClient versionService;
 
     @RequestMapping(value = "/index")
     public String index(@RequestParam LinkedMultiValueMap params, Model mv) {
