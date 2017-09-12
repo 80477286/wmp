@@ -1,25 +1,56 @@
 package com.chinasoft;
 
+import com.mouse.web.supports.mvc.bind.annotation.JSON;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Controller
 public class GlobalController {
-    @GetMapping({"/index", "/"})
+    @RequestMapping({"/index", "/"})
     public String index() {
         return "index";
     }
 
-    @GetMapping({"/management"})
+    @RequestMapping({"/management"})
     public String management() {
         return "management";
+    }
+
+    @RequestMapping({"/get_current_user"})
+    @ResponseBody
+    @JSON
+    public Object getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && OAuth2Authentication.class.isAssignableFrom(authentication.getClass())) {
+            OAuth2Authentication oa = (OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication();
+            LinkedHashMap details = (LinkedHashMap) oa.getUserAuthentication().getDetails();
+            Object principal = details.get("principal");
+
+            return principal;
+        }
+        return null;
+    }
+
+
+    @RequestMapping({"/get_localhost"})
+    @ResponseBody
+    @JSON
+    public Object getLocalhost(HttpServletRequest request) {
+        String host = request.getRemoteHost();
+        return host;
     }
 }

@@ -212,12 +212,12 @@ Ext.application({
         Ext.Ajax.request({
             url: 'get_localhost',
             success: function (resp) {
-                // var result = resp.result;
-                // app.localhost = result.host;
-                // Ext.log({
-                //     level: 'info',
-                //     msg: app.localhost
-                // })
+                var result = resp.result;
+                app.localhost = result.host;
+                Ext.log({
+                    level: 'info',
+                    msg: app.localhost
+                })
             }
         });
         window.onbeforeunload = function () {
