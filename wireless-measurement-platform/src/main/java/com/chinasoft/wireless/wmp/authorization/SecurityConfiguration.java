@@ -34,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         String[] matchers = StringUtils.isEmpty(getPermits()) ? new String[0] : getPermits().split("[,]");
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
+        http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
         http.authorizeRequests().antMatchers(matchers).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.formLogin().loginPage("/login").permitAll();
@@ -41,11 +42,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();//csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
-    @Bean
-    public FilterSecurityInterceptor filterSecurityInterceptor() {
-        FilterSecurityInterceptor fsi = new FilterSecurityInterceptor();
+    public LocalSecurityFilter filterSecurityInterceptor() throws Exception {
+        LocalSecurityFilter fsi = new LocalSecurityFilter();
         fsi.setSecurityMetadataSource(securityMetadataSource);
         fsi.setAccessDecisionManager(accessDecisionManager);
+        fsi.afterPropertiesSet();
         return fsi;
     }
 
