@@ -13,7 +13,7 @@ import java.security.Principal;
  *
  */
 
-@EnableEurekaClient
+//@EnableEurekaClient
 @SpringBootApplication
 @EnableDiscoveryClient
 public class WmpApplication {

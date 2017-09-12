@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.wmp.vm.version.service;
+package com.chinasoft.wireless.wmp.authorization.resource.service;
 
 
 import com.mouse.web.supports.cloud.CloudServiceClient;
@@ -11,29 +11,29 @@ import java.util.Map;
 
 @SuppressWarnings("ALL")
 @Service
-public class VersionServiceClient {
-    private static final String SERVER_ID = "version-services";
+public class ResourceService {
+    private static final String SERVER_ID = "sso-server";
     @Autowired
     private CloudServiceClient client;
 
     public Map query(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/vm/version/query", params);
+        Map result = client.postForEntity(SERVER_ID, "/authorization/resource/query", params);
         return result;
     }
 
     public Map getById(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/vm/version/get_by_id", params);
+        Map result = client.postForEntity(SERVER_ID, "/authorization/resource/get_by_id", params);
         return result;
     }
 
     public Map save(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/vm/version/save", params);
+        Map result = client.postForEntity(SERVER_ID, "/authorization/resource/save", params);
         return result;
     }
 
 
     public Map deletes(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/vm/version/deletes", params);
+        Map result = client.postForEntity(SERVER_ID, "/authorization/resource/deletes", params);
         return result;
     }
 

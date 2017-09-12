@@ -1,9 +1,8 @@
-package com.chinasoft.wireless.wmp.vm.version.controller;
+package com.chinasoft.wireless.wmp.authorization.role.controller;
 
-import com.chinasoft.wireless.wmp.vm.version.service.VersionService;
+import com.chinasoft.wireless.wmp.authorization.role.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,18 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value = "/vm/version")
-public class VersionController {
+@RequestMapping(value = "/authorization/role")
+public class RoleController {
 
     @Autowired
-    private VersionService versionService;
-
-    @RequestMapping(value = "/index")
-    public String index(@RequestParam LinkedMultiValueMap params, Model mv) {
-        Map result = versionService.query(params);
-        mv.addAllAttributes(result);
-        return "vm/version/index";
-    }
+    private RoleService versionService;
 
     @ResponseBody
     @RequestMapping(value = "query")

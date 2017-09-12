@@ -35,7 +35,7 @@ Ext.define("App.main.view.North", {
             region: 'west',
             items: [{
                 xtype: 'image',
-                src: 'resources/images/logo.png',
+                src: 'management/resources/images/logo.png',
                 style: {
                     cursor: 'pointer'
                 },
