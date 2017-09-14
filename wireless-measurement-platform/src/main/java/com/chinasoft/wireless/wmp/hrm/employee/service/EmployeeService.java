@@ -1,7 +1,6 @@
 package com.chinasoft.wireless.wmp.hrm.employee.service;
 
-import com.chinasoft.wireless.security.oauth2.client.ResourceClient;
-import com.mouse.web.supports.cloud.CloudServiceClient;
+import com.mouse.web.supports.cloud.CloudResourceServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -18,12 +17,12 @@ public class EmployeeService {
     private static final String SERVER_ID = "hrm-services";
     @Autowired
     @Qualifier("employeeClient")
-    private ResourceClient client;
+    private CloudResourceServiceClient client;
 
     @Bean
     @ConfigurationProperties("security.employee")
-    public ResourceClient employeeClient() {
-        return new ResourceClient();
+    public CloudResourceServiceClient employeeClient() {
+        return new CloudResourceServiceClient();
     }
 
     public Map query(@RequestParam LinkedMultiValueMap params) {

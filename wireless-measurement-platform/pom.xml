@@ -71,5 +71,10 @@
             <artifactId>web-base</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.mouse.web</groupId>
+            <artifactId>web-cloud-supports</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>
