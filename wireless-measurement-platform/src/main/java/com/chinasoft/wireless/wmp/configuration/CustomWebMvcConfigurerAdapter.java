@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.wmp.authorization;
+package com.chinasoft.wireless.wmp.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

@@ -1,15 +1,16 @@
-package com.chinasoft.wireless.wmp.authorization;
+package com.chinasoft.wireless.wmp.configuration;
 
+import com.chinasoft.wireless.wmp.authorization.LocalAccessDecisionManager;
+import com.chinasoft.wireless.wmp.authorization.LocalSecurityFilter;
+import com.chinasoft.wireless.wmp.authorization.LocalSecurityMetadataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.WebMvcSecurityConfiguration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -34,15 +35,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private LocalAccessDecisionManager accessDecisionManager;
 
-    private String permits = "/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico";
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] matchers = StringUtils.isEmpty(getPermits()) ? new String[0] : getPermits().split("[,]");
-        LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
         http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
-        http.authorizeRequests().antMatchers(matchers).permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.formLogin().loginPage("/login").permitAll();
         http.logout().logoutSuccessUrl("/").logoutSuccessHandler(new LogoutSuccessHandler() {
@@ -54,6 +50,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();//csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/**/*.ico", "/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.gif", "/**/*.bmp");
+    }
+
     public LocalSecurityFilter filterSecurityInterceptor() throws Exception {
         LocalSecurityFilter fsi = new LocalSecurityFilter();
         fsi.setSecurityMetadataSource(securityMetadataSource);
@@ -62,7 +64,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return fsi;
     }
 
-    private String getPermits() {
-        return permits;
-    }
 }

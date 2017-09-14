@@ -1,6 +1,7 @@
 server:
   port: 8090
 security:
+  ignored: /css/**,/js/**,/images/**,/webjars/**,/**/favicon.ico,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico
   oauth2:
     client:
       client-id: acmex
@@ -13,8 +14,18 @@ security:
       resources-uri: http://192.168.0.95:19000/resource/get_all_resources
       #资源缓存时间，单位：秒
       resources-cachetime: 10
-  ignored: /css/**,/js/**,/images/**,/webjars/**,/**/favicon.ico,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico
-
+  version:
+    resource:
+        client-id: acmex
+        client-secret: acmesecretx
+        access-token-uri: http://192.168.0.152:8080/oauth/token
+        user-authorization-uri: http://192.168.0.152:8080/oauth/authorize
+  employee:
+    resource:
+        client-id: acmex
+        client-secret: acmesecretx
+        access-token-uri: http://192.168.0.152:8080/oauth/token
+        user-authorization-uri: http://192.168.0.152:8080/oauth/authorize
 logging:
   level:
     org.springframework.security: DEBUG
