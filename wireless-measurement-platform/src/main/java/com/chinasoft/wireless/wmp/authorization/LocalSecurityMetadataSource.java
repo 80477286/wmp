@@ -45,20 +45,25 @@ public class LocalSecurityMetadataSource implements
         LOG.debug("获取资源列表:getAllConfigAttributes()");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
-        if (authentication != null && authentication.isAuthenticated()) {
-            if (cachedResources == null || cacheTimestamp == null || (new Date().getTime() - cacheTimestamp) > resourcesCachetime * 1000) {
-                if (OAuth2AuthenticationDetails.class.isAssignableFrom(authentication.getDetails().getClass())) {
-                    String token = ((OAuth2AuthenticationDetails) authentication.getDetails()).getTokenValue();
-                    cachedResources = (Map<String, List<String>>) restTemplate.getForObject(resourcesUri + "?access_token=" + token, Map.class);
-                    cacheTimestamp = new Date().getTime();
+        try {
+            if (authentication != null && authentication.isAuthenticated()) {
+                if (cachedResources == null || cacheTimestamp == null || (new Date().getTime() - cacheTimestamp) > resourcesCachetime * 1000) {
+                    if (OAuth2AuthenticationDetails.class.isAssignableFrom(authentication.getDetails().getClass())) {
+                        String token = ((OAuth2AuthenticationDetails) authentication.getDetails()).getTokenValue();
+
+                        cachedResources = (Map<String, List<String>>) restTemplate.getForObject(resourcesUri + "?access_token=" + token, Map.class);
+                        cacheTimestamp = new Date().getTime();
+                    }
+                }
+                if (cachedResources != null) {
+                    Set<Map.Entry<String, List<String>>> entries = cachedResources.entrySet();
+                    for (Map.Entry<String, List<String>> entry : entries) {
+                        configAttributes.add(new ResourceConfigAttribute(entry.getKey()));
+                    }
                 }
             }
-            if (cachedResources != null) {
-                Set<Map.Entry<String, List<String>>> entries = cachedResources.entrySet();
-                for (Map.Entry<String, List<String>> entry : entries) {
-                    configAttributes.add(new ResourceConfigAttribute(entry.getKey()));
-                }
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return configAttributes;
     }
