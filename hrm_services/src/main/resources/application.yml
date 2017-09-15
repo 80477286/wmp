@@ -40,9 +40,10 @@ spring:
           use_second_level_cache: false
           use_query_cache: false
 
+
 security:
   oauth2:
-    check:
-      client-id: acmex
-      client-secret: acmesecretx
-      check-token-uri: http://192.168.0.95:19000/oauth/check_token
+      check:
+        client-id: wmp
+        client-secret: 5f4dcc3b5aa765d61d8327deb882cf99
+        checkTokenEndpointUrl: http://192.168.0.95:19000/oauth/check_token

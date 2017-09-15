@@ -4,28 +4,17 @@ security:
   ignored: /css/**,/js/**,/images/**,/webjars/**,/**/favicon.ico,/**/*.css,/**/*.js,/**/*.gif,/**/*.jpg,/**/*.bmp,/**/*.png,/**/*.ico
   oauth2:
     client:
-      client-id: acmex
-      client-secret: acmesecretx
+      client-id: wmp
+      client-secret: 5f4dcc3b5aa765d61d8327deb882cf99
       access-token-uri: http://192.168.0.95:19000/oauth/token
       user-authorization-uri: http://192.168.0.95:19000/oauth/authorize
+      resource-ids: oauth2-resource
     resource:
       user-info-uri: http://192.168.0.95:19000/resource/me
       #资源获取地址
       resources-uri: http://192.168.0.95:19000/resource/get_all_resources
       #资源缓存时间，单位：秒
       resources-cachetime: 10
-  version:
-    resource:
-        client-id: acmex
-        client-secret: acmesecretx
-        access-token-uri: http://192.168.0.152:8080/oauth/token
-        user-authorization-uri: http://192.168.0.152:8080/oauth/authorize
-  employee:
-    resource:
-        client-id: acmex
-        client-secret: acmesecretx
-        access-token-uri: http://192.168.0.152:8080/oauth/token
-        user-authorization-uri: http://192.168.0.152:8080/oauth/authorize
 logging:
   level:
     org.springframework.security: DEBUG

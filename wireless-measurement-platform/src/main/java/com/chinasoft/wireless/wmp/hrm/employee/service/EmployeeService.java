@@ -16,14 +16,7 @@ import java.util.Map;
 public class EmployeeService {
     private static final String SERVER_ID = "hrm-services";
     @Autowired
-    @Qualifier("employeeClient")
     private CloudResourceServiceClient client;
-
-    @Bean
-    @ConfigurationProperties("security.employee")
-    public CloudResourceServiceClient employeeClient() {
-        return new CloudResourceServiceClient();
-    }
 
     public Map query(@RequestParam LinkedMultiValueMap params) {
         Map result = client.postForEntity(SERVER_ID, "/hrm/employee/query", params, Map.class).getBody();

@@ -17,7 +17,6 @@ import java.util.Map;
 public class VersionService {
     private static final String SERVER_ID = "version-services";
     @Autowired
-    @Qualifier("versionClient")
     private CloudResourceServiceClient client;
 
     public Map query(@RequestParam LinkedMultiValueMap params) {
@@ -39,11 +38,5 @@ public class VersionService {
     public Map deletes(@RequestParam LinkedMultiValueMap params) {
         Map result = client.postForEntity(SERVER_ID, "/vm/version/deletes", params, Map.class).getBody();
         return result;
-    }
-
-    @Bean
-    @ConfigurationProperties("security.version")
-    public CloudResourceServiceClient versionClient() {
-        return new CloudResourceServiceClient();
     }
 }
