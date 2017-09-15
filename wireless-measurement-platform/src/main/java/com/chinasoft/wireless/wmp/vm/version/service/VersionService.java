@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
-@SuppressWarnings("ALL")
 @Service
 public class VersionService {
     private static final String SERVER_ID = "version-services";

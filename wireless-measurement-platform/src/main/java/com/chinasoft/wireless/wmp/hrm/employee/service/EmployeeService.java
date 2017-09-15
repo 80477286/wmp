@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Service
-@SuppressWarnings("ALL")
 public class EmployeeService {
-    private static final String SERVER_ID = "hrm-services";
+    private static final String SERVER_ID = "hrm-service";
     @Autowired
     private CloudResourceServiceClient client;
 
