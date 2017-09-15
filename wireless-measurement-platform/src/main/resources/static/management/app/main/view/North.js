@@ -96,7 +96,8 @@ Ext.define("App.main.view.North", {
                     menuExpandDelay: 10,
                     security: item.security,
                     uiid: item.uiid,
-                    hidden: item.security == true
+                    hidden: item.security == true,
+                    handler: item.handler
                 };
                 if (topmenu === true) {
                     menu.padding = '0 0 13 0';

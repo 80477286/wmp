@@ -43,6 +43,7 @@ Ext.define('App.main.controller.NorthController', {
                     onLogoutSuccess: function () {
                         vm.set('user', null);
                         app.user = null;
+                        me.Cookieset('JSESSIONID', 0)
                     }
                 },
                 'displayfield[name=user_name]': {
@@ -136,5 +137,11 @@ Ext.define('App.main.controller.NorthController', {
 
             }
         });
+    }, Cookieset: function (name, value, expiredays, path, domain) {
+        var exdate = new Date()
+        exdate.setDate(exdate.getDate() + expiredays)
+        document.cookie = name + "=" + escape(value)
+            + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + (path ? ";path=" + path : "")
+            + (domain ? ";domain=" + domain : "")
     }
 })
