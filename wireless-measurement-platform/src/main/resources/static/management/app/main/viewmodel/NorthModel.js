@@ -6,7 +6,7 @@ Ext.define('App.main.viewmodel.NorthModel', {
             name: '加载中...'
         },
         menus: [{
-            name: '人力资源管理',
+            name: '度量中心',
             iconCls: 'menu_item_role_managument',handler:function(){window.location.href='/'}
         },{
             clazz: 'App.employee.view.EmployeeList',

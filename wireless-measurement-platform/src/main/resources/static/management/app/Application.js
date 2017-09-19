@@ -22,16 +22,7 @@ Ext.application({
             maxWidth: 1024,
             callback: function (opt) {
                 if (opt === 'yes') {
-                    Ext.Ajax.request({
-                        url: 'logout',
-                        success: function (resp) {
-                            me
-                                .getMainView()
-                                .down('North')
-                                .fireEvent("onLogoutSuccess")
-                            me.checkAuthorities();
-                        }
-                    });
+                    window.location.href = '/logout?redirect=' + window.location.href
                 }
             }
         });

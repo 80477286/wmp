@@ -3,6 +3,7 @@ package com.chinasoft.wireless.wmp.configuration;
 import com.chinasoft.wireless.wmp.authorization.LocalAccessDecisionManager;
 import com.chinasoft.wireless.wmp.authorization.LocalSecurityFilter;
 import com.chinasoft.wireless.wmp.authorization.LocalSecurityMetadataSource;
+import com.netflix.discovery.converters.Auto;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletException;
@@ -35,19 +37,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private LocalAccessDecisionManager accessDecisionManager;
 
+    @Autowired
+    private SSOLogoutHandler logoutHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
-        http.authorizeRequests().anyRequest().authenticated();
+        http.antMatcher("/**").authorizeRequests().anyRequest().authenticated();
         http.formLogin().loginPage("/login").permitAll();
-        http.logout().logoutSuccessUrl("/").logoutSuccessHandler(new LogoutSuccessHandler() {
+        http.logout().permitAll().addLogoutHandler(logoutHandler).logoutSuccessHandler(new LogoutSuccessHandler() {
             @Override
             public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                SecurityContextHolder.getContext().setAuthentication(null);
+                String redirect = request.getParameter("redirect");
+                if (redirect == null || redirect.trim().isEmpty()) {
+                    redirect = "/";
+                }
+                response.sendRedirect(redirect);
             }
-        }).permitAll();
-        http.csrf().disable();//csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        });
+        http.csrf().
+
+                disable();
+
     }
 
 

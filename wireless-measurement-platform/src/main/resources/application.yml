@@ -6,13 +6,14 @@ security:
     client:
       client-id: wmp
       client-secret: 5f4dcc3b5aa765d61d8327deb882cf99
-      access-token-uri: http://192.168.0.95:19000/oauth/token
-      user-authorization-uri: http://192.168.0.95:19000/oauth/authorize
+      access-token-uri: http://192.168.0.152:19000/oauth/token
+      user-authorization-uri: http://192.168.0.152:19000/oauth/authorize
       resource-ids: oauth2-resource
+      logout-uri: "http://192.168.0.152:19000/logout"
     resource:
-      user-info-uri: http://192.168.0.95:19000/resource/me
+      user-info-uri: http://192.168.0.152:19000/resource/me
       #资源获取地址
-      resources-uri: http://192.168.0.95:19000/resource/get_all_resources
+      resources-uri: http://192.168.0.152:19000/resource/get_all_resources
       #资源缓存时间，单位：秒
       resources-cachetime: 10
 logging:
