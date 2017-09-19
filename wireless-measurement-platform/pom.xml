@@ -11,6 +11,7 @@
     <artifactId>wireless-measurement-platform</artifactId>
 
     <dependencies>
+        <!--web支持-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
