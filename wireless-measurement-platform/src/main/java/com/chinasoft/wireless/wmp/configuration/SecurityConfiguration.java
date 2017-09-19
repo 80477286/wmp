@@ -3,7 +3,7 @@ package com.chinasoft.wireless.wmp.configuration;
 import com.chinasoft.wireless.wmp.authorization.LocalAccessDecisionManager;
 import com.chinasoft.wireless.wmp.authorization.LocalSecurityFilter;
 import com.chinasoft.wireless.wmp.authorization.LocalSecurityMetadataSource;
-import com.netflix.discovery.converters.Auto;
+import com.chinasoft.wireless.wmp.handlers.Oauth2LogoutHandler;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +13,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Created by cwx183898 on 2017/8/9.
@@ -38,12 +34,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private LocalAccessDecisionManager accessDecisionManager;
 
     @Autowired
-    private SSOLogoutHandler logoutHandler;
+    private Oauth2LogoutHandler logoutHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
         http.antMatcher("/**").authorizeRequests().anyRequest().authenticated();
+
         http.formLogin().loginPage("/login").permitAll();
         http.logout().permitAll().addLogoutHandler(logoutHandler).logoutSuccessHandler(new LogoutSuccessHandler() {
             @Override
@@ -55,10 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 response.sendRedirect(redirect);
             }
         });
-        http.csrf().
 
-                disable();
-
+        http.csrf().disable();
     }
 
 

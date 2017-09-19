@@ -1,9 +1,8 @@
-package com.chinasoft.wireless.wmp.configuration;
+package com.chinasoft.wireless.wmp.handlers;
 
 import com.google.common.base.Strings;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -28,9 +27,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service
-public class SSOLogoutHandler implements LogoutHandler {
+public class Oauth2LogoutHandler implements LogoutHandler {
     protected static final Logger LOGGER = Logger
-            .getLogger(SSOLogoutHandler.class);
+            .getLogger(Oauth2LogoutHandler.class);
     @Value("${security.oauth2.client.logout-uri}")
     private String logoutUri = null;
 

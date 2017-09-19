@@ -32,7 +32,7 @@
             <version>3.3.7</version>
         </dependency>
 
-        <!--用户认证相关-->
+        <!--用户验证，授权相关认证相关-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -40,6 +40,12 @@
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+
+        <!--用于支持前端sec标签-->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
         </dependency>
 
         <!--数据库及驱动相关-->
