@@ -1,4 +1,7 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:fragment="header-css">
     <!-- this is header-css -->
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -7,17 +10,44 @@
     <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:fragment="header">
+<div th:fragment="header(idx)">
+    <script type="text/javascript">
+        $(function () {
+            $('.navbar-nav li').click(function (e) {
+                //  e.preventDefault();
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        });
+
+    </script>
+    <style type="text/css">
+        .navbar {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+
+        .navbar-nav li:hover {
+            background-color: darkslategray;
+        }
+        .navbar-nav li{
+            width: 100px;
+        }
+    </style>
     <!-- this is header -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">首页</a>
+                <!-- th:href 支持将链接地址进行URL编码并且可以在地址中使用${}来引用变量 -->
+                <a style="padding-top: 4px;background-color: #acacac;" class="navbar-brand" th:href="@{/}"><img src="/images/logo1.png"/></a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a th:href="@{/}">产品展示</a></li>
-                    <li class=""><a th:href="@{/management}">系统配置</a></li>
+                    <li th:class="${idx==1?'active':''}"><a href="/">首页</a></li>
+                    <li th:class="${idx==2?'active':''}"><a href="/project">项目度量</a></li>
+                    <li th:class="${idx==3?'active':''}"><a href="/po">PO度量</a></li>
+                    <li th:class="${idx==4?'active':''}"><a href="/organization">组织度量</a></li>
+                    <li class=""><a target="_blank" href="/management">系统配置</a></li>
                 </ul>
             </div>
         </div>

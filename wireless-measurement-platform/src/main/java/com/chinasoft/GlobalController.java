@@ -30,6 +30,21 @@ public class GlobalController {
         return "management";
     }
 
+    @RequestMapping({"/project"})
+    public String project() {
+        return "project";
+    }
+
+    @RequestMapping({"/po"})
+    public String po() {
+        return "po";
+    }
+
+    @RequestMapping({"/organization"})
+    public String organization() {
+        return "organization";
+    }
+
     @RequestMapping({"/get_current_user"})
     @ResponseBody
     @JSON

@@ -19,7 +19,7 @@ Ext.define('App.authorization.resource.view.ResourceList', {
         formClazz: 'App.authorization.resource.view.ResourceEditor',
         save: '/authorization/resource/save',
         get: '/authorization/resource/get_by_id',
-        del: '/authorization/resource/delete',
+        del: '/authorization/resource/deletes',
         dataType: 'Resource'
     }
 });
