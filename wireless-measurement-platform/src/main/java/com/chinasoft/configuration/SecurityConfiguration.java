@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.wmp.configuration;
+package com.chinasoft.configuration;
 
 import com.chinasoft.wireless.wmp.authorization.LocalAccessDecisionManager;
 import com.chinasoft.wireless.wmp.authorization.LocalSecurityFilter;

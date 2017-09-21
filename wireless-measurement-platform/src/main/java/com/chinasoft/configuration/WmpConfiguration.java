@@ -1,4 +1,4 @@
-package com.chinasoft.wireless.wmp.configuration;
+package com.chinasoft.configuration;
 
 import com.mouse.web.supports.cloud.CloudResourceServiceClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;
