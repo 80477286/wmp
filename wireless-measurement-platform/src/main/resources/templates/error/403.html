@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <div th:replace="/fragments/header :: header-css"/>
 </head>
@@ -9,10 +11,9 @@
 
     <div class="starter-template">
         <h1>403 - Access is denied</h1>
-        <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]',you do not have permission to access this page.
+        <div th:inline="text">You do not have permission to access this page.
         </div>
     </div>
-
 </div>
 </body>
 </html>

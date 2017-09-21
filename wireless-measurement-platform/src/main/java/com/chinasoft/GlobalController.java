@@ -45,6 +45,7 @@ public class GlobalController {
         return "organization";
     }
 
+
     @RequestMapping({"/get_current_user"})
     @ResponseBody
     @JSON
