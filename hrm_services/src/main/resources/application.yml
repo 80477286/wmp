@@ -46,4 +46,4 @@ security:
       check:
         client-id: wmp
         client-secret: 5f4dcc3b5aa765d61d8327deb882cf99
-        checkTokenEndpointUrl: http://192.168.0.95:19000/oauth/check_token
+        checkTokenEndpointUrl: http://192.168.0.95:19000/sso/oauth/check_token

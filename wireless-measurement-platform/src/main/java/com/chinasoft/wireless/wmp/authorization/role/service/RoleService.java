@@ -17,23 +17,23 @@ public class RoleService {
     private CloudResourceServiceClient client;
 
     public Map query(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/resource/authorization/role/query", params, Map.class).getBody();
+        Map result = client.postForEntity(SERVER_ID, "/sso/resource/authorization/role/query", params, Map.class).getBody();
         return result;
     }
 
     public Map getById(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/resource/authorization/role/get_by_id", params, Map.class).getBody();
+        Map result = client.postForEntity(SERVER_ID, "/sso/resource/authorization/role/get_by_id", params, Map.class).getBody();
         return result;
     }
 
     public Map save(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/resource/authorization/role/save", params, Map.class).getBody();
+        Map result = client.postForEntity(SERVER_ID, "/sso/resource/authorization/role/save", params, Map.class).getBody();
         return result;
     }
 
 
     public Map deletes(@RequestParam LinkedMultiValueMap params) {
-        Map result = client.postForEntity(SERVER_ID, "/resource/authorization/role/deletes", params, Map.class).getBody();
+        Map result = client.postForEntity(SERVER_ID, "/sso/resource/authorization/role/deletes", params, Map.class).getBody();
         return result;
     }
 

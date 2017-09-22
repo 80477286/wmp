@@ -35,6 +35,11 @@ public class GlobalController {
         return "project";
     }
 
+    @RequestMapping({"/project1"})
+    public String project1() {
+        return "project1";
+    }
+
     @RequestMapping({"/po"})
     public String po() {
         return "po";
