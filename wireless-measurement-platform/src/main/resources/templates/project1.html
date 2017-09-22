@@ -15,22 +15,72 @@
     Ext.Loader.setConfig({
         enabled: true,
         disableCachingParam: 'dc',
-        disableCaching:  false,
+        disableCaching: false,
         paths: {// '类名前缀':'所在路径'
             'Extend': '/webjars/extjs/6.2.0/extend',
             'MExt': '/webjars/extjs/6.2.0/extend',
             'Ext.ux': '/webjars/extjs/6.2.0/packages/ux/classic/src'
         }
     });
-    Ext.onReady(function(){
-        Ext.create( 'Ext.Viewport',{
-            layout : 'border',
-            items : [ {
-                region : 'center',
-                layout : 'fit',
-                html:'qq'
-            } ]
-        });
+
+
+    Ext.define('Ext.ux.Navbar', {
+        extend: 'Ext.Component',
+        alias: ['widget.navbar'],//组件别名，可以是多个
+        baseCls: 'navbar',//基础样式类
+        //{id}会在initRenderData时从this.callParent()时取到，最后返回用于在tpl中引用。
+        renderTpl: ['<div id="{id}-headerEl" data-ref="headerEl" class="{baseCls}-header">{title}</div>',
+            '<div id="{id}-body" data-ref="body" class="{baseCls}-body">{% this.renderContent(out, values) %}</div>'],
+        //renderData数据将绑定到renderTpl中
+        renderData: {
+            title: this.title
+        },
+        //定义tpl或renderTpl元素的实例引用，以方便后续使用，主要有以下三种方式，定义的元素实例可以用this.xxx直接访问
+        childEls: ['body', 'headerEl'],//注意元素的id、data-ref与clildEls子项的关系
+        //        renderSelectors: {
+        //            headerEl: 'div[data-ref="headerEl"]',
+        //            bodyEl: 'div[data-ref="bodyEl"]',
+        //        },
+        //childEls: {headerEl: {dataRef: 'headerEl'}, bodyEl: {dataRef: 'bodyEl'}},
+        getTargetEl:function(){
+            return this.body;
+        },
+        initRenderData: function () {
+            return this.callParent(arguments)
+        }
+    })
+
+    Ext.define('Ext.ux.ExtendNavbar', {
+        extend: 'Ext.ux.Navbar',
+        alias: ['widget.extend-navbar'],
+        tpl: ['tpl content from this.data or this.update(obj):{name}']
+    })
+    Ext.onReady(function () {
+        Ext.create('Ext.Viewport', {
+            layout: 'border',
+            items: [{
+                region: 'north',
+                xtype: 'extend-navbar',
+                height: 100,
+                title: 'xxx',
+                data: {name: 'Chenjiabin'}
+            }, {
+                region: 'center',
+                html: 'center'
+            }, {
+                region: 'south',
+                xtype: 'extend-navbar',
+                height: 100,
+                title: 'xx11x',
+                listeners: {
+                    afterrender: function () {
+                        this.update({name: 'Chenjiabin12'});
+                    }
+                }
+            }
+            ]
+        })
+        ;
     });
 </script>
 
