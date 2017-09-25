@@ -8,130 +8,127 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header(3)"/>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-lg-3">
             <ul class="list-group">
-                <li class="list-group-item active">组织结构
-                    <ul class="list-group">
-                        <a href="#" class="list-group-item active">部门1</a>
-                        <a href="#" class="list-group-item active">部门2</a>
-                        <a href="#" class="list-group-item active">部门3</a>
-                        <a href="#" class="list-group-item active">部门4</a>
-                        <a href="#" class="list-group-item active">部门5</a>
-                        <a href="#" class="list-group-item active">部门6</a>
+                <li class="list-group-item">组织结构
+                    <ul>
+                        <li class="list-group-item">无线</li>
+                        <li class="list-group-item">小站</li>
+                        <li class="list-group-item">OSS</li>
+                        <li class="list-group-item">中射频</li>
+                        <li class="list-group-item">MARP</li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <div class="col-md-3">
-            项目名称：<br/>
-            项目时间：<br/>
-            项目内容：<br/>
+        <div class="col-lg-1">
+            部门名称:小站<br/>
+            部门人员：588<br/>
+            部门经理：里带领<br/>
         </div>
-        <div class="col-md-6">
-            <ul class="nav nav-pills">
-                <li class="active"><a href="#home" data-toggle="tab">项目1</a>
+        <div class="col-lg-8">
+            <title>展示数据</title>
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#second1" data-toggle="tab">
+                        PO1
+                    </a>
                 </li>
-                <li><a href="#svn" data-toggle="tab">SVN</a></li>
-                <li><a href="#ios" data-toggle="tab">iOS</a></li>
-                <li><a href="#net" data-toggle="tab">VB.Net</a></li>
-                <li><a href="#JAVA" data-toggle="tab">Java</a></li>
-                <li><a href="#PHP" data-toggle="tab">PHP</a></li>
+                <li><a href="#second2" data-toggle="tab">PO2</a></li>
             </ul>
-            <div class="tab-content">
-                <div id="home" class="tab-pane active">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#table1" data-toggle="tab">P0</a>
+            <div id="myTabContent" class="tab-content">
+                <div id="second1" class="tab-pane fade in active">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#table" data-toggle="tab">
+                                项目1
+                            </a>
                         </li>
-                        <li><a href="#pic" data-toggle="tab">P1</a></li>
-                        <li><a href="#">P2</a></li>
-                        <li><a href="#">P3</a></li>
-                        <li><a href="#">P4</a></li>
-                        <li><a href="#">P5</a></li>
+                        <li><a href="#simpleTable" data-toggle="tab">项目2</a></li>
                     </ul>
                 </div>
-                <div id="svn" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">svn0</a>
+                <div id="second2" class="tab-pane fade">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#picture" data-toggle="tab">
+                                项目3
+                            </a>
                         </li>
-                        <li><a href="#">svn1</a></li>
-                        <li><a href="#">svn2</a></li>
-                        <li><a href="#">svn3</a></li>
-                        <li><a href="#">svn4</a></li>
-                        <li><a href="#">svn5</a></li>
+                        <li><a href="#beauty" data-toggle="tab">项目4</a></li>
                     </ul>
                 </div>
-                <div id="ios" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">ios0</a>
-                        </li>
-                        <li><a href="#">ios1</a></li>
-                        <li><a href="#">ios2</a></li>
-                        <li><a href="#">ios3</a></li>
-                        <li><a href="#">ios4</a></li>
-                        <li><a href="#">ios5</a></li>
-                    </ul>
-                </div>
-                <div id="net" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">net0</a>
-                        </li>
-                        <li><a href="#">net1</a></li>
-                        <li><a href="#">net2</a></li>
-                        <li><a href="#">net3</a></li>
-                        <li><a href="#">net4</a></li>
-                        <li><a href="#">net5</a></li>
-                    </ul>
-                </div>
-                <div id="JAVA" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">java1</a>
-                        </li>
-                        <li><a href="#">java2</a></li>
-                        <li><a href="#">java0</a></li>
-                        <li><a href="#">java4</a></li>
-                        <li><a href="#">java5</a></li>
-                        <li><a href="#">java6</a></li>
-                    </ul>
-                </div>
-                <div id="PHP" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">php0</a>
-                        </li>
-                        <li><a href="#">php1</a></li>
-                        <li><a href="#">php2</a></li>
-                        <li><a href="#">php3</a></li>
-                        <li><a href="#">php4</a></li>
-                        <li><a href="#">php5</a></li>
-                    </ul>
-                </div>
-
             </div>
-            <div class="tab-content">
-                <div id="table1" class="tab-pane fade">
+            <div id="mySecondTabContent" class="tab-content">
+                <div id="table" class="tab-pane fade in active">
                     <table class="table">
-                        <caption>基本的表格布局</caption>
+                        <caption>上下文表格布局</caption>
+                        <thead>
+                        <tr>
+                            <th>产品</th>
+                            <th>付款日期</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="active">
+                            <td>产品1</td>
+                            <td>23/11/2013</td>
+                            <td>待发货</td>
+                        </tr>
+                        <tr class="success">
+                            <td>产品2</td>
+                            <td>10/11/2013</td>
+                            <td>发货中</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>产品3</td>
+                            <td>20/10/2013</td>
+                            <td>待确认</td>
+                        </tr>
+                        <tr class="danger">
+                            <td>产品4</td>
+                            <td>20/10/2013</td>
+                            <td>已退货</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="simpleTable" class="tab-pane fade">
+                    <table class="table table-condensed">
+                        <caption>精简表格布局</caption>
                         <thead>
                         <tr>
                             <th>名称</th>
                             <th>城市</th>
+                            <th>邮编</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>Tanmay</td>
                             <td>Bangalore</td>
+                            <td>560001</td>
                         </tr>
                         <tr>
                             <td>Sachin</td>
                             <td>Mumbai</td>
+                            <td>400003</td>
+                        </tr>
+                        <tr>
+                            <td>Uma</td>
+                            <td>Pune</td>
+                            <td>411027</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-                <div id="pic" class="tab-pane fade">
-                    <img src="../images/cinqueterre.jpg" class="img-responsive" alt="Cinque Terre"/>
+                <div id="picture" class="tab-pane fade">
+                    <img src="../images/cinqueterre.jpg" class="img-responsive"/>
+                </div>
+                <div id="beauty" class="tab-pane fade">
+                    <img src="../images/beauty.jpg" class="img-responsive"/>
                 </div>
             </div>
         </div>
