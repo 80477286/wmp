@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>无线度量平台管理</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"
+          href="webjars/extjs/6.2.0/build/classic/theme-neptune/resources/theme-neptune-all.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="webjars/extjs/6.2.0/build/ext-all.js"></script>
+    <script type="text/javascript" src="webjars/extjs/6.2.0/build/classic/theme-neptune/theme-neptune.js"></script>
+    <script type="text/javascript" src="webjars/extjs/6.2.0/build/packages/charts/classic/charts.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/extjs/6.2.0/build/packages/charts/classic/neptune/resources/charts-all.css"/>
+
+    <script type="text/javascript">
+
+        Ext.onReady(function () {
+            var chartJsonObj = {
+                "axis": {
+                    "axis2": {"scale": ["0", "13"],},//左竖轴
+                    "axis1": {
+                        "scale": ["薛长剑", "张翔", "王吉媛", "苏风英", "li", "xumy", "耿建", "liquan", "韩磊"],
+                        "axis_name": "客户经理"
+                    },//横轴
+                    "axis3": {"scale": ["0", "329.3832"], "axis_name": "预估缺口（万元）"}//右竖轴
+                },
+                "legend": ["0%", "25%", "50%", "75%", "100%", "12月累计目标（万元）", "12月预估完成（万元）"],
+                "data": {
+                    "column": {
+                        "75%": {
+                            "薛长剑": "0",
+                            "li": "1",
+                            "韩磊": "0",
+                            "liquan": "1",
+                            "xumy": "1",
+                            "王吉媛": "2",
+                            "张翔": "1",
+                            "耿建": "0",
+                            "苏风英": "1"
+                        },
+                        "50%": {
+                            "薛长剑": "6",
+                            "li": "1",
+                            "韩磊": "1",
+                            "xumy": "11",
+                            "liquan": "1",
+                            "王吉媛": "1",
+                            "张翔": "1",
+                            "耿建": "0",
+                            "苏风英": "1"
+                        },
+                        "0%": {
+                            "li": "2",
+                            "薛长剑": "8",
+                            "韩磊": "1",
+                            "liquan": "2",
+                            "xumy": "13",
+                            "王吉媛": "3",
+                            "张翔": "3",
+                            "耿建": "6",
+                            "苏风英": "3"
+                        },
+                        "100%": {
+                            "li": "1",
+                            "薛长剑": "1",
+                            "韩磊": "0",
+                            "liquan": "1",
+                            "xumy": "1",
+                            "王吉媛": "0",
+                            "张翔": "0",
+                            "苏风英": "0",
+                            "耿建": "2"
+                        },
+                        "25%": {
+                            "li": "1",
+                            "薛长剑": "5",
+                            "韩磊": "1",
+                            "liquan": "1",
+                            "xumy": "3",
+                            "王吉媛": "1",
+                            "张翔": "0",
+                            "苏风英": "5",
+                            "耿建": "1"
+                        }
+                    },//柱图数据
+                    "line": {
+                        "12月预估完成（万元）": {
+                            "薛长剑": "200",
+                            "韩磊": "48",
+                            "徐维维": "60",
+                            "liq": "0",
+                            "陈一默": "187",
+                            "xumy": "248",
+                            "王吉媛": "92",
+                            "12345": "0",
+                            "耿建": "4",
+                            "li": "0",
+                            "liquan": "0",
+                            "张翔": "7",
+                            "李权": "0",
+                            "苏风英": "329"
+                        },
+                        "12月累计目标（万元）": {
+                            "薛长剑": "0",
+                            "韩磊": "0",
+                            "徐维维": "0",
+                            "liq": "0",
+                            "陈一默": "0",
+                            "xumy": "0",
+                            "王吉媛": "0",
+                            "12345": "0",
+                            "耿建": "0",
+                            "li": "0",
+                            "liquan": "0",
+                            "张翔": "0",
+                            "李权": "0",
+                            "苏风英": "0"
+                        }
+                    }//线图数据
+                }
+            };
+            var leftTitle = chartJsonObj.axis.axis2.axis_name;
+            var rightTitle = chartJsonObj.axis.axis3.axis_name;
+            var bottomTitle = chartJsonObj.axis.axis1.axis_name;
+            var leftMin = chartJsonObj.axis.axis2.scale[0];
+            var leftMax = chartJsonObj.axis.axis2.scale[1];
+            var rightMin = chartJsonObj.axis.axis3.scale[0];
+            var rightMax = chartJsonObj.axis.axis3.scale[1];
+
+            //legend
+            var legend = chartJsonObj.legend;
+            //先做一个model
+            var fields = {};
+            var model = [];
+            fields['name'] = 'cm_name';
+            fields['type'] = 'String';
+            model.push(fields);
+            for (var i = 0; i < legend.length; i++) {
+                fields = {};
+                fields['name'] = chartJsonObj.legend[i];
+                fields['type'] = 'int';
+                model.push(fields);
+            }
+            //做一个data
+            var cm_name = chartJsonObj.axis.axis1.scale;
+            var data = [];
+            for (var i = 0; i < cm_name.length; i++) {
+                var item = {};
+                item["cm_name"] = cm_name[i];
+                for (var itemKey in chartJsonObj.data.column) {//itemKey是100%，75%。。。
+                    item[itemKey] = chartJsonObj.data.column[itemKey][cm_name[i]];
+                }
+                for (var itemKey in chartJsonObj.data.line) {
+                    item[itemKey] = chartJsonObj.data.line[itemKey][cm_name[i]];
+                }
+                data.push(item);
+            }
+            //做一个dataField
+            var columnField = [];
+            for (var itemKey in chartJsonObj.data.column) {
+                columnField.push(itemKey);
+            }
+            //做一个lineField
+            var lineField = [];
+            for (var itemKey in chartJsonObj.data.line) {
+                lineField.push(itemKey);
+            }
+            //做横轴
+            var x = {};
+            x["type"] = 'category';
+            x["position"] = 'bottom';
+            x["fields"] = 'cm_name';
+            x["title"] = bottomTitle;
+            //做左竖轴
+            var yLeft = {};
+            yLeft["type"] = 'numeric';
+            yLeft["position"] = 'left';
+            yLeft["fields"] = columnField;
+            yLeft["title"] = leftTitle;
+            //做右竖轴
+            var yRight = {};
+            yRight["type"] = 'numeric';
+            yRight["position"] = 'right';
+            yRight["fields"] = lineField;
+            yRight["title"] = rightTitle;
+
+            var axes = [];
+            axes.push(x);
+            axes.push(yLeft);
+            axes.push(yRight);
+
+            var series = [];
+            //柱图
+            var column = {};
+            column["type"] = 'column';
+            column["axis"] = 'left';
+            column["xField"] = 'cm_name';
+            column["yField"] = columnField;
+            //线图
+            for (var i = 0; i < lineField.length; i++) {
+                var line = {};
+                line["type"] = 'line';
+                line["axis"] = 'right';
+                line["xField"] = 'cm_name';
+                line["yField"] = lineField[i];
+                series.push(line);
+            }
+            series.push(column);
+
+            console.log(data)
+            //failure: function() {...} //可选的
+            Ext.define('User', {
+                extend: 'Ext.data.Model',
+                fields: model
+            });
+
+            var store = Ext.create('Ext.data.JsonStore', {
+                model: 'User',
+                fields: legend,
+                data: data
+            });
+
+            var chart = Ext.create('Ext.chart.axis.Category', {
+                autoWidth: true,
+                autoHeight: true,
+                animate: true,
+                store: store,
+                shadow: true,
+                theme: 'Category1',
+                legend: {
+                    position: 'right'
+                },
+                axes: axes,
+                series: series
+            });
+
+            new Ext.Viewport({//VeiwPort表示整个浏览器显示区域，该对象渲染到页面的body区域，并会随着浏览器显示区域的大小自动改变，一个页面中只能有一个ViewPort实例
+                layout: 'fit',
+                monitorResize: true,
+                items: chart,
+                renderTo: Ext.getBody()
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
