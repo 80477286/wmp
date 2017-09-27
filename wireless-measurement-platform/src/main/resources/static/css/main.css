@@ -1,11 +1,49 @@
-h1{
-	color:#0000FF;
+h1 {
+    color: #0000FF;
 }
 
-h2{
-	color:#FF0000;
+h2 {
+    color: #FF0000;
 }
 
-footer{
-    margin-top:60px;
+footer {
+    margin-top: 60px;
 }
+
+.navbar-body {
+    height: 46px;
+}
+
+.navbar-body-align-left, .navbar-body-align-default {
+    text-align: left;
+}
+
+.navbar-body-align-center {
+    text-align: center;
+}
+
+.navbar-body-align-right {
+    text-align: right;
+}
+
+.navbar-body > div {
+    float: left;
+}
+
+.navbar-body .ux-menu {
+    position: relative;
+    text-align: center;
+    padding: 0 10px 0 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.navbar-body .ux-menu a {
+    color: #000;
+    text-decoration: none;
+}
+
+.navbar-body .ux-menu-over {
+    background-color: #add2ed;
+}
+
