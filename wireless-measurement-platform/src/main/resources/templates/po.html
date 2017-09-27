@@ -8,132 +8,371 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header(3)"/>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-lg-2">
             <ul class="list-group">
-                <li class="list-group-item active">组织结构
-                    <ul class="list-group">
-                        <a href="#" class="list-group-item active">部门1</a>
-                        <a href="#" class="list-group-item active">部门2</a>
-                        <a href="#" class="list-group-item active">部门3</a>
-                        <a href="#" class="list-group-item active">部门4</a>
-                        <a href="#" class="list-group-item active">部门5</a>
-                        <a href="#" class="list-group-item active">部门6</a>
+                <li class="list-group-item">组织结构
+                    <ul>
+                        <li class="list-group-item">部门1</li>
+                        <li class="list-group-item">部门2</li>
+                        <li class="list-group-item">部门3</li>
+                        <li class="list-group-item">部门4</li>
+                        <li class="list-group-item">部门5</li>
+                        <li class="list-group-item">部门6</li>
+                        <li class="list-group-item">部门7</li>
+                        <li class="list-group-item">部门8</li>
+                        <li class="list-group-item">部门9</li>
+                        <li class="list-group-item">部门10</li>
+                        <li class="list-group-item">部门11</li>
+                        <li class="list-group-item">部门12</li>
+                        <li class="list-group-item">部门13</li>
+                        <li class="list-group-item">部门14</li>
+                        <li class="list-group-item">部门15</li>
+                        <li class="list-group-item">部门16</li>
+                        <li class="list-group-item">部门17</li>
+                        <li class="list-group-item">部门18</li>
+                        <li class="list-group-item">部门19</li>
+                        <li class="list-group-item">部门20</li>
                     </ul>
                 </li>
             </ul>
         </div>
-        <div class="col-md-3">
-            项目名称：<br/>
-            项目时间：<br/>
-            项目内容：<br/>
-        </div>
-        <div class="col-md-6">
-            <ul class="nav nav-pills">
-                <li class="active"><a href="#home" data-toggle="tab">项目1</a>
-                </li>
-                <li><a href="#svn" data-toggle="tab">SVN</a></li>
-                <li><a href="#ios" data-toggle="tab">iOS</a></li>
-                <li><a href="#net" data-toggle="tab">VB.Net</a></li>
-                <li><a href="#JAVA" data-toggle="tab">Java</a></li>
-                <li><a href="#PHP" data-toggle="tab">PHP</a></li>
+        <div class="col-lg-2">
+            <ul>
+                <li class="list-group-item"> 项目或部门基本信息：</li>
+                <li class="list-group-item"> 项目名称：小项目</li>
+                <li class="list-group-item"> 商务：没有</li>
+                <li class="list-group-item">开始时间：2016-9</li>
+                <li class="list-group-item"> 结束时间：2017-9</li>
+                <li class="list-group-item"> PM：试试</li>
+                <li class="list-group-item"> QA：金箭</li>
+                <li class="list-group-item"> 工作量：5623</li>
+                <li class="list-group-item"> 已完成工作量：4444</li>
+                <li class="list-group-item"> 工作量：56232016-9</li>
+                <li class="list-group-item"> 项目组织：非盈利组织</li>
             </ul>
-            <div class="tab-content">
-                <div id="home" class="tab-pane active">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#table1" data-toggle="tab">P0</a>
-                        </li>
-                        <li><a href="#pic" data-toggle="tab">P1</a></li>
-                        <li><a href="#">P2</a></li>
-                        <li><a href="#">P3</a></li>
-                        <li><a href="#">P4</a></li>
-                        <li><a href="#">P5</a></li>
-                    </ul>
+        </div>
+        <div class="col-lg-8">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">组织-PO名称 （项目类型）【无线与网络能源业务线/无线平台事业部/平台成都交付部/ MARP版本自动化工厂委托测试六期（FP） （测试类项目）】
+                    </h3>
                 </div>
-                <div id="svn" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">svn0</a>
+                <div class="panel-body">
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#second1" data-toggle="tab">
+                                当前PO-Tab
+                            </a>
                         </li>
-                        <li><a href="#">svn1</a></li>
-                        <li><a href="#">svn2</a></li>
-                        <li><a href="#">svn3</a></li>
-                        <li><a href="#">svn4</a></li>
-                        <li><a href="#">svn5</a></li>
+                        <li><a href="#second1" data-toggle="tab">项目1-tab（项目类型）
+                        </a></li>
                     </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div id="second1" class="tab-pane fade in active">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#table" data-toggle="tab">需求 </a>
+                                </li>
+                                <li><a href="#table" data-toggle="tab">设计</a></li>
+                                <li><a href="#table" data-toggle="tab">开发</a></li>
+                                <li><a href="#table" data-toggle="tab">测试</a></li>
+                                <li><a href="#table" data-toggle="tab">构建</a></li>
+                                <li><a href="#table" data-toggle="tab">转测试</a></li>
+                                <li><a href="#table" data-toggle="tab">迭代管理</a></li>
+                                <li><a href="#table" data-toggle="tab">工程能力</a></li>
+                                <li><a href="#table" data-toggle="tab">验收</a></li>
+                                <li><a href="#table" data-toggle="tab">客户反馈</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="mySecondTabContent" class="tab-content">
+                        <div id="table" class="tab-pane fade in active">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>需求稳定度</th>
+                                    <th>回归不通过占比</th>
+                                    <th>代码上库漏合次数</th>
+                                    <th>测试设计漏测率</th>
+                                    <th>测试设计效率</th>
+                                    <th>测试执行率</th>
+                                    <th>执行漏测率</th>
+                                    <th>测试漏测率</th>
+                                    <th>测试执行效率</th>
+                                    <th>自动化实现率</th>
+                                    <th>自动化执行效率</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="success">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                <tr class="danger">
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>0.25</td>
+                                    <td>0.3</td>
+                                    <td>0.2</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                    <td>1</td>
+                                    <td>0.3</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div id="ios" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">ios0</a>
-                        </li>
-                        <li><a href="#">ios1</a></li>
-                        <li><a href="#">ios2</a></li>
-                        <li><a href="#">ios3</a></li>
-                        <li><a href="#">ios4</a></li>
-                        <li><a href="#">ios5</a></li>
-                    </ul>
-                </div>
-                <div id="net" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">net0</a>
-                        </li>
-                        <li><a href="#">net1</a></li>
-                        <li><a href="#">net2</a></li>
-                        <li><a href="#">net3</a></li>
-                        <li><a href="#">net4</a></li>
-                        <li><a href="#">net5</a></li>
-                    </ul>
-                </div>
-                <div id="JAVA" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">java1</a>
-                        </li>
-                        <li><a href="#">java2</a></li>
-                        <li><a href="#">java0</a></li>
-                        <li><a href="#">java4</a></li>
-                        <li><a href="#">java5</a></li>
-                        <li><a href="#">java6</a></li>
-                    </ul>
-                </div>
-                <div id="PHP" class="tab-pane fade">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#">php0</a>
-                        </li>
-                        <li><a href="#">php1</a></li>
-                        <li><a href="#">php2</a></li>
-                        <li><a href="#">php3</a></li>
-                        <li><a href="#">php4</a></li>
-                        <li><a href="#">php5</a></li>
-                    </ul>
-                </div>
+            </div>
 
-            </div>
-            <div class="tab-content">
-                <div id="table1" class="tab-pane fade">
-                    <table class="table">
-                        <caption>基本的表格布局</caption>
-                        <thead>
-                        <tr>
-                            <th>名称</th>
-                            <th>城市</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Tanmay</td>
-                            <td>Bangalore</td>
-                        </tr>
-                        <tr>
-                            <td>Sachin</td>
-                            <td>Mumbai</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div id="pic" class="tab-pane fade">
-                    <img src="../images/cinqueterre.jpg" class="img-responsive" alt="Cinque Terre"/>
-                </div>
-            </div>
         </div>
     </div>
 </div>
