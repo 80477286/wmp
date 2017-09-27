@@ -11,20 +11,20 @@
 <script>
     $(function () {
         $("#autoHide").mouseenter(function () {
-            $("#leftId").hide();
-            $("#list").removeClass("col-lg-8").addClass("col-lg-10");
-        });
-        $("#autoHide").mouseleave(function () {
             $("#leftId").show();
             $("#list").removeClass("col-lg-10").addClass("col-lg-8");
+        });
+        $("#autoHide").mouseleave(function () {
+            $("#leftId").hide();
+            $("#list").removeClass("col-lg-8").addClass("col-lg-10");
         });
     });
 </script>
 <div th:replace="fragments/header :: header(3)"/>
-<div id="autoHide" style="margin-top: 500px;width: 15px;border: 1px solid #0000FF;float: left">隐藏</div>
+<div id="autoHide" style="margin-top: 500px;width: 15px;border: 1px solid #0000FF;float: left">展开</div>
 <div class="container-fluid" style="float: none">
     <div class="row-fluid">
-        <div class="col-lg-2" id="leftId">
+        <div class="col-lg-2" id="leftId" style="display: none">
             <ul class="list-group">
                 <li class="list-group-item">组织结构
                     <ul>
@@ -67,7 +67,7 @@
                 <li class="list-group-item"> 项目组织：非盈利组织</li>
             </ul>
         </div>
-        <div class="col-lg-8" id="list">
+        <div class="col-lg-10" id="list">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">组织-PO名称 （项目类型）【无线与网络能源业务线/无线平台事业部/平台成都交付部/ MARP版本自动化工厂委托测试六期（FP） （测试类项目）】
