@@ -47,7 +47,7 @@ Ext.onReady(function () {
                 width: 300,
                 region: 'west',
                 collapsible: true,
-                header: false,
+                header: true,
                 split: true, layout: 'border', collapseMode: 'mine',
                 items: [{
                     xtype: 'treepanel', region: 'center',
@@ -208,13 +208,14 @@ Ext.onReady(function () {
                 region: 'center',
                 layout: 'border',
                 items: [{
+                    collapsible: true,
                     width: 200,split: true, layout: 'border', collapseMode: 'mine',
-                    region: 'west', title: 'PO基本信息',bodyStyle:'background-color:#FFF',
+                    region: 'north', title: 'PO基本信息',bodyStyle:'background-color:#FFF',
                     html:
                     '<div style="padding:5px;line-height: 25px;">PO名称：XXXXX<br/>' +
-                    '开始时间：2017-01-01<br/>' +
+                    '开始时间：2017-01-01    ' +
                     '结束时间：2018-01-01<br/>' +
-                    '工作量：1520<br/>' +
+                    '工作量：1520    ' +
                     '已完成工作量：1200</div>'
                 },
                     {
@@ -259,6 +260,66 @@ Ext.onReady(function () {
                                         {text: '缺陷密度', dataIndex: 'h', menuDisabled: true},
                                         {text: '评审问题个数', dataIndex: 'i', menuDisabled: true}
                                     ]
+                                },{
+                                    xtype: 'cartesian',
+                                    width: '100%',
+                                    height: 300,
+                                    innerPadding: '0 40 0 40',
+                                    store: {
+                                        fields: ['name', 'data1', 'data2', 'data3'],
+                                        data: [{
+                                            'name': 'metric one',
+                                            'data1': 10,
+                                            'data2': 12,
+                                            'data3': 14
+                                        }, {
+                                            'name': 'metric two',
+                                            'data1': 7,
+                                            'data2': 8,
+                                            'data3': 16
+                                        }, {
+                                            'name': 'metric three',
+                                            'data1': 5,
+                                            'data2': 2,
+                                            'data3': 14
+                                        }, {
+                                            'name': 'metric four',
+                                            'data1': 2,
+                                            'data2': 14,
+                                            'data3': 6
+                                        }, {
+                                            'name': 'metric five',
+                                            'data1': 27,
+                                            'data2': 38,
+                                            'data3': 36
+                                        }]
+                                    },
+                                    axes: [{
+                                        type: 'category',
+                                        position: 'bottom',
+                                        fields: ['name'],
+                                        title: {
+                                            text: 'Sample Values',
+                                            fontSize: 15
+                                        }
+                                    }, {
+                                        type: 'category',
+                                        position: 'bottom',
+                                        fields: ['name'],
+                                        title: {
+                                            text: 'Sample Values',
+                                            fontSize: 15
+                                        }
+                                    }],
+                                    series: {
+                                        type: 'bar',
+                                        stacked: false,
+                                        subStyle: {
+                                            fill: ['#0A3F50', '#30BDA7', '#96D4C6']
+                                        },
+                                        xField: 'name',
+                                        yField: ['data1', 'data2', 'data3']
+                                    }
                                 }]
                             },
                             {title: '需求'},

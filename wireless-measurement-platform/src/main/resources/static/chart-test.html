@@ -193,7 +193,7 @@
             var series = [];
             //柱图
             var column = {};
-            column["type"] = 'column';
+            column["type"] = 'bar';
             column["axis"] = 'left';
             column["xField"] = 'cm_name';
             column["yField"] = columnField;
@@ -212,7 +212,14 @@
             //failure: function() {...} //可选的
             Ext.define('User', {
                 extend: 'Ext.data.Model',
-                fields: model
+                fields: [{name: "cm_name", type: "string"},
+                    {name: 'one', type: "int"},
+                    {name: 'two', type: "int"},
+                    {name: 'three', type: "int"},
+                    {name: 'four', type: "int"},
+                    {name: 'five', type: "int"},
+                    {name: '12月累计目标(万元)', type: "int"},
+                    {name: '12月预估完成(万元)', type: "int"}]
             });
 
             var store = Ext.create('Ext.data.JsonStore', {
@@ -225,8 +232,8 @@
                 autoWidth: true,
                 autoHeight: true,
                 animate: true,
-                store: store,
                 shadow: true,
+                store: store,
                 theme: 'Category1',
                 legend: {
                     position: 'right'
@@ -236,9 +243,20 @@
             });
 
             new Ext.Viewport({//VeiwPort表示整个浏览器显示区域，该对象渲染到页面的body区域，并会随着浏览器显示区域的大小自动改变，一个页面中只能有一个ViewPort实例
-                layout: 'fit',
-                monitorResize: true,
-                items: chart,
+                layout: 'border',
+                items: [{
+                    xtype: 'cartesian',
+                    region: 'center',
+                    animate: true,
+                    shadow: true,
+                    store: store,
+                    theme: 'Category1',
+                    legend: {
+                        position: 'right'
+                    },
+                    axes: axes,
+                    series: series
+                }],
                 renderTo: Ext.getBody()
             });
         });

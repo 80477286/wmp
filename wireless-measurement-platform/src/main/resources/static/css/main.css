@@ -10,6 +10,9 @@ footer {
     margin-top: 60px;
 }
 
+.navbar-black{
+    background-color: black;
+}
 .navbar-body {
     height: 46px;
 }
@@ -46,4 +49,14 @@ footer {
 .navbar-body .ux-menu-over {
     background-color: #add2ed;
 }
-
+.navbar-body .ux-menu a{
+    text-decoration: none;
+}
+.navbar-black>.navbar-body .ux-menu a,.navbar-black>.navbar-body .ux-menu{
+    color: #cecece;
+    text-decoration: none;
+}
+.navbar-black>.navbar-body .ux-menu-over,.navbar-black>.navbar-body .ux-menu-over a {
+    background-color: gray;
+    color: #FFF;
+}

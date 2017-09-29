@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>无线度量平台管理</title>
+    <base href="../../"/>
     <div th:replace="fragments/header :: header-css"/>
+
 </head>
 <body>
 
-<div th:replace="fragments/header :: header"/>
+<div th:replace="fragments/header :: header(-1)"/>
 
 <div class="container-fluid">
     <!--
@@ -18,7 +20,7 @@
          table-bordered：加边框
         table-hover：可以让 <tbody> 中的每一行对鼠标悬停状态作出响应。
         -->
-        <table class="table table-bordered table-hover table-condensed">
+        <table class="table table-bordered table-hover table-condensed" style="margin: 0px;">
             <thead>
             <tr>
                 <td>ID</td>
@@ -51,28 +53,10 @@
             </tr>
             </tbody>
         </table>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <li class="previous">
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li  class="next">
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+
+        <div th:replace="fragments/navigation"></div>
     </div>
 </div>
-
 <div th:replace="fragments/footer :: footer"/>
 </body>
 </html>

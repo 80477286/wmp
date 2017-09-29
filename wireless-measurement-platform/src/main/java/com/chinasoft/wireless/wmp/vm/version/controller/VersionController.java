@@ -18,7 +18,7 @@ public class VersionController {
     @Autowired
     private VersionService versionService;
 
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = "index")
     public String index(@RequestParam LinkedMultiValueMap params, Model mv) {
         Map result = versionService.query(params);
         mv.addAllAttributes(result);

@@ -1,32 +1,7 @@
 Ext.application({
     name: 'App',
-    appFolder: 'management/app',
+    appFolder: 'app',
     autoCreateViewport: 'App.main.view.Viewport',
-    login: function (preOpts) {
-        if (!Ext.getCmp('login_window')) {
-            Ext.create('App.authorization.user.view.LoginWindow', {
-                preOpts: preOpts,
-                id: 'login_window'
-            }).show();
-        }
-    },
-    requires: ['App.components.grid.column.CdtColumn'],
-    logout: function () {
-        var me = this;
-        Extend.Msg.confirm({
-            title: '确认',
-            msg: '您确定要注销当前用户吗？',
-            buttons: Ext.MessageBox.YESNO,
-            icon: Ext.MessageBox.QUESTION,
-            iconCls: 'lock_key',
-            maxWidth: 1024,
-            callback: function (opt) {
-                if (opt === 'yes') {
-                    window.location.href = '/logout?redirect=' + window.location.href
-                }
-            }
-        });
-    },
     init: function (application) {
         var Cookieset = function (name, value, expiredays, path, domain) {
             var exdate = new Date()
@@ -35,7 +10,7 @@ Ext.application({
                 + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + (path ? ";path=" + path : "")
                 + (domain ? ";domain=" + domain : "")
         }
-        Cookieset('extjs_theme','neptune')
+        Cookieset('extjs_theme','neptune-black')
         Ext.log.info('development:true');
         Ext.log.info('libsPath:' + libsPath);
         Ext.log.info('extjsPath:' + extjsPath);

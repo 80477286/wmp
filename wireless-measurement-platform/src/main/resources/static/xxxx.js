@@ -17,6 +17,7 @@ Ext.onReady(function () {
             {
                 region: 'north',
                 xtype: 'navbar',
+                ui:'black',
                 height: 48,
                 menus: [
                     {
@@ -47,7 +48,7 @@ Ext.onReady(function () {
                 width: 300,
                 region: 'west',
                 collapsible: true,
-                header: false,
+                header: true,
                 split: true, layout: 'border', collapseMode: 'mine',
                 items: [{
                     xtype: 'treepanel', region: 'center',
@@ -312,6 +313,7 @@ Ext.onReady(function () {
                                     }],
                                     series: {
                                         type: 'bar',
+                                        stacked: false,
                                         subStyle: {
                                             fill: ['#0A3F50', '#30BDA7', '#96D4C6']
                                         },
