@@ -35,7 +35,7 @@ Ext.application({
                 + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + (path ? ";path=" + path : "")
                 + (domain ? ";domain=" + domain : "")
         }
-        Cookieset('extjs_theme','neptune')
+        Cookieset('extjs_theme','neptune-black')
         Ext.log.info('development:true');
         Ext.log.info('libsPath:' + libsPath);
         Ext.log.info('extjsPath:' + extjsPath);
