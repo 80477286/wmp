@@ -8,8 +8,8 @@ Ext.Loader.setConfig({
         'Ext.ux': '/webjars/extjs/6.2.0/packages/ux/classic/src'
     }
 });
-Ext.require(['Extend.navbar.Navbar']);
 
+Ext.require(['Extend.navbar.Navbar']);
 Ext.onReady(function () {
     Ext.create('Ext.Viewport', {
         layout: 'border',
@@ -17,7 +17,8 @@ Ext.onReady(function () {
             {
                 region: 'north',
                 xtype: 'navbar',
-                height: 48,
+                // ui:'black',
+                height: 70,
                 menus: [
                     {
                         icon: '/images/logo5.png',
@@ -25,18 +26,17 @@ Ext.onReady(function () {
                         href: '/',
                         style: {width: '131px', marginLeft: '5px', marginRight: '10px'}
                     },
-                    {name: '首页', href: '/', style: {width: '60px'}},
+                    {name: '首页', href: '/', style: {width: '80px'}, actived: true},
                     {
-                        type: 'button', name: '项目度量',
+                        name: '项目度量',
                         handler: function (menu) {
                             console.log(this)
                         }
                     },
                     {name: 'PO度量'},
-                    {name: '系统配置'}
+                    {name: '系统配置', href: '/management', target: '_blank'}
                 ],
                 title: 'xxx', itemWidth: '100px',
-                data: {name: 'Chenjiabin'},
                 listeners: {
                     itemclick: function (_this, menu) {
                         console.log(_this)
@@ -48,7 +48,9 @@ Ext.onReady(function () {
                 region: 'west',
                 collapsible: true,
                 header: true,
-                split: true, layout: 'border', collapseMode: 'mine',
+                split: true,
+                layout: 'border',
+                collapseMode: 'mine',
                 items: [{
                     xtype: 'treepanel', region: 'center',
                     store: {
@@ -209,8 +211,12 @@ Ext.onReady(function () {
                 layout: 'border',
                 items: [{
                     collapsible: true,
-                    width: 200,split: true, layout: 'border', collapseMode: 'mine',
-                    region: 'north', title: 'PO基本信息',bodyStyle:'background-color:#FFF',
+                    width: 200,
+                    split: true,
+                    collapseMode: 'mine',
+                    region: 'north',
+                    title: 'PO基本信息',
+                    bodyStyle: 'background-color:#FFF',
                     html:
                     '<div style="padding:5px;line-height: 25px;">PO名称：XXXXX<br/>' +
                     '开始时间：2017-01-01    ' +
@@ -224,10 +230,10 @@ Ext.onReady(function () {
                         items: [
                             {
                                 title: '项目进展报告',
-                                layout: 'border',
+                                layout: 'vbox',
                                 items: [{
                                     xtype: 'gridpanel',
-                                    region: 'center',
+                                    width: '100%',
                                     forceFit: true,
                                     reserveScrollbar: false,// 预留滚动条位置
                                     disableSelection: false,
@@ -260,38 +266,49 @@ Ext.onReady(function () {
                                         {text: '缺陷密度', dataIndex: 'h', menuDisabled: true},
                                         {text: '评审问题个数', dataIndex: 'i', menuDisabled: true}
                                     ]
-                                },{
+                                }, {
                                     xtype: 'cartesian',
                                     width: '100%',
+                                    maxWidth: 1024,
+                                    minWidth: 500,
                                     height: 300,
                                     innerPadding: '0 40 0 40',
+                                    legend: {
+                                        type: 'sprite', // 'dom' is another possible value
+                                        docked: 'bottom'
+                                    },
                                     store: {
                                         fields: ['name', 'data1', 'data2', 'data3'],
                                         data: [{
                                             'name': 'metric one',
                                             'data1': 10,
                                             'data2': 12,
-                                            'data3': 14
+                                            'data3': 14,
+                                            'target': 13
                                         }, {
                                             'name': 'metric two',
                                             'data1': 7,
                                             'data2': 8,
-                                            'data3': 16
+                                            'data3': 16,
+                                            'target': 19
                                         }, {
                                             'name': 'metric three',
                                             'data1': 5,
                                             'data2': 2,
-                                            'data3': 14
+                                            'data3': 14,
+                                            'target': 25
                                         }, {
                                             'name': 'metric four',
                                             'data1': 2,
                                             'data2': 14,
-                                            'data3': 6
+                                            'data3': 6,
+                                            'target': 15
                                         }, {
                                             'name': 'metric five',
                                             'data1': 27,
                                             'data2': 38,
-                                            'data3': 36
+                                            'data3': 36,
+                                            'target': 36
                                         }]
                                     },
                                     axes: [{
@@ -304,8 +321,8 @@ Ext.onReady(function () {
                                         }
                                     }, {
                                         type: 'category',
-                                        position: 'bottom',
-                                        fields: ['name'],
+                                        position: 'left',
+                                        fields: ['target'],
                                         title: {
                                             text: 'Sample Values',
                                             fontSize: 15
@@ -315,14 +332,26 @@ Ext.onReady(function () {
                                         type: 'bar',
                                         stacked: false,
                                         subStyle: {
-                                            fill: ['#0A3F50', '#30BDA7', '#96D4C6']
+                                            // fill: ['#0A3F50', '#30BDA7', '#96D4C6']
                                         },
                                         xField: 'name',
-                                        yField: ['data1', 'data2', 'data3']
+                                        yField: ['data1', 'data2', 'data3'],
+                                        //数字标注
+                                        label: {
+                                            field: ['data1', 'data2', 'data3'],
+                                            display: 'insideEnd',
+                                            renderer: function (sprite, config, rendererData, index) {
+
+                                            }
+                                        }
                                     }
                                 }]
                             },
-                            {title: '需求'},
+                            {
+                                title: '需求',
+                                layout: 'border',
+                                items: []
+                            },
                             {title: '设计'},
                             {title: '开发'},
                             {title: '测试'},
