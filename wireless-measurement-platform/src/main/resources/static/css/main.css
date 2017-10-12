@@ -1,53 +1,67 @@
-h1 {
-    color: #0000FF;
+/*禁止焦点边框*/
+.x-tab-default-top.x-tab-focus.x-tab-active, .x-tab-default-top.x-tab-focus.x-tab-over, .x-btn-focus.x-btn-over.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-small {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+/*禁止拆分组件焦点边框*/
+.x-splitter-focus:after {
+    border: none;
 }
 
-h2 {
-    color: #FF0000;
+/*tab标签云除圆角*/
+.x-tab-default-top {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
-footer {
-    margin-top: 60px;
+/*配置内容超过窗口时显示滚动条*/
+.x-viewport, .x-viewport > .x-body {
+    overflow: auto;
 }
 
-.navbar-default {
-    background-color: #222;
+/*导航树图标*/
+.icon-du {
+    background-image: url("icons/du.png") !important;
+    background-repeat: no-repeat;
 }
 
-.navbar-body-align-left, .navbar-body-align-default {
-    text-align: left;
+.x-tree-icon-parent-expanded.icon-du {
+    background-image: url("icons/du-open.png") !important;
+    background-repeat: no-repeat;
 }
 
-.navbar-body-align-center {
-    text-align: center;
+.icon-bu {
+    background-image: url("icons/bu.png") !important;
+    background-repeat: no-repeat;
 }
 
-.navbar-body-align-right {
-    text-align: right;
+.x-tree-icon-parent-expanded.icon-bu {
+    background-image: url("icons/bu-open.png") !important;
+    background-repeat: no-repeat;
 }
 
-
-.navbar-body .ux-menu {
-    position: relative;
-    text-align: center;
-    padding: 0 10px 0 10px;
-    cursor: pointer;
-    font-size: 14px;
-    float: left;
+.icon-pdu {
+    background-image: url("icons/pdu.png") !important;
+    background-repeat: no-repeat;
 }
 
-.navbar-body .ux-menu a, .navbar-body .ux-menu {
-    color: #cecece;
-    text-decoration: none;
-    font-size: 14px;
+.x-tree-icon-parent-expanded.icon-pdu {
+    background-image: url("icons/pdu-open.png") !important;
+    background-repeat: no-repeat;
 }
 
-.navbar-body .ux-menu-over {
-    background-color: #747474;
+.icon-project {
+    background-image: url("icons/project.png") !important;
+    background-repeat: no-repeat;
 }
 
-.navbar-body .ux-menu-over a, .navbar-body .ux-menu-over {
-    color: #FFF;
-    text-decoration: none;
-    font-size: 14px;
+.icon-po {
+    background-image: url("icons/po.png") !important;
+    background-repeat: no-repeat;
+}
+
+.icon-project {
+    background-image: url("icons/project.png") !important;
+    background-repeat: no-repeat;
 }

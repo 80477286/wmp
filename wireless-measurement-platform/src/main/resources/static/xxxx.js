@@ -26,7 +26,7 @@ Ext.onReady(function () {
                         href: '/',
                         style: {width: '131px', marginLeft: '5px', marginRight: '10px'}
                     },
-                    {name: '首页', href: '/', style: {width: '80px'},actived:true},
+                    {name: '首页', href: '/', style: {width: '80px'}, actived: true},
                     {
                         name: '项目度量',
                         handler: function (menu) {
@@ -34,7 +34,7 @@ Ext.onReady(function () {
                         }
                     },
                     {name: 'PO度量'},
-                    {name: '系统配置',href:'/management',target:'_blank'}
+                    {name: '系统配置', href: '/management', target: '_blank'}
                 ],
                 title: 'xxx', itemWidth: '100px',
                 listeners: {
@@ -208,8 +208,9 @@ Ext.onReady(function () {
                 region: 'center',
                 layout: 'border',
                 items: [{
-                    width: 200, split: true, layout: 'border', collapseMode: 'mine',
-                    region: 'west', title: 'PO基本信息', bodyStyle: 'background-color:#FFF',
+                    width: 200, split: true,  collapseMode: 'mine',
+                    collapsible: true,
+                    region: 'north', title: 'PO基本信息', bodyStyle: 'background-color:#FFF',
                     html:
                     '<div style="padding:5px;line-height: 25px;">PO名称：XXXXX<br/>' +
                     '开始时间：2017-01-01<br/>' +
@@ -224,9 +225,10 @@ Ext.onReady(function () {
                             {
                                 title: '项目进展报告',
                                 layout: 'vbox',
+                                scrollable:true,
                                 items: [{
                                     xtype: 'gridpanel',
-                                    width: '100%',
+                                    width: '100%',ui:'test',
                                     forceFit: true,
                                     reserveScrollbar: false,// 预留滚动条位置
                                     disableSelection: false,
@@ -313,17 +315,19 @@ Ext.onReady(function () {
                                             fontSize: 15
                                         }
                                     }, {
-                                        type: 'category',
+                                        type: 'numeric',
                                         position: 'left',
-                                        fields: ['target'],
+                                        fields: ['data1', 'data2', 'data3'],
                                         title: {
                                             text: 'Sample Values',
                                             fontSize: 15
                                         }
                                     }],
-                                    series: {
+                                    series: [{
                                         type: 'bar',
                                         stacked: false,
+                                        //选中时高亮
+                                        highlight: true,
                                         subStyle: {
                                             // fill: ['#0A3F50', '#30BDA7', '#96D4C6']
                                         },
@@ -336,8 +340,23 @@ Ext.onReady(function () {
                                             renderer: function (sprite, config, rendererData, index) {
 
                                             }
+                                        },
+                                        //鼠标提示
+                                        tooltip: {
+                                            trackMouse: true,
+                                            showDelay: 0,
+                                            dismissDelay: 0,
+                                            hideDelay: 0,
+                                            renderer: function (tooltip, record, item) {
+                                                tooltip.setHtml(record.get('name')+' \ '+item.field + ': ' + record.get(item.field));
+                                            }
                                         }
-                                    }
+                                    }, {
+                                        type: "line",
+                                        axis: "right",
+                                        xField: "name",
+                                        yField: "target"
+                                    }]
                                 }]
                             },
                             {
