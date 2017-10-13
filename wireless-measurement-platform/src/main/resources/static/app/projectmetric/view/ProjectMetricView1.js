@@ -1,8 +1,13 @@
-Ext.define('App.main.view.Main', {
+Ext.define('App.projectmetric.view.ProjectMetricView', {
     extend: 'Ext.panel.Panel',
-    alias: 'widget.Main',
-    layout: 'border',
+    alias: 'widget.ProjectMetricView',
+    layout: 'border', requires: ['App.projectmetric.view.BreadCrumb'],
     items: [
+        {
+            xtype: 'BreadCrumb',
+            region: 'north',
+            height: 30,
+        },
         {
             region: 'center',
             xtype: 'tabpanel',

@@ -1,4 +1,4 @@
-Ext.define('App.main.view.BreadCrumb', {
+Ext.define('App.projectmetric.view.BreadCrumb', {
     extend: 'Ext.Component',
     alias: ['widget.breadcrumb', 'widget.BreadCrumb'],
     baseCls: 'breadcrumb',

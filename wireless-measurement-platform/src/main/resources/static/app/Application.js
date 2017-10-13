@@ -3,14 +3,6 @@ Ext.application({
     appFolder: 'app',
     autoCreateViewport: 'App.main.view.Viewport',
     init: function (application) {
-        var Cookieset = function (name, value, expiredays, path, domain) {
-            var exdate = new Date()
-            exdate.setDate(exdate.getDate() + expiredays)
-            document.cookie = name + "=" + escape(value)
-                + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString()) + (path ? ";path=" + path : "")
-                + (domain ? ";domain=" + domain : "")
-        }
-        Cookieset('extjs_theme','neptune-black')
         Ext.log.info('development:true');
         Ext.log.info('libsPath:' + libsPath);
         Ext.log.info('extjsPath:' + extjsPath);

@@ -1,4 +1,4 @@
-Ext.define('App.main.view.NavbarTree', {
+Ext.define('App.commons.view.NavbarTree', {
     extend: 'Ext.tree.Panel',
     alias: ['widget.NavbarTree'],
     bodyStyle:'padding:0 5px 5px 0;',
