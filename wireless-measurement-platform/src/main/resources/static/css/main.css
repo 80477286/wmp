@@ -1,9 +1,10 @@
 /*禁止焦点边框*/
-.x-tab-default-top.x-tab-focus.x-tab-active, .x-tab-default-top.x-tab-focus.x-tab-over, .x-btn-focus.x-btn-over.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-small {
+.x-btn-focus.x-btn-plain-toolbar-small, .x-tab-default-top.x-tab-focus.x-tab-active, .x-tab-default-top.x-tab-focus.x-tab-over, .x-btn-focus.x-btn-over.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-small {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
 }
+
 /*禁止拆分组件焦点边框*/
 .x-splitter-focus:after {
     border: none;
@@ -21,15 +22,6 @@
 }
 
 /*导航树图标*/
-.icon-du {
-    background-image: url("icons/du.png") !important;
-    background-repeat: no-repeat;
-}
-
-.x-tree-icon-parent-expanded.icon-du {
-    background-image: url("icons/du-open.png") !important;
-    background-repeat: no-repeat;
-}
 
 .icon-bu {
     background-image: url("icons/bu.png") !important;
@@ -38,6 +30,16 @@
 
 .x-tree-icon-parent-expanded.icon-bu {
     background-image: url("icons/bu-open.png") !important;
+    background-repeat: no-repeat;
+}
+
+.icon-du {
+    background-image: url("icons/du.png") !important;
+    background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.icon-du {
+    background-image: url("icons/du-open.png") !important;
     background-repeat: no-repeat;
 }
 
@@ -64,4 +66,36 @@
 .icon-project {
     background-image: url("icons/project.png") !important;
     background-repeat: no-repeat;
+}
+
+/*面包屑工具条样式 */
+
+.icon-page-last {
+    background-image: url("icons/page-last.png") !important;
+    background-repeat: no-repeat;
+}
+
+.x-breadcrumb-navbar {
+    background-color: #222;
+}
+
+.x-breadcrumb-btn-navbar {
+    height: 32px;
+}
+
+.x-breadcrumb-btn-navbar > .x-btn-wrap-plain-toolbar-small > .x-btn-button-plain-toolbar-small > .x-btn-inner-plain-toolbar-small {
+    font-size: 14px;
+    font-family: helvetica, arial, verdana, sans-serif;
+    padding: 0 5px;
+    color: #999;
+
+}
+
+.x-breadcrumb-btn-navbar.x-btn-focus > .x-btn-wrap-plain-toolbar-small > .x-btn-button-plain-toolbar-small > .x-btn-inner-plain-toolbar-small {
+    color: #999;
+}
+
+.x-breadcrumb-btn-navbar.x-btn-plain-toolbar-small {
+    border-radius: 0;
+    background-image: none;
 }

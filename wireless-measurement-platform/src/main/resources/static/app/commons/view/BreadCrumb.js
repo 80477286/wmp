@@ -9,7 +9,7 @@ Ext.define('App.commons.view.BreadCrumb', {
         '<style>',
         '.breadcrumb-pre{background-image:url("css/icons/page-last.png");width:16px;height:16px;float:left;margin:8px 5px auto 5px;}',
         '.breadcrumb{margin:0;}',
-        '.breadcrumb-body{height:36px;display: block;list-style-type: decimal;-webkit-margin-before: 0;-webkit-margin-after:0;-webkit-margin-start: 0px;-webkit-margin-end: 0px;-webkit-padding-start: 10px;box-sizing: border-box;margin-top: 0;padding: 8px 15px;margin-bottom: 0px;list-style: none;background-color: #252525;}',
+        '.breadcrumb-body{height:32px;display: block;list-style-type: decimal;-webkit-margin-before: 0;-webkit-margin-after:0;-webkit-margin-start: 0px;-webkit-margin-end: 0px;-webkit-padding-start: 10px;box-sizing: border-box;margin-top: 0;padding: 8px 15px;margin-bottom: 0px;list-style: none;background-color: #252525;}',
         '.breadcrumb-body:last-child{margin-bottom: 0;}',
         '.breadcrumb-body>li{display: inline-block;font-size:16px;}',
         '.breadcrumb-body>li+li:before {padding: 0 10px;color: #ccc;content: "/";}',
