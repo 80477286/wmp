@@ -24,7 +24,7 @@ Ext.define('App.commons.view.NavbarTree', {
                             iconCls: 'icon-pdu',
                             children: [
                                 {
-                                    text: 'PO',
+                                    text: 'POMARP自动化工厂委托开发项目2期工厂委',
                                     iconCls: 'icon-po',
                                     expanded: true,
                                     children: [{

@@ -21,7 +21,7 @@ Ext.define('App.projectmetric.view.ProjectMetricView', {
                 var bc = Ext.create('Ext.toolbar.Breadcrumb', {
                     store: this.getStore(),
                     ui: 'navbar',
-                    height: 40, showIcons: true, showMenuIcons: true,
+                    height: 40, showIcons: true, showMenuIcons: true,overflowHandler:'scroller',
                     dock: 'top',
                     listeners: {
                         change: function ($this, node, prevNode, eOpts) {
