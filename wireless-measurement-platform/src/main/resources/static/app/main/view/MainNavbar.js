@@ -1,7 +1,7 @@
 Ext.define('App.main.view.MainNavbar', {
     extend: 'Extend.navbar.Navbar',
     alias: ['widget.MainNavbar'],
-    height: 46,
+    height: 56,
     backgroundColor: '#444',
     itemWidth: '100px',
     menus: [
@@ -18,7 +18,7 @@ Ext.define('App.main.view.MainNavbar', {
         {
             name: '项目度量',
             style: {
-                width: '80px'
+                width: '100px'
             },
             actived: true
         },

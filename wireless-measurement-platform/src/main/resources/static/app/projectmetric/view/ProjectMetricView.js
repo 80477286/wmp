@@ -1,63 +1,63 @@
 Ext.define('App.projectmetric.view.ProjectMetricView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.ProjectMetricView',
-    layout: 'border', requires: ['App.projectmetric.view.ProjectBreadCrumb', 'App.commons.view.NavbarTree'],
+    layout: 'border', requires: ['App.commons.view.NavbarTree'],
     items: [{
-            xtype: 'NavbarTree',
-            region: 'west',
-            rootVisible: false,
-            width: 300,
-            split: true,
-            collapsed: true,
-            collapsible: true,
-            collapseMode: 'mini',
-            header: false,
-            listeners: {
-                select: function ($this, record, index, eOpts) {
-                    this.up().bc.setSelection(record)
-                },
-                afterrender: function () {
-                    var me = this;
-                    var bc = Ext.create('Ext.toolbar.Breadcrumb', {
-                        store: this.getStore(),
-                        ui: 'navbar',
-                        height: 36,showIcons:true,showMenuIcons:true,
-                        dock: 'top',
-                        listeners: {
-                            change: function ($this, node, prevNode, eOpts) {
-                                me.suspendEvent('select');
-                                me.setSelection(node);
-                                me.resumeEvent('select');
-                            }
+        xtype: 'NavbarTree',
+        region: 'west',
+        rootVisible: false,
+        width: 300,
+        split: true,
+        collapsed: true,
+        collapsible: true,
+        collapseMode: 'mini',
+        header: false,
+        listeners: {
+            select: function ($this, record, index, eOpts) {
+                this.up().bc.setSelection(record)
+            },
+            afterrender: function () {
+                var me = this;
+                var bc = Ext.create('Ext.toolbar.Breadcrumb', {
+                    store: this.getStore(),
+                    ui: 'navbar',
+                    height: 40, showIcons: true, showMenuIcons: true,
+                    dock: 'top',
+                    listeners: {
+                        change: function ($this, node, prevNode, eOpts) {
+                            me.suspendEvent('select');
+                            me.setSelection(node);
+                            me.resumeEvent('select');
                         }
-                    })
-                    this.up().addDocked(bc)
+                    }
+                })
+                this.up().addDocked(bc)
 
-                    this.up().bc = bc;
+                this.up().bc = bc;
 
-                    var firstNode = this.getRootNode().getChildAt(0);
-                    bc.setSelection(firstNode);
-                    me.collapseTask = new Ext.util.DelayedTask(function () {
-                        me.collapse('left', 100);
-                    });
-                    var bodyEl = me.getEl();
-                    var splitter = bodyEl.next();
-                    bodyEl.on({
-                        mouseleave: function () {
-                            me.collapseTask.delay(1000);
-                        },
-                        mouseenter: function () {
-                            me.collapseTask.cancel();
-                        }
-                    });
-                    splitter.on({
-                        mouseenter: function () {
-                            me.expand(300);
-                        }
-                    });
-                }
+                var firstNode = this.getRootNode().getChildAt(0);
+                bc.setSelection(firstNode);
+                me.collapseTask = new Ext.util.DelayedTask(function () {
+                    me.collapse('left', 100);
+                });
+                var bodyEl = me.getEl();
+                var splitter = bodyEl.next();
+                bodyEl.on({
+                    mouseleave: function () {
+                        me.collapseTask.delay(1000);
+                    },
+                    mouseenter: function () {
+                        me.collapseTask.cancel();
+                    }
+                });
+                splitter.on({
+                    mouseenter: function () {
+                        me.expand(300);
+                    }
+                });
             }
-        },
+        }
+    },
         {
             region: 'center',
             xtype: 'tabpanel',

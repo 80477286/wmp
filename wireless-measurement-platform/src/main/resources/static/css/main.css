@@ -84,8 +84,8 @@
 }
 
 .x-breadcrumb-btn-navbar > .x-btn-wrap-plain-toolbar-small > .x-btn-button-plain-toolbar-small > .x-btn-inner-plain-toolbar-small {
-    font-size: 14px;
-    font-family: helvetica, arial, verdana, sans-serif;
+    font-size: 15px;
+    font-family:微软雅黑,宋体,helvetica, arial, verdana, sans-serif;
     padding: 0 5px;
     color: #999;
 
@@ -99,3 +99,4 @@
     border-radius: 0;
     background-image: none;
 }
+
