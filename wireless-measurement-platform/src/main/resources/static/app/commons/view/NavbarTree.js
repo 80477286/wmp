@@ -1,7 +1,7 @@
 Ext.define('App.commons.view.NavbarTree', {
     extend: 'Ext.tree.Panel',
     alias: ['widget.NavbarTree'],
-    bodyStyle:'padding:0 5px 5px 0;',
+    bodyStyle: 'padding:0 5px 5px 0;',
     listeners: {
         select: function ($this, record, index, eOpts) {
             this.up().down('BreadCrumb').updatePath(record)

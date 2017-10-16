@@ -1,4 +1,4 @@
-Ext.define('App.projectmetric.view.BreadCrumb', {
+Ext.define('App.commons.view.BreadCrumb', {
     extend: 'Ext.Component',
     alias: ['widget.breadcrumb', 'widget.BreadCrumb'],
     baseCls: 'breadcrumb',
@@ -32,34 +32,16 @@ Ext.define('App.projectmetric.view.BreadCrumb', {
     initItems: function () {
         var view = this;
     },
-    updatePath: function (record) {
-        if (!Ext.isEmpty(record)) {
-            if (record.isModel && !record.isRoot()) {
-                var me = this;
-                var lis = this.body.el.query('li', false);
-                if (lis.length > 0) {
-                    Ext.Array.each(lis, function (item) {
-                        item.destroy();
-                    })
-                }
-                this.insertNodes(record)
-            }
-        }
-    },
-    insertNodes: function (record) {
+    insertFirst: function (name, data) {
         var me = this;
-        if (!Ext.isEmpty(record) && !record.isRoot()) {
-            var text = record.get('text');
-            var ne = Ext.dom.Helper.insertFirst(this.body, {tag: 'li', html: text}, true);
-            ne.addCls('breadcrumb-item');
-            ne.node = record;
-            ne.on({
-                click: function () {
-                    var nt = me.up('Viewport').down('NavbarTree');
-                    nt.setSelection(this.node)
-                }
-            });
-            this.insertNodes(record.parentNode)
-        }
+        var ne = Ext.dom.Helper.insertFirst(this.body, {tag: 'li', html: name}, true);
+        ne.addCls('breadcrumb-item');
+        ne.data = data;
+        ne.on({
+            click: function () {
+                me.fireEvent('itemclick', ne, name);
+            }
+        });
     }
+
 })

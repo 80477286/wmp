@@ -1,15 +1,22 @@
 Ext.define('App.projectmetric.view.ProjectMetricView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.ProjectMetricView',
-    layout: 'border', requires: ['App.projectmetric.view.BreadCrumb', 'App.commons.view.NavbarTree'],
+    layout: 'border', requires: ['App.projectmetric.view.ProjectBreadCrumb', 'App.commons.view.NavbarTree'],
     items: [
         {
-            xtype: 'BreadCrumb',
+            xtype: 'ProjectBreadCrumb',
             region: 'north',
             height: 30,
+            listeners: {
+                itemclick: function ($this, name) {
+                    var nt = this.next();
+                    nt.setSelection($this.data)
+                }
+            }
         }, {
             xtype: 'NavbarTree',
             region: 'west',
+            rootVisible: false,
             width: 300,
             split: true,
             collapsed: true,
@@ -19,11 +26,17 @@ Ext.define('App.projectmetric.view.ProjectMetricView', {
             listeners: {
                 afterrender: function () {
                     var me = this;
-                    var bodyEl = this.getEl();
+                    me.collapseTask = new Ext.util.DelayedTask(function () {
+                        me.collapse('left', 100);
+                    });
+                    var bodyEl = me.getEl();
                     var splitter = bodyEl.next();
                     bodyEl.on({
                         mouseleave: function () {
-                            me.collapse('left', 100);
+                            me.collapseTask.delay(1000);
+                        },
+                        mouseenter: function () {
+                            me.collapseTask.cancel();
                         }
                     });
                     splitter.on({
