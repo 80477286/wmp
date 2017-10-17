@@ -1,4 +1,4 @@
-Ext.define('App.projectmetric.view.ProjectMetricView', {
+Ext.define('App.metric.project.view.ProjectMetricView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.ProjectMetricView',
     layout: 'border', requires: ['App.commons.view.NavbarTree', 'App.commons.view.Report'],

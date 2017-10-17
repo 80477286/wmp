@@ -21,7 +21,7 @@ Ext.define('App.main.controller.ViewportController', {
     onMenuClick: function (ne, menu) {
         if (menu.name == '项目度量') {
             var mainFrame = this.getView().down('MainFrame');
-            var clazz = 'App.projectmetric.view.ProjectMetricView';
+            var clazz = 'App.metric.project.view.ProjectMetricView';
             var id = clazz.replace(/\./g, '_') + '_' + Ext.util.Base64.encode(menu.name);
             var oldCmp = mainFrame.queryById(id);
             if (!Ext.isEmpty(oldCmp)) {

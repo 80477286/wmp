@@ -150,6 +150,11 @@ Ext.define('App.commons.view.Report', {
                 axis: "right",
                 xField: "name",
                 yField: "target"
+            }, {
+                type: "line",
+                axis: "right",
+                xField: "name",
+                yField: "data1"
             }]
         };
         var chart = Ext.create('Ext.chart.CartesianChart', opts)
