@@ -1,12 +1,14 @@
 package com.chinasoft.wireless.wmp.organization.model;
 
 import com.mouse.web.supports.model.BaseEntity;
+import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @DynamicUpdate(true)
@@ -27,6 +29,9 @@ public class Organization extends BaseEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "p_id")
     private Organization parent;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Organization> children;
 
     public String getName() {
         return name;
@@ -58,5 +63,13 @@ public class Organization extends BaseEntity {
 
     public void setParent(Organization parent) {
         this.parent = parent;
+    }
+
+    public List<Organization> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Organization> children) {
+        this.children = children;
     }
 }
