@@ -1,9 +1,9 @@
 package com.chinasoft.wireless.wmp.reportconfiguration.repository;
 
 import com.chinasoft.wireless.wmp.reportconfiguration.model.KpiConfiguration;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.mouse.web.supports.jpa.repository.BaseRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface KpiConfigurationRepository extends JpaRepository<KpiConfiguration, String> {
+public interface KpiConfigurationRepository extends BaseRepository<KpiConfiguration, String> {
 }
