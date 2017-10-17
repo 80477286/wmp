@@ -3,14 +3,18 @@ Ext.define('App.commons.view.Report', {
     alias: ['widget.Report'],
     layout: 'vbox',
     items: [],
-    listeners:{afterrender:function(){
-        this.createGrid()
-    }},
+    listeners: {
+        afterrender: function () {
+            this.updateData([{x: 1}])
+        }
+    },
+    defaults: {margin: '0 0 10 0'},
     updateData: function (datas) {
         if (!Ext.isEmpty(datas) && datas.length > 0) {
             for (var i = 0; i < datas.length; i++) {
                 var data = datas[i];
-                createGrid(data);
+                var grid = this.createGrid(data);
+                this.createChart(grid.getStore())
             }
         }
     },
@@ -51,5 +55,104 @@ Ext.define('App.commons.view.Report', {
         };
         var grid = Ext.create('Ext.grid.Panel', opts)
         this.add(grid)
+        return grid;
+    },
+    createChart: function () {
+        var opts = {
+            width: '100%',
+            height: 300,
+            innerPadding: '0 40 0 40',
+            legend: {
+                type: 'sprite', // 'dom' is another possible value
+                docked: 'bottom'
+            },
+            store: {
+                fields: ['name', 'data1', 'data2', 'data3'],
+                data: [{
+                    'name': 'metric one',
+                    'data1': 10,
+                    'data2': 12,
+                    'data3': 14,
+                    'target': 13
+                }, {
+                    'name': 'metric two',
+                    'data1': 7,
+                    'data2': 8,
+                    'data3': 16,
+                    'target': 19
+                }, {
+                    'name': 'metric three',
+                    'data1': 5,
+                    'data2': 2,
+                    'data3': 14,
+                    'target': 25
+                }, {
+                    'name': 'metric four',
+                    'data1': 2,
+                    'data2': 14,
+                    'data3': 6,
+                    'target': 15
+                }, {
+                    'name': 'metric five',
+                    'data1': 27,
+                    'data2': 38,
+                    'data3': 36,
+                    'target': 36
+                }]
+            },
+            axes: [{
+                type: 'category',
+                position: 'bottom',
+                fields: ['name'],
+                title: {
+                    text: 'Sample Values',
+                    fontSize: 15
+                }
+            }, {
+                type: 'numeric',
+                position: 'left',
+                fields: ['data1', 'data2', 'data3'],
+                title: {
+                    text: 'Sample Values',
+                    fontSize: 15
+                }
+            }],
+            series: [{
+                type: 'bar',
+                stacked: false,
+                //选中时高亮
+                highlight: true,
+                subStyle: {
+                    // fill: ['#0A3F50', '#30BDA7', '#96D4C6']
+                },
+                xField: 'name',
+                yField: ['data1', 'data2', 'data3'],
+                //数字标注
+                label: {
+                    field: ['data1', 'data2', 'data3'],
+                    display: 'insideEnd',
+                    renderer: function (sprite, config, rendererData, index) {
+
+                    }
+                },
+                //鼠标提示
+                tooltip: {
+                    trackMouse: true,
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function (tooltip, record, item) {
+                        tooltip.setHtml(record.get('name') + ' \ ' + item.field + ': ' + record.get(item.field));
+                    }
+                }
+            }, {
+                type: "line",
+                axis: "right",
+                xField: "name",
+                yField: "target"
+            }]
+        };
+        var chart = Ext.create('Ext.chart.CartesianChart', opts)
+        this.add(chart)
     }
 })

@@ -1,7 +1,20 @@
 Ext.define('App.projectmetric.view.ProjectMetricView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.ProjectMetricView',
-    layout: 'border', requires: ['App.commons.view.NavbarTree'],
+    layout: 'border', requires: ['App.commons.view.NavbarTree', 'App.commons.view.Report'],
+    tbar: {
+        xtype: 'breadcrumb',
+        ui: 'navbar',
+        height: 40, showIcons: true, showMenuIcons: true, overflowHandler: 'scroller',
+        dock: 'top',
+        listeners: {
+            change: function ($this, node, prevNode, eOpts) {
+                this.up().down('NavbarTree').suspendEvent('select');
+                this.up().down('NavbarTree').setSelection(node);
+                this.up().down('NavbarTree').resumeEvent('select');
+            }
+        }
+    },
     items: [{
         xtype: 'NavbarTree',
         region: 'west',
@@ -18,22 +31,8 @@ Ext.define('App.projectmetric.view.ProjectMetricView', {
             },
             afterrender: function () {
                 var me = this;
-                var bc = Ext.create('Ext.toolbar.Breadcrumb', {
-                    store: this.getStore(),
-                    ui: 'navbar',
-                    height: 40, showIcons: true, showMenuIcons: true,overflowHandler:'scroller',
-                    dock: 'top',
-                    listeners: {
-                        change: function ($this, node, prevNode, eOpts) {
-                            me.suspendEvent('select');
-                            me.setSelection(node);
-                            me.resumeEvent('select');
-                        }
-                    }
-                })
-                this.up().addDocked(bc)
-
-                this.up().bc = bc;
+                var bc = me.up().getDockedItems('breadcrumb[dock="top"]')[0];
+                bc.setStore(me.getStore());
 
                 var firstNode = this.getRootNode().getChildAt(0);
                 bc.setSelection(firstNode);
@@ -62,14 +61,14 @@ Ext.define('App.projectmetric.view.ProjectMetricView', {
             region: 'center',
             xtype: 'tabpanel',
             items: [
-                Ext.create('App.commons.view.Report', {
+                {
+                    xtype: 'Report',
                     title: '项目进展报告'
-                })
+                }
                 ,
                 {
-                    title: '需求',
-                    layout: 'border',
-                    items: []
+                    xtype: 'Report',
+                    title: '需求'
                 },
                 {title: '设计'},
                 {title: '开发'},
