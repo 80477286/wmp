@@ -27,7 +27,9 @@ Ext.define('App.metric.project.view.ProjectMetricView', {
         header: false,
         listeners: {
             select: function ($this, record, index, eOpts) {
-                this.up().bc.setSelection(record)
+                var me = this;
+                var bc = me.up().getDockedItems('breadcrumb[dock="top"]')[0];
+                bc.setSelection(record)
             },
             afterrender: function () {
                 var me = this;
