@@ -3,6 +3,7 @@ Ext.define('App.commons.view.NavbarTree', {
     alias: ['widget.NavbarTree'],
     bodyStyle: 'padding:0 5px 5px 0;',
     style: {backgroundColor: '#000'},
+    displayField: 'name',
     store: {
         xtype: 'treestore',
         root: {
@@ -19,16 +20,27 @@ Ext.define('App.commons.view.NavbarTree', {
                 url: 'organization/query',
                 params: {'params.parent.id_isnull': ''},
                 success: function (resp, opts) {
+                    var data = resp.result.data;
+                    me.initData(data);
                     var root = {
                         expanded: true,
                         rootVisible: false,
                         iconCls: 'icon-page-last',
                         text: '',
-                        children: resp.result.data
+                        children: data
                     }
                     me.getStore().setRoot(root);
                 }
             });
+        }
+    },
+    initData: function (datas) {
+        if (!Ext.isEmpty(datas)) {
+            for (var i = 0; i < datas.length; i++) {
+                var data = datas[i];
+                data.iconCls='icon-'+data.type.toLowerCase();
+                this.initData(data.children)
+            }
         }
     }
 })

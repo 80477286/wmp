@@ -30,7 +30,7 @@ public class Organization extends BaseEntity {
     @JoinColumn(name = "p_id")
     private Organization parent;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "parent")
     private List<Organization> children;
 
     public String getName() {
