@@ -26,7 +26,7 @@ public class Report extends BaseEntity {
     /**
      * 迭代
      */
-    private String iteration;
+    private String iterationId;
 
     /**
      * 分组名称
@@ -81,12 +81,12 @@ public class Report extends BaseEntity {
         this.projectId = projectId;
     }
 
-    public String getIteration() {
-        return iteration;
+    public String getIterationId() {
+        return iterationId;
     }
 
-    public void setIteration(String iteration) {
-        this.iteration = iteration;
+    public void setIterationId(String iterationId) {
+        this.iterationId = iterationId;
     }
 
     public List<Kpi> getKpis() {
