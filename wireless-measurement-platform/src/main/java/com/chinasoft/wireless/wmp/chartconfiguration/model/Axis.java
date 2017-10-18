@@ -1,6 +1,5 @@
 package com.chinasoft.wireless.wmp.chartconfiguration.model;
 
-import com.mouse.web.supports.model.BaseEntity;
 import com.mouse.web.supports.model.IdentifyEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
