@@ -27,13 +27,7 @@ public class ChartConfiguration extends BaseEntity {
 
     @OneToMany
     @JoinColumn(name = "chart_configuration_id")
-    private List<Axis> leftYAxises = new ArrayList<>();
-    @OneToMany
-    @JoinColumn(name = "chart_configuration_id")
-    private List<Axis> rightYAxises = new ArrayList<>();
-    @OneToMany
-    @JoinColumn(name = "chart_configuration_id")
-    private List<Axis> xAxises = new ArrayList<>();
+    private List<Axis> axes = new ArrayList<>();
 
     @OneToMany
     @JoinColumn(name = "chart_configuration_id")
@@ -47,35 +41,19 @@ public class ChartConfiguration extends BaseEntity {
         this.title = title;
     }
 
-    public List<Axis> getLeftYAxises() {
-        return leftYAxises;
-    }
-
-    public void setLeftYAxises(List<Axis> leftYAxises) {
-        this.leftYAxises = leftYAxises;
-    }
-
-    public List<Axis> getRightYAxises() {
-        return rightYAxises;
-    }
-
-    public void setRightYAxises(List<Axis> rightYAxises) {
-        this.rightYAxises = rightYAxises;
-    }
-
-    public List<Axis> getxAxises() {
-        return xAxises;
-    }
-
-    public void setxAxises(List<Axis> xAxises) {
-        this.xAxises = xAxises;
-    }
-
     public List<Series> getSeries() {
         return series;
     }
 
     public void setSeries(List<Series> series) {
         this.series = series;
+    }
+
+    public List<Axis> getAxes() {
+        return axes;
+    }
+
+    public void setAxes(List<Axis> axes) {
+        this.axes = axes;
     }
 }
