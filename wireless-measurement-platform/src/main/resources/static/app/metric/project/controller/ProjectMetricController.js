@@ -17,7 +17,7 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         bc.setSelection(selected[0])
         bc.resumeEvent('change');
     },
-    onNavbarTreeAfterrender: function () {
+    onNavbarTreeLoad: function () {
         var me = this.getView().down('NavbarTree');
 
         //绑定面包屑store
