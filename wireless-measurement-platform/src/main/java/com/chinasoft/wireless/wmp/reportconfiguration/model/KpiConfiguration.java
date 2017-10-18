@@ -1,11 +1,13 @@
 package com.chinasoft.wireless.wmp.reportconfiguration.model;
 
 import com.mouse.web.supports.model.BaseEntity;
+import com.mouse.web.supports.model.IdentifyEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,17 +16,29 @@ import javax.persistence.Table;
 @DynamicInsert(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "[kpi_configuration]")
-public class KpiConfiguration extends BaseEntity {
+public class KpiConfiguration extends IdentifyEntity {
 
     /**
      * 指标名称
      */
+    @Column(nullable = false, length = 128)
     private String name;
 
     /**
      * 字段名称
      */
+    @Column(nullable = false, length = 128)
     private String field;
+
+    /**
+     * 计算表达式
+     */
+    private String expression;
+
+    /**
+     * 描述
+     */
+    private String description;
 
     public String getName() {
         return name;
@@ -41,4 +55,21 @@ public class KpiConfiguration extends BaseEntity {
     public void setField(String field) {
         this.field = field;
     }
+
+    public String getExpression() {
+        return expression;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

@@ -6,10 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +16,16 @@ import java.util.List;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "[report_configuration]")
 public class ReportConfiguration extends BaseEntity {
+
+    /**
+     * 报表类型
+     */
+    @Column(nullable = false, length = 128)
     private String type;
+    @Column(nullable = false, length = 128)
     private String name;
     private String description;
+    private String projectId;
 
     @OneToMany()
     @JoinColumn(name = "report_configuration_id")
@@ -57,5 +61,13 @@ public class ReportConfiguration extends BaseEntity {
 
     public void setKpiConfigurations(List<KpiConfiguration> kpiConfigurations) {
         this.kpiConfigurations = kpiConfigurations;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 }
