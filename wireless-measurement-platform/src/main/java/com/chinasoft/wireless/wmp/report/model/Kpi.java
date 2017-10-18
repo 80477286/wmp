@@ -18,6 +18,7 @@ public class Kpi extends BaseEntity {
     private String name;
     private String field;
     private String value;
+    private String dataType;
 
     public String getName() {
         return name;
@@ -41,5 +42,13 @@ public class Kpi extends BaseEntity {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
     }
 }
