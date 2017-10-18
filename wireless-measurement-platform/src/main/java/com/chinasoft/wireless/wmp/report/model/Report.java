@@ -28,6 +28,11 @@ public class Report extends BaseEntity {
      */
     private String iteration;
 
+    /**
+     * 分组名称
+     */
+    private String groupName;
+
     @OneToMany
     @JoinColumn(name = "report_id")
     private List<Kpi> kpis = new ArrayList<>();
@@ -98,5 +103,13 @@ public class Report extends BaseEntity {
 
     public void setReportConfiguration(ReportConfiguration reportConfiguration) {
         this.reportConfiguration = reportConfiguration;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 }
