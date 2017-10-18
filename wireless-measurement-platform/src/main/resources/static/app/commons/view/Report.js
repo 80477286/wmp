@@ -110,11 +110,15 @@ Ext.define('App.commons.view.Report', {
         for (var i = 0; i < series.length; i++) {
             var item = series[i];
             item.yField = item.yFields;
-
             if (!Ext.isArray(item.yField)) {
                 item.srcYFields = item.yField;
                 item.yField = item.yField.replace(/\s/g, '')
                 item.yField = item.yField.split(',');
+            }
+            if (!Ext.isArray(item.yFieldAliases)) {
+                item.srcYFields = item.yFieldAliases;
+                item.yFieldAliases = item.yFieldAliases.replace(/\s/g, '')
+                item.title = item.yFieldAliases.split(',');
             }
             if (item.type == 'bar') {
                 var barOpts = {
@@ -147,8 +151,14 @@ Ext.define('App.commons.view.Report', {
                 height: 400,
                 innerPadding: '0 40 0 40',
                 legend: {
-                    type: 'sprite', // 'dom' is another possible value
-                    docked: 'bottom'
+                    listeners: {
+                        initialize: function () {
+                            console.log(argumets)
+                        }
+                    },
+                    // type: 'sprite', // 'dom' is another possible value
+                    docked: 'bottom',
+                    store: {}
                 },
                 insetPadding: Ext.isEmpty(chartConfiguration.title) ? 0 : '50 10 0 10',
                 sprites: Ext.isEmpty(chartConfiguration.title) ? [] : [{
