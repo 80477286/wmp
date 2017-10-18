@@ -33,13 +33,12 @@ public class Report extends BaseEntity {
      */
     private String groupName;
 
+    private String reportConfigurationType;
+
+    private String reportConfigurationId;
     @OneToMany
     @JoinColumn(name = "report_id")
     private List<Kpi> kpis = new ArrayList<>();
-
-    @OneToOne
-    @JoinColumn(name = "report_configuration_id")
-    private ReportConfiguration reportConfiguration;
 
 
     public String getBuId() {
@@ -98,13 +97,6 @@ public class Report extends BaseEntity {
         this.kpis = kpis;
     }
 
-    public ReportConfiguration getReportConfiguration() {
-        return reportConfiguration;
-    }
-
-    public void setReportConfiguration(ReportConfiguration reportConfiguration) {
-        this.reportConfiguration = reportConfiguration;
-    }
 
     public String getGroupName() {
         return groupName;
@@ -112,5 +104,21 @@ public class Report extends BaseEntity {
 
     public void setGroupName(String groupName) {
         this.groupName = groupName;
+    }
+
+    public String getReportConfigurationType() {
+        return reportConfigurationType;
+    }
+
+    public void setReportConfigurationType(String reportConfigurationType) {
+        this.reportConfigurationType = reportConfigurationType;
+    }
+
+    public String getReportConfigurationId() {
+        return reportConfigurationId;
+    }
+
+    public void setReportConfigurationId(String reportConfigurationId) {
+        this.reportConfigurationId = reportConfigurationId;
     }
 }
