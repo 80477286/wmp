@@ -75,4 +75,12 @@ public class ReportConfiguration extends BaseEntity {
     public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
+
+    public List<ChartConfiguration> getChartConfigurations() {
+        return chartConfigurations;
+    }
+
+    public void setChartConfigurations(List<ChartConfiguration> chartConfigurations) {
+        this.chartConfigurations = chartConfigurations;
+    }
 }

@@ -3,6 +3,8 @@ package com.chinasoft.wireless.wmp.report.service;
 import com.chinasoft.wireless.wmp.report.model.Kpi;
 import com.chinasoft.wireless.wmp.report.model.Report;
 import com.chinasoft.wireless.wmp.report.repository.ReportRepository;
+import com.chinasoft.wireless.wmp.reportconfiguration.model.ReportConfiguration;
+import com.chinasoft.wireless.wmp.reportconfiguration.service.ReportConfigurationService;
 import com.mouse.web.supports.jpa.repository.BaseRepository;
 import com.mouse.web.supports.jpa.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ import java.util.Map;
 public class ReportService extends BaseService<Report, String> implements IReportService {
     @Autowired
     private ReportRepository reportRepository;
+    @Autowired
+    private ReportConfigurationService reportConfigurationService;
+
 
     @Override
     public BaseRepository<Report, String> getRepository() {
@@ -42,21 +47,29 @@ public class ReportService extends BaseService<Report, String> implements IRepor
     public Map<String, Object> queryReport(Map<String, Object> params, Pageable pageable) {
         Map<String, Object> result = new HashMap<String, Object>(0);
 
+
         Page<Report> page = query(params, pageable);
 
         List<Report> reports = page.getContent();
-        List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>(0);
-        for (Report report : reports) {
-            Map<String, Object> line = new HashMap<String, Object>(0);
-            for (Kpi kpi : report.getKpis()) {
-                line.put(kpi.getField(), kpi.getValue());
+
+        if (reports != null && reports.size() > 0) {
+            ReportConfiguration reportConfiguration = reportConfigurationService.findOne(reports.get(0).getReportConfigurationId());
+            List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>(0);
+            for (Report report : reports) {
+                Map<String, Object> line = new HashMap<String, Object>(0);
+                for (Kpi kpi : report.getKpis()) {
+                    line.put(kpi.getField(), kpi.getValue());
+                }
+                if (report.getIterationId() != null && !report.getIterationId().trim().isEmpty()) {
+
+                }
+                datas.add(line);
             }
-            datas.add(line);
+            result.put("data", datas);
+            result.put("reportConfiguration", reportConfiguration);
+            result.put("total", page.getSize());
         }
-        result.put("data", datas);
-        result.put("reportConfiguration", datas);
         result.put("success", true);
-        result.put("total", page.getSize());
         return result;
     }
 }

@@ -35,7 +35,22 @@ Ext.define('App.metric.project.view.ProjectMetricView', {
             items: [
                 {
                     xtype: 'Report',
-                    title: '项目进展报告'
+                    title: '项目进展报告',
+                    listeners: {
+                        afterrender: function () {
+                            var me = this;
+                            Ext.Ajax.request({
+                                url: 'report/queryReport',
+                                params: {
+                                    'params.projectId': 1,
+                                    'params.reportConfigurationId': 1,
+                                    'params.groupName': '需求'
+                                }, success: function (resp) {
+                                    me.updateData([resp.result.data])
+                                }
+                            });
+                        }
+                    },
                 }
                 ,
                 {
