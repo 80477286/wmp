@@ -1,5 +1,6 @@
 package com.chinasoft.wireless.wmp.reportconfiguration.model;
 
+import com.chinasoft.wireless.wmp.chartconfiguration.model.ChartConfiguration;
 import com.mouse.web.supports.model.BaseEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -30,6 +31,10 @@ public class ReportConfiguration extends BaseEntity {
     @OneToMany()
     @JoinColumn(name = "report_configuration_id")
     private List<KpiConfiguration> kpiConfigurations = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "report_configuration_id")
+    private List<ChartConfiguration> chartConfigurations = new ArrayList<>();
 
     public String getType() {
         return type;

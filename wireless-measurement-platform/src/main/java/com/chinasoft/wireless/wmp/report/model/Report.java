@@ -41,6 +41,7 @@ public class Report extends BaseEntity {
     @JoinColumn(name = "report_configuration_id")
     private ReportConfiguration reportConfiguration;
 
+
     public String getBuId() {
         return buId;
     }
