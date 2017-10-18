@@ -30,6 +30,7 @@ Ext.define('App.commons.view.NavbarTree', {
                         children: data
                     }
                     me.getStore().setRoot(root);
+                    me.fireEvent('load')
                 }
             });
         }
@@ -38,7 +39,7 @@ Ext.define('App.commons.view.NavbarTree', {
         if (!Ext.isEmpty(datas)) {
             for (var i = 0; i < datas.length; i++) {
                 var data = datas[i];
-                data.iconCls='icon-'+data.type.toLowerCase();
+                data.iconCls = 'icon-' + data.type.toLowerCase();
                 this.initData(data.children)
             }
         }

@@ -8,7 +8,7 @@ Ext.define('App.metric.project.view.ProjectMetricView', {
         xtype: 'breadcrumb',
         ui: 'navbar',
         height: 40, showIcons: true, showMenuIcons: true, overflowHandler: 'scroller',
-        dock: 'top',
+        dock: 'top', displayField: 'name',
         listeners: {
             change: 'onBreadcrumbChange'
         }
@@ -26,7 +26,7 @@ Ext.define('App.metric.project.view.ProjectMetricView', {
         header: false,
         listeners: {
             selectionchange: 'onNavbarSelectionchange',
-            afterrender: 'onNavbarTreeAfterrender'
+            load: 'onNavbarTreeLoad'
         }
     },
         {
