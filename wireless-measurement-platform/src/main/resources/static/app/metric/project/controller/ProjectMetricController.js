@@ -7,6 +7,9 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         var nt = this.getView().down('NavbarTree');
         nt.suspendEvent('selectionchange');
         nt.setSelection(node);
+        if (!node.isRoot()) {
+            node.parentNode.expand();
+        }
         nt.resumeEvent('selectionchange');
     },
     onNavbarSelectionchange: function ($this, selected, eOpts) {

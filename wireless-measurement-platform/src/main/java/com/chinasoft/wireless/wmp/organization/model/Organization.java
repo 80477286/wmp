@@ -1,5 +1,6 @@
 package com.chinasoft.wireless.wmp.organization.model;
 
+import com.chinasoft.wireless.wmp.projectorder.model.ProjectOrder;
 import com.mouse.web.supports.model.BaseEntity;
 import org.apache.struts2.json.annotations.JSON;
 import org.hibernate.annotations.Cache;
@@ -30,8 +31,12 @@ public class Organization extends BaseEntity {
     @JoinColumn(name = "p_id")
     private Organization parent;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "parent")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
     private List<Organization> children;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
+    private List<ProjectOrder> projectOrders;
+
 
     public String getName() {
         return name;
@@ -65,11 +70,32 @@ public class Organization extends BaseEntity {
         this.parent = parent;
     }
 
+    @JSON(serialize = false, deserialize = false)
     public List<Organization> getChildren() {
         return children;
     }
 
     public void setChildren(List<Organization> children) {
         this.children = children;
+    }
+
+
+    @JSON(serialize = false, deserialize = false)
+    public List<ProjectOrder> getProjectOrders() {
+        return projectOrders;
+    }
+
+    public void setProjectOrders(List<ProjectOrder> projectOrders) {
+        this.projectOrders = projectOrders;
+    }
+
+    @JSON(name = "children")
+    public List getChildrens() {
+        if (children != null && children.size() > 0) {
+            return children;
+        } else if (projectOrders != null && projectOrders.size() > 0) {
+            return projectOrders;
+        }
+        return null;
     }
 }
