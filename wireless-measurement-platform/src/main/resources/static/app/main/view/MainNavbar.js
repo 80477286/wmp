@@ -27,7 +27,7 @@ Ext.define('App.main.view.MainNavbar', {
         },
         {
             name: '配置',
-            href: '/management',
+            href: '/management.html',
             target: '_blank'
         }
     ]
