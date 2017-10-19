@@ -1,6 +1,5 @@
 package com.chinasoft.wireless.wmp.reportconfiguration.model;
 
-import com.mouse.web.supports.model.BaseEntity;
 import com.mouse.web.supports.model.IdentifyEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -35,10 +34,21 @@ public class KpiConfiguration extends IdentifyEntity {
      */
     private String expression;
 
+
+    private String dataType = "string";
+
     /**
      * 描述
      */
     private String description;
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
+    }
 
     public String getName() {
         return name;
