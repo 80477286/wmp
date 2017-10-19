@@ -37,16 +37,25 @@ Ext.define('App.commons.view.Report', {
         }
     },
     initReportData: function (kpiConfigurations, datas) {
-        var kvs = new Ext.util.MixedCollection();
+        var dts = new Ext.util.MixedCollection();
+
+        Ext.Array.each(kpiConfigurations, function (kpiConfiguration) {
+            dts.add(kpiConfiguration.field, kpiConfiguration.dataType);
+        });
         var initedDatas = [];
         Ext.Array.each(datas, function (data) {
             var line = {};
             for (key in data) {
                 var value = data[key];
-                if (Ext.isNumeric(value)) {
-                    line[key] = parseInt(value)
-                } else {
+                var dt = dts.get(key);
+                if (Ext.isEmpty(dt) || dt == 'string') {
                     line[key] = value;
+                } else if (dt == 'int') {
+                    line[key] = parseInt(value)
+                } else if (dt == 'float') {
+                    line[key] = parseFloat(value)
+                } else if (dt == 'date') {
+                    line[key] = new Date(value)
                 }
             }
             initedDatas.push(line);
@@ -86,9 +95,20 @@ Ext.define('App.commons.view.Report', {
         var columns = [];
         var kpiConfigurations = reportConfiguration.kpiConfigurations
         Ext.Array.each(kpiConfigurations, function (kpiConfiguration) {
+            var dataType = kpiConfiguration.dataType;
+            var xtype = 'gridcolumn';
+            if ((dataType == 'float' || dataType == 'int')) {
+                xtype = 'numbercolumn';
+            } else if (dataType == 'date') {
+                xtype = 'datecolumn';
+            }
             columns.push({
+                xtype: xtype,
                 dataIndex: kpiConfiguration.field,
-                text: kpiConfiguration.name
+                text: kpiConfiguration.name,
+                type: dataType,
+                format: kpiConfiguration.format,
+                formatter: kpiConfiguration.formatter
             })
         });
         return columns;
@@ -190,7 +210,6 @@ Ext.define('App.commons.view.Report', {
                 axes: axes,
                 series: series
             }
-        ;
         var chart = Ext.create('Ext.chart.CartesianChart', opts)
         this.add(chart)
     }

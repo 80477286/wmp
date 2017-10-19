@@ -37,6 +37,8 @@ public class KpiConfiguration extends IdentifyEntity {
 
     private String dataType = "string";
 
+    private String format;
+    private String formatter;
     /**
      * 描述
      */
@@ -82,4 +84,19 @@ public class KpiConfiguration extends IdentifyEntity {
         this.description = description;
     }
 
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getFormatter() {
+        return formatter;
+    }
+
+    public void setFormatter(String formatter) {
+        this.formatter = formatter;
+    }
 }
