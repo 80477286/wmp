@@ -14,6 +14,6 @@ Ext.define('App.metric.project.view.BuReport', {
                     //     'params.groupName': '需求'
                     // });
                 }
-            },
+            }
         }]
 })
