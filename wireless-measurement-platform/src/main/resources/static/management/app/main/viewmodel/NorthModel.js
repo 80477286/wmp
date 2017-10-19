@@ -7,8 +7,10 @@ Ext.define('App.main.viewmodel.NorthModel', {
         },
         menus: [{
             name: '度量中心',
-            iconCls: 'menu_item_role_managument',handler:function(){window.location.href='/'}
-        },{
+            iconCls: 'menu_item_role_managument', handler: function () {
+                window.location.href = '/'
+            }
+        }, {
             clazz: 'App.employee.view.EmployeeList',
             name: '人力资源管理',
             iconCls: 'menu_item_role_managument'
@@ -32,6 +34,10 @@ Ext.define('App.main.viewmodel.NorthModel', {
                 clazz: 'App.authorization.role.view.RoleList',
                 iconCls: 'menu_item_role_managument'
             }]
+        }, {
+            name: '报表配置',
+            iconCls: 'menu_item_role_managument',
+            clazz: 'App.reportconfiguration.view.ReportConfigurationList'
         }]
     }
 })
