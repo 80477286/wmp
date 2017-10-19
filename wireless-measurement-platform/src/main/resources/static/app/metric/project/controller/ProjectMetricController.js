@@ -7,6 +7,7 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         var nt = this.getView().down('NavbarTree');
         nt.suspendEvent('selectionchange');
         nt.setSelection(node);
+        this.loadReport(node);
         if (!node.isRoot()) {
             node.parentNode.expand();
         }
@@ -18,6 +19,7 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         var bc = this.getView().getDockedItems('breadcrumb[dock="top"]')[0];
         bc.suspendEvent('change');
         bc.setSelection(selected[0])
+        this.loadReport(selected[0]);
         bc.resumeEvent('change');
     },
     onNavbarTreeLoad: function () {
@@ -50,5 +52,8 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
                 me.expand();
             }
         });
+    },
+    loadReport: function (node) {
+        console.log(node)
     }
 })
