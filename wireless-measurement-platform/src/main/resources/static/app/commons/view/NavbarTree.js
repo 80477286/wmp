@@ -42,6 +42,8 @@ Ext.define('App.commons.view.NavbarTree', {
                 data.iconCls = 'icon-' + data.type.toLowerCase();
                 if (data.type == 'project') {
                     data.leaf = true;
+                }else{
+                    data.expanded=true;
                 }
                 this.initData(data.children)
             }

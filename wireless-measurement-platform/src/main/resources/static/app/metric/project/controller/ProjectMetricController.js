@@ -7,7 +7,7 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         var nt = this.getView().down('NavbarTree');
         nt.suspendEvent('selectionchange');
         nt.setSelection(node);
-        this.loadReport(node);
+        this.createReport(node);
         if (!node.isRoot()) {
             node.parentNode.expand();
         }
@@ -19,7 +19,7 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         var bc = this.getView().getDockedItems('breadcrumb[dock="top"]')[0];
         bc.suspendEvent('change');
         bc.setSelection(selected[0])
-        this.loadReport(selected[0]);
+        this.createReport(selected[0]);
         bc.resumeEvent('change');
     },
     onNavbarTreeLoad: function () {
@@ -53,7 +53,32 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
             }
         });
     },
-    loadReport: function (node) {
-        console.log(node)
+    createReport: function (node) {
+        var view = this.getView();
+        var report = null;
+        if (!node.isRoot()) {
+            if (node.data.type.toLowerCase() == 'project') {
+                report = Ext.create('App.metric.project.view.IterationReport', {region: 'center', node: node});
+            } else if (node.data.type.toLowerCase() == 'po') {
+                report = Ext.create('App.metric.project.view.ProjectOrderReport', {region: 'center', node: node});
+
+            } else if (node.data.type.toLowerCase() == 'pdu') {
+                report = Ext.create('App.metric.project.view.PduReport', {region: 'center', node: node});
+
+            } else if (node.data.type.toLowerCase() == 'du') {
+                report = Ext.create('App.metric.project.view.DuReport', {region: 'center', node: node});
+
+            } else if (node.data.type.toLowerCase() == 'bu') {
+                report = Ext.create('App.metric.project.view.BuReport', {region: 'center', node: node});
+
+            }
+        }
+        var oldReport = view.down('tabpanel[region="center"]');
+        if (!Ext.isEmpty(oldReport)) {
+            oldReport.destroy();
+        }
+        if (report != null) {
+            view.add(report);
+        }
     }
 })

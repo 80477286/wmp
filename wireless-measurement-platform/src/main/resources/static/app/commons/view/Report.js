@@ -4,6 +4,22 @@ Ext.define('App.commons.view.Report', {
     layout: 'vbox',
     items: [],
     defaults: {margin: '0 0 10 0'},
+    load: function (url, params) {
+        var me = this;
+        Ext.defer(function () {
+            me.mask('加载...');
+            Ext.Ajax.request({
+                url: url,
+                params: params,
+                success: function (resp) {
+                    me.updateData([resp.result.data])
+                },
+                callback: function () {
+                    me.unmask();
+                }
+            });
+        }, 50);
+    },
     updateData: function (datas) {
         if (!Ext.isEmpty(datas) && datas.length > 0) {
             for (var i = 0; i < datas.length; i++) {
