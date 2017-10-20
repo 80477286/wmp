@@ -19,19 +19,20 @@ Ext.define('App.main.controller.ViewportController', {
         }
     },
     onMenuClick: function (ne, menu) {
-        var mainFrame = this.getView().down('MainFrame');
-        var clazz = 'App.metric.project.view.ProjectMetricView';
-        if (menu.name == '版本度量') {
-            clazz = 'App.metric.version.view.VersionMetricView';
-        }
-        var id = clazz.replace(/\./g, '_') + '_' + Ext.util.Base64.encode(menu.name);
-        var cmp = mainFrame.queryById(id);
-        if (Ext.isEmpty(cmp)) {
-            var view = Ext.create(clazz, {id: id});
-            mainFrame.add(view);
-        }
-        mainFrame.setActiveItem(id);
-        Ext.util.Cookies.set('_menu_actived', menu.name);
+        // if (menu.name == '项目度量') {
+        //     var mainFrame = this.getView().down('MainFrame');
+        //     var clazz = 'App.metric.project.view.ProjectMetricView';
+        //     var id = clazz.replace(/\./g, '_') + '_' + Ext.util.Base64.encode(menu.name);
+        //     var oldCmp = mainFrame.queryById(id);
+        //     if (!Ext.isEmpty(oldCmp)) {
+        //         mainFrame.setActiveItem(id);
+        //     } else {
+        //         var view = Ext.create(clazz, {id: id});
+        //         mainFrame.add(view);
+        //     }
+        // }
+        // console.log(menu);
+        // console.log(this.getView());
     }
 })
 ;
