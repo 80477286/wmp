@@ -12,15 +12,38 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
             node.parentNode.expand();
         }
         nt.resumeEvent('selectionchange');
+        if (!node.isRoot()) {
+            Ext.util.Cookies.set('_navbar_tree_selected', node.data.id);
+        }
     },
     onNavbarSelectionchange: function ($this, selected, eOpts) {
+        var node = selected[0];
         //导航树选择节点时刷新面包屑路径
         var me = this.getView().down('NavbarTree');
         var bc = this.getView().getDockedItems('breadcrumb[dock="top"]')[0];
         bc.suspendEvent('change');
-        bc.setSelection(selected[0])
-        this.createReport(selected[0]);
+        bc.setSelection(node)
         bc.resumeEvent('change');
+
+        if (!Ext.isEmpty(node)) {
+            this.createReport(node);
+            if (!node.isRoot()) {
+                Ext.util.Cookies.set('_navbar_tree_selected', node.data.id);
+            }
+        }
+    },
+    loadLastSelected: function () {
+        var me = this.getView().down('NavbarTree');
+        //从缓存中读取最后一次加载的节点
+        var nodeid = Ext.util.Cookies.get('_navbar_tree_selected');
+        //初始选择节点
+        var node = me.getRootNode().getChildAt(0);
+        if (!Ext.isEmpty(nodeid) && Ext.isString(nodeid)) {
+            node = me.getView().getStore().getNodeById(nodeid);
+        }
+        if (!Ext.isEmpty(node)) {
+            me.setSelection(node);
+        }
     },
     onNavbarTreeLoad: function () {
         var me = this.getView().down('NavbarTree');
@@ -29,9 +52,8 @@ Ext.define('App.metric.project.controller.ProjectMetricController', {
         var bc = me.up().getDockedItems('breadcrumb[dock="top"]')[0];
         bc.setStore(me.getStore());
 
-        //初始选择节点
-        var initSelectNode = me.getRootNode().getChildAt(0);
-        me.setSelection(initSelectNode);
+        //加载最后一次选择的节点
+        this.loadLastSelected();
 
         //处理左则树导航显示及隐藏效果
         me.collapseTask = new Ext.util.DelayedTask(function () {
