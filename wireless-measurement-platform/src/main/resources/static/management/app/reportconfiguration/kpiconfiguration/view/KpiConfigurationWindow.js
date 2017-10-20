@@ -1,5 +1,6 @@
 Ext.define('App.reportconfiguration.kpiconfiguration.view.KpiConfigurationWindow', {
     extend: 'Extend.window.FormWindow',
+    requires: ['App.reportconfiguration.kpiconfiguration.field.KpiDataTypeCombobox'],
     title: '添加指标信息',
     width: 300,
     height: 200,
@@ -12,22 +13,22 @@ Ext.define('App.reportconfiguration.kpiconfiguration.view.KpiConfigurationWindow
         xtype: 'textfield',
         name: 'name',
         fieldLabel: '指标名称',
-        beforeLabelTextTpl : ['<span style="color:red;">*</span>']
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
+        xtype: 'KpiDataTypeCombobox',
         name: 'dataType',
         fieldLabel: '类型',
-        beforeLabelTextTpl : ['<span style="color:red;">*</span>']
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
         xtype: 'textfield',
         name: 'field',
         fieldLabel: '字段名称',
-        beforeLabelTextTpl : ['<span style="color:red;">*</span>']
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
         xtype: 'textfield',
         name: 'expression',
         fieldLabel: '计算表达式',
-        beforeLabelTextTpl : ['<span style="color:red;">*</span>']
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
         xtype: 'textfield',
         name: 'format',
