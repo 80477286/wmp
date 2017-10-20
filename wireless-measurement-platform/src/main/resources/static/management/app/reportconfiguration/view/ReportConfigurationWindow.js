@@ -6,17 +6,19 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
         window: {
             title: '报表信息修改',
             width: 1024,
-            height: 600
+            height: 800
         },
         entity: 'reportConfiguration'
     },
+    defaults: {
+        columnWidth: 1
+    },
     items: [{
         xtype: 'panel',
-        height: 600,
+        height: 800,
         layout: 'border',
         items: [{
             xtype: 'panel',
-            height: 150,
             region: 'north',
             items: [{
                 xtype: 'textfield',
@@ -39,11 +41,57 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
             xtype: 'tabpanel',
             region: 'center',
             items: [{
-                xtype: 'KpiConfigurationList',
-                title: '指标配置'
+                title: '指标配置',
+                xtype: 'GridField',
+                name: 'kpiConfigurations',
+                columns: [{
+                    text: 'ID',
+                    dataIndex: 'id',
+                    hidden: true,
+                    sortable: false
+                }, {
+                    text: '名称',
+                    dataIndex: 'name'
+                }, {
+                    text: '字段',
+                    dataIndex: 'field'
+                }, {
+                    text: '表达式',
+                    dataIndex: 'expression'
+                }, {
+                    text: '类型',
+                    dataIndex: 'dataType'
+                }, {
+                    text: '日期格式',
+                    dataIndex: 'format'
+                }, {
+                    text: '格式化',
+                    dataIndex: 'formatter'
+                }, {
+                    text: '描述',
+                    dataIndex: 'description'
+                }],
+                addHandler: function () {
+                    var me = this;
+                    var form = Ext.create('App.reportconfiguration.kpiconfiguration.view.KpiConfigurationWindow', {
+                        kpiConfiguration: me
+                    });
+                    form.show();
+                }
+
             }, {
-                xtype: 'ChartConfigurationList',
-                title: '图配置'
+                xtype: 'GridField',
+                title: '图配置',
+                name: 'chartConfigurations',
+                xtype: 'GridField',
+                columns: [{
+                    text: 'ID',
+                    dataIndex: 'id',
+                    hidden: true,
+                }, {
+                    text: '标题',
+                    dataIndex: 'title'
+                }]
             }]
         }]
     }]
