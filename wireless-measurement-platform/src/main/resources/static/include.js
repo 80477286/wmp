@@ -3,6 +3,7 @@
     window.extjsPath = libsPath + 'extjs/6.2.0/build/';
     window.extendPath = libsPath + 'extjs/6.2.0/extend/';
     window.isDebug = false;
+    window.isManager = false;
     window.theme = null;
 
     var Cookie = new Object();
@@ -27,10 +28,14 @@
             + (domain ? ";domain=" + domain : "")
     }
 
+    if (window.location.search.match('(\\?|&)manager') !== null) {
+        window.isManager = true;
+    }
     // 判断是否是高度模式
     if (window.location.search.match('(\\?|&)debug') !== null) {
         isDebug = true;
-    } else if (isDebug === null && window.location.protocol === 'file:') {
+    }
+    else if (isDebug === null && window.location.protocol === 'file:') {
         isDebug = true;
     } else {
         var localhostTests = [/^localhost$/, /^127.0.0.1$/];

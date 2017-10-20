@@ -3,7 +3,7 @@ Ext.define('App.commons.view.Report', {
     alias: ['widget.Report'],
     layout: 'vbox',
     items: [],
-    defaults: {margin: '0 0 10 0'},
+    defaults: {margin: '0 0 30 0'},
     load: function (url, params) {
         var me = this;
         Ext.defer(function () {

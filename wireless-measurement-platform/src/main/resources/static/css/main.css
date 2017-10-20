@@ -1,3 +1,10 @@
+.logo{
+height:46px;
+    width:128px;
+    background-image: url("icons/logo.png") !important;
+    background-repeat: no-repeat;
+}
+
 /*禁止焦点边框*/
 .x-btn-focus.x-btn-plain-toolbar-small, .x-tab-default-top.x-tab-focus.x-tab-active, .x-tab-default-top.x-tab-focus.x-tab-over, .x-btn-focus.x-btn-over.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-toolbar-small, .x-btn-focus.x-btn-default-small {
     -webkit-box-shadow: none !important;

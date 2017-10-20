@@ -1,7 +1,7 @@
 Ext.application({
     name: 'App',
     appFolder: 'app',
-    autoCreateViewport: 'App.main.view.Viewport',
+    autoCreateViewport: 'App.' + (isManager == true ? 'management.main' : 'metric.main') + '.view.Viewport',
     init: function (application) {
         Ext.log.info('development:true');
         Ext.log.info('libsPath:' + libsPath);
@@ -13,8 +13,8 @@ Ext.application({
         window.app.optsQueue = [];
         Ext.Ajax.disableCachingParam = 'dc';
 
-        this.custominit();
-        this.checkBrowser();
+        // this.custominit();
+        //this.checkBrowser();
         // 配置Ajax请求事件处理函数
         Ext.Ajax.on({
             beforerequest: function (conn, options, eOpts) {
