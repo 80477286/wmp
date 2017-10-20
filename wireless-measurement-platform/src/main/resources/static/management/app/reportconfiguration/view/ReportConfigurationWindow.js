@@ -16,7 +16,6 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
         layout: 'border',
         items: [{
             xtype: 'panel',
-            height: 150,
             region: 'north',
             items: [{
                 xtype: 'textfield',
@@ -39,11 +38,55 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
             xtype: 'tabpanel',
             region: 'center',
             items: [{
-                xtype: 'KpiConfigurationList',
-                title: '指标配置'
+                title: '指标配置',
+                xtype: 'GridField',
+                name: 'kpiConfigurations',
+                columns: [{
+                    text: 'ID',
+                    dataIndex: 'id',
+                    hidden: true,
+                    sortable: false
+                }, {
+                    text: '名称',
+                    dataIndex: 'name'
+                }, {
+                    text: '字段',
+                    dataIndex: 'field'
+                }, {
+                    text: '表达式',
+                    dataIndex: 'expression'
+                }, {
+                    text: '类型',
+                    dataIndex: 'dataType'
+                }, {
+                    text: '描述',
+                    dataIndex: 'description'
+                }]
             }, {
-                xtype: 'ChartConfigurationList',
-                title: '图配置'
+                xtype: 'panel',
+                title: '图配置',
+                layout: 'border',
+                items: [
+                    {
+                        xtype: 'panel',
+                        region: 'north',
+                        items: [{
+                            xtype: 'textfield',
+                            name: 'title',
+                            fieldLabel: '图标题'
+                        }]
+                    }, {
+                        xtype: 'tabpanel',
+                        region: 'center',
+                        items: [{
+                            xtype: 'panel',
+                            title: '轴配置'
+                        }, {
+                            xtype: 'panel',
+                            title: 'series配置'
+                        }]
+                    }
+                ]
             }]
         }]
     }]
