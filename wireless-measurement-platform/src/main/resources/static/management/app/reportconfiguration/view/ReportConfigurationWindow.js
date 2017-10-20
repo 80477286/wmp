@@ -6,13 +6,16 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
         window: {
             title: '报表信息修改',
             width: 1024,
-            height: 600
+            height: 800
         },
         entity: 'reportConfiguration'
     },
+    defaults: {
+        columnWidth: 1
+    },
     items: [{
         xtype: 'panel',
-        height: 600,
+        height: 800,
         layout: 'border',
         items: [{
             xtype: 'panel',
@@ -59,34 +62,36 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                     text: '类型',
                     dataIndex: 'dataType'
                 }, {
+                    text: '日期格式',
+                    dataIndex: 'format'
+                }, {
+                    text: '格式化',
+                    dataIndex: 'formatter'
+                }, {
                     text: '描述',
                     dataIndex: 'description'
-                }]
+                }],
+                addHandler: function () {
+                    var me = this;
+                    var form = Ext.create('App.reportconfiguration.kpiconfiguration.view.KpiConfigurationWindow', {
+                        kpiConfiguration: me
+                    });
+                    form.show();
+                }
+
             }, {
-                xtype: 'panel',
+                xtype: 'GridField',
                 title: '图配置',
-                layout: 'border',
-                items: [
-                    {
-                        xtype: 'panel',
-                        region: 'north',
-                        items: [{
-                            xtype: 'textfield',
-                            name: 'title',
-                            fieldLabel: '图标题'
-                        }]
-                    }, {
-                        xtype: 'tabpanel',
-                        region: 'center',
-                        items: [{
-                            xtype: 'panel',
-                            title: '轴配置'
-                        }, {
-                            xtype: 'panel',
-                            title: 'series配置'
-                        }]
-                    }
-                ]
+                name: 'chartConfigurations',
+                xtype: 'GridField',
+                columns: [{
+                    text: 'ID',
+                    dataIndex: 'id',
+                    hidden: true,
+                }, {
+                    text: '标题',
+                    dataIndex: 'title'
+                }]
             }]
         }]
     }]
