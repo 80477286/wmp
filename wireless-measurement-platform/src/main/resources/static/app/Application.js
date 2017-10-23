@@ -1,6 +1,7 @@
 Ext.application({
     name: 'App',
     appFolder: 'app',
+    requires: ['App.commons.grid.column.CdtColumn'],
     autoCreateViewport: 'App.' + (isManager == true ? 'management.main' : 'metric.main') + '.view.Viewport',
     init: function (application) {
         Ext.log.info('development:true');
