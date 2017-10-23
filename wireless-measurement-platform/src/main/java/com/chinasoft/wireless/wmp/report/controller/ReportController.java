@@ -32,4 +32,12 @@ public class ReportController extends BaseController<Report, String> {
     public Map<String, Object> queryReport(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return getService().queryReport(params, pageable);
     }
+
+    @Override
+    @JSON(excludeProperties = "data.*\\.kpis")
+    @RequestMapping(value = "/query")
+    public Page<Report> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
+        params.put("projectId", "p1");
+        return super.query(params, pageable);
+    }
 }

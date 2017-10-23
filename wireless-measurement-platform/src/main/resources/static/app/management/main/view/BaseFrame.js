@@ -11,5 +11,6 @@ Ext.define('App.management.main.view.BaseFrame', {
     initComponent: function () {
         this.callParent(arguments);
         this.down('tabpanel').add(this.tabitems);
+        this.down('tabpanel').setActiveTab(0)
     }
 })
