@@ -4,7 +4,10 @@ Ext.define('App.management.main.view.Viewport', {
     requires: [
         'App.management.project.view.ProjectManagementFrame',
         'App.management.version.view.VersionManagementFrame',
-        'App.management.authorization.view.AuthorizationManagementFrame'
+        'App.management.authorization.view.AuthorizationManagementFrame',
+        'App.management.employee.view.EmployeeManagementFrame',
+        'App.management.metricconfiguration.view.MetricConfigurationFrame',
+        'App.management.basicdata.view.BasicDataFrame'
     ],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
@@ -30,26 +33,19 @@ Ext.define('App.management.main.view.Viewport', {
         xtype: 'ProjectManagementFrame',
         iconCls: 'fa-user'
     }, {
+        xtype: 'EmployeeManagementFrame',
+        iconCls: 'fa-users'
+    }, {
         xtype: 'VersionManagementFrame',
         iconCls: 'fa-users'
     }, {
-        xtype: 'AuthorizationManagementFrame',
+        xtype: 'MetricConfigurationFrame',
         iconCls: 'fa-cog'
     }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        html: '{loremIpsum}'
+        xtype: 'BasicDataFrame',
+        iconCls: 'fa-cog'
     }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        html: '{loremIpsum}'
-    }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        html: '{loremIpsum}'
-    }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        html: '{loremIpsum}'
+        xtype: 'AuthorizationManagementFrame',
+        iconCls: 'fa-cog'
     }]
 })
