@@ -6,7 +6,7 @@ Ext.define('App.management.main.view.Viewport', {
         'App.management.version.view.VersionManagementFrame',
         'App.management.authorization.view.AuthorizationManagementFrame',
         'App.management.employee.view.EmployeeManagementFrame',
-        'App.management.metricconfiguration.view.MetricConfigurationFrame',
+        'App.management.metric.view.MetricConfigurationFrame',
         'App.management.basicdata.view.BasicDataFrame'
     ],
     ui: 'navigation',
