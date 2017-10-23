@@ -1,10 +1,10 @@
-Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
+Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow", {
     extend: 'Extend.window.FormWindow',
     requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList'],
-    alias: 'widget.report_configuration_editor',
+    alias: 'widget.chart_configuration_editor',
     config: {
         window: {
-            title: '报表信息修改',
+            title: '图信息修改',
             width: 1024,
             height: 800
         },
@@ -22,33 +22,16 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
             region: 'north',
             items: [{
                 xtype: 'textfield',
-                name: 'id',
-                hidden: true
-            }, {
-                xtype: 'textfield',
-                name: 'name',
+                name: 'title',
                 fieldLabel: '名称'
-            }, {
-                xtype: 'textfield',
-                name: 'type',
-                fieldLabel: '类型'
-            }, {
-                xtype: 'textfield',
-                name: 'creator',
-                fieldLabel: '创建者'
-            }, {
-                xtype: 'textfield',
-                name: 'description',
-                fieldLabel: '描述'
             }]
         }, {
             xtype: 'tabpanel',
             region: 'center',
             items: [{
-                title: '指标配置',
+                title: '轴配置',
                 xtype: 'GridField',
-                name: 'kpiConfigurations',
-                submitFields: ['name', 'field', 'expression', 'dataType', 'format', 'formatter', 'description'],
+                name: 'axes',
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
@@ -86,8 +69,8 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
 
             }, {
                 xtype: 'GridField',
-                title: '图配置',
-                name: 'chartConfigurations',
+                title: 'series配置',
+                name: 'series',
                 xtype: 'GridField',
                 columns: [{
                     text: 'ID',
@@ -96,11 +79,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                 }, {
                     text: '标题',
                     dataIndex: 'title'
-                }],
-                addHandler: function () {
-                    var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow');
-                    form.show();
-                }
+                }]
             }]
         }]
     }]

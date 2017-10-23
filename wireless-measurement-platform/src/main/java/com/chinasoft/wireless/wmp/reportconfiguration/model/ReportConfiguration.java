@@ -28,7 +28,7 @@ public class ReportConfiguration extends BaseEntity {
     private String description;
     private String projectId;
 
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "report_configuration_id")
     private List<KpiConfiguration> kpiConfigurations = new ArrayList<>();
 
