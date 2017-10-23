@@ -22,6 +22,10 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
             region: 'north',
             items: [{
                 xtype: 'textfield',
+                name: 'id',
+                hidden: true
+            }, {
+                xtype: 'textfield',
                 name: 'name',
                 fieldLabel: '名称'
             }, {
