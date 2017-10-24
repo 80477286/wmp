@@ -32,6 +32,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 title: '轴配置',
                 xtype: 'GridField',
                 name: 'axes',
+                submitFields:['type','position','fields','title','fieldAliases'],
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
@@ -66,6 +67,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 title: 'series配置',
                 name: 'series',
                 xtype: 'GridField',
+                submitFields:['type','xField','xFieldAlias','yFields','yFieldAliases','axis'],
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
