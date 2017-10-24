@@ -19,6 +19,6 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
         formClass: 'App.reportconfiguration.view.ReportConfigurationWindow',
         save: '/report_configuration/save',
         get: '/report_configuration/get_by_id',
-        del: '/hrm/employee/delete'
+        del: '/report_configuration/deletes'
     }
 });
