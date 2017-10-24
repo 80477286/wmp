@@ -1,5 +1,5 @@
 Ext.define("App.management.project.report.view.ReportEditor", {
-    extend: 'App.commons.FormWindow',
+    extend: 'Extend.window.FormWindow',
     alias: 'widget.report_editor',
     config: {
         entity: 'report',

@@ -8,12 +8,6 @@ Ext.define('App.management.project.report.view.ReportList', {
         tbar: {
             quickCreate: {
                 hidden: true
-            },
-            qq: {
-                text: 'qq',
-                handler: function () {
-                    Ext.create('App.commons.FormWindow', {height: 500, width: 900}).show();
-                }
             }
         }
     },
