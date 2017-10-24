@@ -18,61 +18,40 @@ Ext.define("App.management.project.report.view.ReportEditor", {
         name: 'id'
     }, {
         xtype: 'textfield',
-        name: 'name',
-        fieldLabel: '资源名称',
-        allowBlank: false,
-        blankText: '资源名称不能为喔！',
-        beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
-        maxLength: 256
+        name: 'reportConfigurationType',
+        fieldLabel: '度量类型',
+        readOnly: true,
+        submitValues: false
     }, {
         xtype: 'textfield',
-        name: 'url',
-        fieldLabel: 'URL',
-        maxLength: 256
+        name: 'iterationId',
+        fieldLabel: '迭代',
+        readOnly: true,
+        submitValues: false
     }, {
         xtype: 'textfield',
-        name: 'uiid',
-        fieldLabel: 'UIID',
-        maxLength: 256
+        name: 'groupName',
+        fieldLabel: '分组',
+        readOnly: true,
+        submitValues: false
     }, {
-        xtype: 'textfield',
-        name: 'description',
-        fieldLabel: '描述',
-        columnWidth: 1,
-        maxLength: 512
-    }, {
-        name: 'roles',
+        name: 'kpis',
         xtype: 'gridfield',
         fieldLabel: '角色配置',
         columnWidth: 1,
         height: 300,
-        readOnly: false,
         submitFields: ['id', 'name'],
-        addHandler: function () {
-            var grid = this;
-            Ext.create('Extend.window.SelectionWindow', {
-                height: 500,
-                grid: 'App.report.role.view.RoleSelection',
-                listeners: {
-                    selected: function (rs) {
-                        grid.loadRecords(rs, true);
-                    }
-                }
-            }).show();
-        },
+        roweditable: true,
+        tbar: {add: {hidden: true}, remove: {hidden: true}},border:false,
         columns: [{
-            header: '角色名',
+            header: '指标名称',
             dataIndex: 'name'
         }, {
-            header: '描述',
-            dataIndex: 'rolename'
+            header: '字段名',
+            dataIndex: 'field'
         }, {
-            header: '创建人',
-            dataIndex: 'creator'
-        }, {
-            xtype: 'cdtcolumn',
-            header: '创建时间',
-            dataIndex: 'cdt'
+            header: '值',
+            dataIndex: 'value', editor: {xtype: 'textfield'}
         }]
     }]
 })
