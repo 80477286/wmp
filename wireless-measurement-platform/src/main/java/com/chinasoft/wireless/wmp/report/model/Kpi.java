@@ -1,12 +1,14 @@
 package com.chinasoft.wireless.wmp.report.model;
 
 import com.mouse.web.supports.model.BaseEntity;
+import com.mouse.web.supports.model.IdentifyEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +16,7 @@ import javax.persistence.Table;
 @DynamicInsert(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "[kpi]")
-public class Kpi extends BaseEntity {
+public class Kpi extends IdentifyEntity {
     private String name;
     private String field;
     private String value;
@@ -42,5 +44,4 @@ public class Kpi extends BaseEntity {
     public void setValue(String value) {
         this.value = value;
     }
-
 }

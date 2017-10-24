@@ -52,7 +52,7 @@ Ext.define("App.management.authorization.resource.view.ResourceEditor", {
             var grid = this;
             Ext.create('Extend.window.SelectionWindow', {
                 height: 500,
-                grid: 'App.authorization.role.view.RoleSelection',
+                grid: 'App.management.authorization.role.view.RoleSelection',
                 listeners: {
                     selected: function (rs) {
                         grid.loadRecords(rs, true);

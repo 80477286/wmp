@@ -36,7 +36,7 @@ public class Report extends BaseEntity {
     private String reportConfigurationType;
 
     private String reportConfigurationId;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_id")
     private List<Kpi> kpis = new ArrayList<>();
 

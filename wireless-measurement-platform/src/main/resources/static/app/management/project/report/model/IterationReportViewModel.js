@@ -18,13 +18,11 @@ Ext.define('App.management.project.report.model.IterationReportViewModel', {
             dataIndex: 'groupName'
         }, {
             header: '创建人',
-            dataIndex: 'creator',
-            hidden: true
+            dataIndex: 'creator'
         }, {
             xtype: 'cdtcolumn',
             header: '创建时间',
-            dataIndex: 'cdt',
-            hidden: true
+            dataIndex: 'cdt'
         }],
         search: {
             simpleSearch: true,

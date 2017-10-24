@@ -16,7 +16,7 @@ Ext.define('App.management.project.report.view.ProjectReportList', {
         columns: '{columns}',
         search: '{search}'
     },
-    extraParams: {'params.reportConfigurationType':'项目度量'},
+    extraParams: {'params.reportConfigurationType': '项目度量'},
     editor: {
         formClazz: 'App.management.project.report.view.ProjectReportEditor',
         save: '/report/save',

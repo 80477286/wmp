@@ -15,7 +15,7 @@ import java.util.List;
 @DynamicUpdate(true)
 @DynamicInsert(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "[report_configuration]")
+@Table(name = "[report_configuration]", uniqueConstraints = {@UniqueConstraint(columnNames = {"type", "projectId"}), @UniqueConstraint(columnNames = {"name"})})
 public class ReportConfiguration extends BaseEntity {
 
     /**

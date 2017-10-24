@@ -1,8 +1,9 @@
 Ext.define("App.management.project.report.view.IterationReportEditor", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.report_editor',
+    requires: ['App.management.project.report.model.KpiModel'],
     config: {
-        entity: 'report',
+        entity: 'entity',
         defaults: {
             columnWidth: 1
         },
@@ -14,24 +15,9 @@ Ext.define("App.management.project.report.view.IterationReportEditor", {
         }
     },
     items: [{
-        xtype: 'hidden',
-        name: 'id'
-    }, {
         xtype: 'textfield',
         name: 'reportConfigurationType',
         fieldLabel: '度量类型',
-        readOnly: true,
-        submitValues: false
-    }, {
-        xtype: 'textfield',
-        name: 'iterationId',
-        fieldLabel: '迭代',
-        readOnly: true,
-        submitValues: false
-    }, {
-        xtype: 'textfield',
-        name: 'groupName',
-        fieldLabel: '分组',
         readOnly: true,
         submitValues: false
     }, {
@@ -40,9 +26,10 @@ Ext.define("App.management.project.report.view.IterationReportEditor", {
         fieldLabel: '角色配置',
         columnWidth: 1,
         height: 300,
-        submitFields: ['id', 'name'],
+        submitFields: ['id', 'name', 'field', 'value'],
         roweditable: true,
-        tbar: {add: {hidden: true}, remove: {hidden: true}},border:false,
+        tbar: {add: {hidden: true}, remove: {hidden: true}}, border: false,
+        model: 'App.management.project.report.model.KpiModel',
         columns: [{
             header: '指标名称',
             dataIndex: 'name'
@@ -53,5 +40,26 @@ Ext.define("App.management.project.report.view.IterationReportEditor", {
             header: '值',
             dataIndex: 'value', editor: {xtype: 'textfield'}
         }]
+    }, {
+        xtype: 'hidden',
+        name: 'buId'
+    }, {
+        xtype: 'hidden',
+        name: 'duId'
+    }, {
+        xtype: 'hidden',
+        name: 'pduId'
+    }, {
+        xtype: 'hidden',
+        name: 'poId'
+    }, {
+        xtype: 'hidden',
+        name: 'projectId'
+    }, {
+        xtype: 'hidden',
+        name: 'reportConfigurationId'
+    }, {
+        xtype: 'hidden',
+        name: 'id'
     }]
 })

@@ -11,20 +11,12 @@ Ext.define('App.management.project.report.model.ProjectReportViewModel', {
             header: '度量类型',
             dataIndex: 'reportConfigurationType'
         }, {
-            header: '迭代',
-            dataIndex: 'iterationId'
-        }, {
-            header: '分组',
-            dataIndex: 'groupName'
-        }, {
             header: '创建人',
-            dataIndex: 'creator',
-            hidden: true
+            dataIndex: 'creator'
         }, {
             xtype: 'cdtcolumn',
             header: '创建时间',
-            dataIndex: 'cdt',
-            hidden: true
+            dataIndex: 'cdt'
         }],
         search: {
             simpleSearch: true,
