@@ -31,6 +31,9 @@ public class Project extends BaseEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date actualEndDate;
 
+    @Column(nullable = false, length = 32)
+    private String projectManager;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -89,5 +92,13 @@ public class Project extends BaseEntity {
 
     public String getType() {
         return "project";
+    }
+
+    public String getProjectManager() {
+        return projectManager;
+    }
+
+    public void setProjectManager(String projectManager) {
+        this.projectManager = projectManager;
     }
 }
