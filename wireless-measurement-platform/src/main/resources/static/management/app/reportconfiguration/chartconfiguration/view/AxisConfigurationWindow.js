@@ -46,5 +46,4 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.AxisConfigurationWin
             }
         }
     }
-
 })
