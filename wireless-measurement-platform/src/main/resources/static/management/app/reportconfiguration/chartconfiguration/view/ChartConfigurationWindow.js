@@ -56,8 +56,8 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }],
                 addHandler: function () {
                     var me = this;
-                    var form = Ext.create('App.reportconfiguration.kpiconfiguration.view.KpiConfigurationWindow', {
-                        kpiConfiguration: me
+                    var form = Ext.create('App.reportconfiguration.chartconfiguration.view.AxisConfigurationWindow', {
+                        axisConfiguration: me
                     });
                     form.show();
                 }
@@ -90,7 +90,14 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: 'axis',
                     dataIndex: 'axis'
-                }]
+                }],
+                addHandler: function () {
+                    var me = this;
+                    var form = Ext.create('App.reportconfiguration.chartconfiguration.view.SeriesConfigurationWindow', {
+                        seriesConfiguration: me
+                    });
+                    form.show();
+                }
             }]
         }]
     }]
