@@ -1,4 +1,4 @@
-Ext.define("App.management.project.report.view.ReportEditor", {
+Ext.define("App.management.project.report.view.IterationReportEditor", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.report_editor',
     config: {

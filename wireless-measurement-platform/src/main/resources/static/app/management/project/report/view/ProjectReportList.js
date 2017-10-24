@@ -1,9 +1,9 @@
-Ext.define('App.management.project.report.view.ReportList', {
+Ext.define('App.management.project.report.view.ProjectReportList', {
     extend: 'Extend.grid.CrudGridPanel',
-    alias: 'widget.ReportList',
-    requires: ['App.management.project.report.ReportViewModel'],
-    viewModel: 'ReportViewModel',
-    title: '报表管理',
+    alias: 'widget.ProjectReportList',
+    requires: ['App.management.project.report.model.ProjectReportViewModel'],
+    viewModel: 'ProjectReportViewModel',
+    title: '项目度量报表',
     config: {
         tbar: {
             quickCreate: {
@@ -16,8 +16,9 @@ Ext.define('App.management.project.report.view.ReportList', {
         columns: '{columns}',
         search: '{search}'
     },
+    extraParams: {'params.reportConfigurationType':'项目度量'},
     editor: {
-        formClazz: 'App.management.project.report.view.ReportEditor',
+        formClazz: 'App.management.project.report.view.ProjectReportEditor',
         save: '/report/save',
         get: '/report/get_by_id',
         del: '/report/deletes',

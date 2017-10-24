@@ -1,7 +1,7 @@
-Ext.define('App.management.project.report.ReportViewModel', {
+Ext.define('App.management.project.report.model.IterationReportViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.ReportViewModel',
-    requires: ['App.management.project.report.ReportModel'],
+    alias: 'viewmodel.IterationReportViewModel',
+    requires: ['App.management.project.report.model.ReportModel'],
     data: {
         columns: [{
             header: 'ID',
@@ -34,7 +34,7 @@ Ext.define('App.management.project.report.ReportViewModel', {
                 "field": "reportConfigurationType",
                 vtype: 's',
                 opt: '=',
-                datas: [['迭代度量','迭代度量'], ['项目度量','项目度量']]
+                datas: [['迭代度量', '迭代度量'], ['项目度量', '项目度量']]
             }, {
                 "field": "url",
                 "name": "URL",
@@ -46,7 +46,7 @@ Ext.define('App.management.project.report.ReportViewModel', {
     stores: {
         Query: {
             autoLoad: false,
-            model: 'App.management.project.report.ReportModel',
+            model: 'App.management.project.report.model.ReportModel',
             pageSize: 25,
             remoteSort: true,
             sorters: [{
