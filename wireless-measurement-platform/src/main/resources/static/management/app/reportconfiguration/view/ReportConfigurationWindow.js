@@ -85,7 +85,6 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                 }
 
             }, {
-                xtype: 'GridField',
                 title: '图配置',
                 name: 'chartConfigurations',
                 xtype: 'GridField',
@@ -100,6 +99,13 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                 addHandler: function () {
                     var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow');
                     form.show();
+                },
+                listeners: {
+                    itemdblclick: function ($this, record, item, index, e, eOpts) {
+                        var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow');
+                        form.loadRecord(record);
+                        form.show();
+                    },
                 }
             }]
         }]

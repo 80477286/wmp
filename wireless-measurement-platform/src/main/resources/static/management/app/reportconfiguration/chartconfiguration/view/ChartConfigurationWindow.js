@@ -38,26 +38,20 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     hidden: true,
                     sortable: false
                 }, {
-                    text: '名称',
-                    dataIndex: 'name'
+                    text: '轴的类型',
+                    dataIndex: 'type'
+                }, {
+                    text: '位置',
+                    dataIndex: 'position'
                 }, {
                     text: '字段',
-                    dataIndex: 'field'
+                    dataIndex: 'fields'
                 }, {
-                    text: '表达式',
-                    dataIndex: 'expression'
+                    text: '标题',
+                    dataIndex: 'title'
                 }, {
-                    text: '类型',
-                    dataIndex: 'dataType'
-                }, {
-                    text: '日期格式',
-                    dataIndex: 'format'
-                }, {
-                    text: '格式化',
-                    dataIndex: 'formatter'
-                }, {
-                    text: '描述',
-                    dataIndex: 'description'
+                    text: '字段别名',
+                    dataIndex: 'fieldAliases'
                 }],
                 addHandler: function () {
                     var me = this;
@@ -77,8 +71,23 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     dataIndex: 'id',
                     hidden: true,
                 }, {
-                    text: '标题',
-                    dataIndex: 'title'
+                    text: '类型',
+                    dataIndex: 'type'
+                }, {
+                    text: 'xField',
+                    dataIndex: 'xField'
+                }, {
+                    text: 'xFieldAlias',
+                    dataIndex: 'xFieldAlias'
+                }, {
+                    text: 'yFields',
+                    dataIndex: 'yFields'
+                }, {
+                    text: 'yFieldAliases',
+                    dataIndex: 'yFieldAliases'
+                }, {
+                    text: 'axis',
+                    dataIndex: 'axis'
                 }]
             }]
         }]
