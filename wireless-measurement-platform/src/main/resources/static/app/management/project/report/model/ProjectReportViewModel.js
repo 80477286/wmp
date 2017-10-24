@@ -8,9 +8,6 @@ Ext.define('App.management.project.report.model.ProjectReportViewModel', {
             dataIndex: 'id',
             hidden: true
         }, {
-            header: '度量类型',
-            dataIndex: 'reportConfigurationType'
-        }, {
             header: '创建人',
             dataIndex: 'creator'
         }, {
@@ -22,14 +19,8 @@ Ext.define('App.management.project.report.model.ProjectReportViewModel', {
             simpleSearch: true,
             advancedSearch: true,
             fields: [{
-                "name": "度量类型",
-                "field": "reportConfigurationType",
-                vtype: 's',
-                opt: '=',
-                datas: [['迭代度量', '迭代度量'], ['项目度量', '项目度量']]
-            }, {
-                "field": "url",
-                "name": "URL",
+                "field": "creator",
+                "name": "创建人",
                 vtype: 's',
                 opt: 'like'
             }]
@@ -47,7 +38,7 @@ Ext.define('App.management.project.report.model.ProjectReportViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/report/query',
+                url: '/report/query_simple',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

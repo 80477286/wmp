@@ -53,15 +53,15 @@ public class ReportService extends BaseService<Report, String> implements IRepor
         List<Report> reports = page.getContent();
 
         if (reports != null && reports.size() > 0) {
-            ReportConfiguration reportConfiguration = reportConfigurationService.findOne(reports.get(0).getReportConfigurationId());
+            ReportConfiguration reportConfiguration = null;
             List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>(0);
             for (Report report : reports) {
+                if (reportConfiguration == null) {
+                    reportConfiguration = report.getReportConfiguration();
+                }
                 Map<String, Object> line = new HashMap<String, Object>(0);
                 for (Kpi kpi : report.getKpis()) {
                     line.put(kpi.getField(), kpi.getValue());
-                }
-                if (report.getIterationId() != null && !report.getIterationId().trim().isEmpty()) {
-
                 }
                 datas.add(line);
             }

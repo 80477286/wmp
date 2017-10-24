@@ -8,6 +8,9 @@ Ext.define('App.management.project.report.view.IterationReportList', {
         tbar: {
             quickCreate: {
                 hidden: true
+            },
+            add: {
+                hidden: true
             }
         }
     },
@@ -16,7 +19,7 @@ Ext.define('App.management.project.report.view.IterationReportList', {
         columns: '{columns}',
         search: '{search}'
     },
-    extraParams: {'params.reportConfigurationType': '迭代度量'},
+    extraParams: {'params.reportConfiguration.type_eq': '迭代度量'},
     editor: {
         formClazz: 'App.management.project.report.view.IterationReportEditor',
         save: '/report/save',

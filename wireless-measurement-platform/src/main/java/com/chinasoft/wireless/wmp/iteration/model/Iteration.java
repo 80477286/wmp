@@ -1,6 +1,6 @@
-package com.chinasoft.wireless.wmp.project.model;
+package com.chinasoft.wireless.wmp.iteration.model;
 
-import com.chinasoft.wireless.wmp.iteration.model.Iteration;
+import com.chinasoft.wireless.wmp.project.model.Project;
 import com.chinasoft.wireless.wmp.projectorder.model.ProjectOrder;
 import com.mouse.web.supports.model.BaseEntity;
 import org.apache.struts2.json.annotations.JSON;
@@ -12,43 +12,34 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @DynamicUpdate(true)
 @DynamicInsert(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "[Project]", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
-public class Project extends BaseEntity {
+@Table(name = "[Iteration]", uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+public class Iteration extends BaseEntity {
 
     @Column(nullable = false, length = 255)
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date startDate;
+    private Date planedStartDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date planedEndDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date actuaStartDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date actualEndDate;
-
-    @Column(nullable = false, length = 32)
-    private String projectManager;
-
-    @Column(nullable = false)
-    private Boolean currentManaged = false;
+    @ManyToOne()
+    @JoinColumn(name = "Project_id")
+    private Project project;
 
     @Column(columnDefinition = "TEXT")
     private String description;
-
-    @ManyToOne()
-    @JoinColumn(name = "ProjectOrder_id")
-    private ProjectOrder projectOrder;
-
-
-    @OneToMany(mappedBy = "project")
-    private List<Iteration> iterations;
 
     public String getName() {
         return name;
@@ -58,12 +49,12 @@ public class Project extends BaseEntity {
         this.name = name;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getPlanedStartDate() {
+        return planedStartDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setPlanedStartDate(Date planedStartDate) {
+        this.planedStartDate = planedStartDate;
     }
 
     public Date getPlanedEndDate() {
@@ -90,40 +81,23 @@ public class Project extends BaseEntity {
         this.description = description;
     }
 
-    @JSON(name = "parent")
-    public ProjectOrder getProjectOrder() {
-        return projectOrder;
-    }
-
-    public void setProjectOrder(ProjectOrder projectOrder) {
-        this.projectOrder = projectOrder;
-    }
-
     public String getType() {
         return "project";
     }
 
-    public String getProjectManager() {
-        return projectManager;
+    public Date getActuaStartDate() {
+        return actuaStartDate;
     }
 
-    public void setProjectManager(String projectManager) {
-        this.projectManager = projectManager;
+    public void setActuaStartDate(Date actuaStartDate) {
+        this.actuaStartDate = actuaStartDate;
     }
 
-    public List<Iteration> getIterations() {
-        return iterations;
+    public Project getProject() {
+        return project;
     }
 
-    public void setIterations(List<Iteration> iterations) {
-        this.iterations = iterations;
-    }
-
-    public Boolean getCurrentManaged() {
-        return currentManaged;
-    }
-
-    public void setCurrentManaged(Boolean currentManaged) {
-        this.currentManaged = currentManaged;
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

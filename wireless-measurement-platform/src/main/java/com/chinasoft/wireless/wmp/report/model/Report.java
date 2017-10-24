@@ -1,5 +1,9 @@
 package com.chinasoft.wireless.wmp.report.model;
 
+import com.chinasoft.wireless.wmp.iteration.model.Iteration;
+import com.chinasoft.wireless.wmp.organization.model.Organization;
+import com.chinasoft.wireless.wmp.project.model.Project;
+import com.chinasoft.wireless.wmp.projectorder.model.ProjectOrder;
 import com.chinasoft.wireless.wmp.reportconfiguration.model.ReportConfiguration;
 import com.mouse.web.supports.model.BaseEntity;
 import org.hibernate.annotations.Cache;
@@ -17,86 +21,89 @@ import java.util.List;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "[report]")
 public class Report extends BaseEntity {
-    private String buId;
-    private String duId;
-    private String pduId;
-    private String poId;
-    private String projectId;
+    @ManyToOne()
+    @JoinColumn(name = "bu_id")
+    private Organization bu;
+    @ManyToOne()
+    @JoinColumn(name = "du_id")
+    private Organization du;
+    @ManyToOne()
+    @JoinColumn(name = "pdu_id")
+    private Organization pdu;
+    @ManyToOne()
+    @JoinColumn(name = "po_id")
+    private ProjectOrder projectOrder;
+    @ManyToOne()
+    @JoinColumn(name = "project_id")
+    private Project project;
+    @ManyToOne()
+    @JoinColumn(name = "iteration_id")
+    private Iteration iteration;
+    @ManyToOne()
+    @JoinColumn(name = "report_configuration_id")
+    private ReportConfiguration reportConfiguration;
 
-    /**
-     * 迭代
-     */
-    private String iterationId;
-
-    /**
-     * 分组名称
-     */
     private String groupName;
 
-    private String reportConfigurationType;
-
-    private String reportConfigurationId;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_id")
     private List<Kpi> kpis = new ArrayList<>();
 
-
-    public String getBuId() {
-        return buId;
+    public Organization getBu() {
+        return bu;
     }
 
-    public void setBuId(String buId) {
-        this.buId = buId;
+    public void setBu(Organization bu) {
+        this.bu = bu;
     }
 
-    public String getDuId() {
-        return duId;
+    public Organization getDu() {
+        return du;
     }
 
-    public void setDuId(String duId) {
-        this.duId = duId;
+    public void setDu(Organization du) {
+        this.du = du;
     }
 
-    public String getPduId() {
-        return pduId;
+    public Organization getPdu() {
+        return pdu;
     }
 
-    public void setPduId(String pduId) {
-        this.pduId = pduId;
+    public void setPdu(Organization pdu) {
+        this.pdu = pdu;
     }
 
-    public String getPoId() {
-        return poId;
+    public ProjectOrder getProjectOrder() {
+        return projectOrder;
     }
 
-    public void setPoId(String poId) {
-        this.poId = poId;
+    public void setProjectOrder(ProjectOrder projectOrder) {
+        this.projectOrder = projectOrder;
     }
 
-    public String getProjectId() {
-        return projectId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
-    public String getIterationId() {
-        return iterationId;
+    public Iteration getIteration() {
+        return iteration;
     }
 
-    public void setIterationId(String iterationId) {
-        this.iterationId = iterationId;
+    public void setIteration(Iteration iteration) {
+        this.iteration = iteration;
     }
 
-    public List<Kpi> getKpis() {
-        return kpis;
+    public ReportConfiguration getReportConfiguration() {
+        return reportConfiguration;
     }
 
-    public void setKpis(List<Kpi> kpis) {
-        this.kpis = kpis;
+    public void setReportConfiguration(ReportConfiguration reportConfiguration) {
+        this.reportConfiguration = reportConfiguration;
     }
-
 
     public String getGroupName() {
         return groupName;
@@ -106,19 +113,11 @@ public class Report extends BaseEntity {
         this.groupName = groupName;
     }
 
-    public String getReportConfigurationType() {
-        return reportConfigurationType;
+    public List<Kpi> getKpis() {
+        return kpis;
     }
 
-    public void setReportConfigurationType(String reportConfigurationType) {
-        this.reportConfigurationType = reportConfigurationType;
-    }
-
-    public String getReportConfigurationId() {
-        return reportConfigurationId;
-    }
-
-    public void setReportConfigurationId(String reportConfigurationId) {
-        this.reportConfigurationId = reportConfigurationId;
+    public void setKpis(List<Kpi> kpis) {
+        this.kpis = kpis;
     }
 }

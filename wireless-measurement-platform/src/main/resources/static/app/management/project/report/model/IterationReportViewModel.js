@@ -8,11 +8,15 @@ Ext.define('App.management.project.report.model.IterationReportViewModel', {
             dataIndex: 'id',
             hidden: true
         }, {
-            header: '度量类型',
-            dataIndex: 'reportConfigurationType'
-        }, {
             header: '迭代',
-            dataIndex: 'iterationId'
+            dataIndex: 'iteration',
+            renderer: function (v, m, r) {
+                var iteration = r.get('iteration');
+                if (!Ext.isEmpty(iteration)) {
+                    return iteration.name;
+                }
+                return '';
+            }
         }, {
             header: '分组',
             dataIndex: 'groupName'
@@ -53,7 +57,7 @@ Ext.define('App.management.project.report.model.IterationReportViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/report/query',
+                url: '/report/query_simple',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

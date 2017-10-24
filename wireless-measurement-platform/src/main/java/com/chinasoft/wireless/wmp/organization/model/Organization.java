@@ -34,7 +34,7 @@ public class Organization extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
     private List<Organization> children;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "organization")
+    @OneToMany(mappedBy = "organization")
     private List<ProjectOrder> projectOrders;
 
 
