@@ -6,9 +6,23 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
         window: {
             title: '图信息修改',
             width: 1024,
-            height: 800
-        },
-        entity: 'reportConfiguration'
+            height: 800,
+            buttons: {
+                save: {
+                    text: '添加',
+                    handler: function () {
+                        var me = this;
+                        var form = me.up('window').down('panel');
+                        var chartConfiguration = form.chartConfiguration;
+                        if (form.record) {
+                            chartConfiguration.getStore().remove(form.record);
+                        }
+                        chartConfiguration.getStore().insert(0, form.getDatas());
+                        form.close();
+                    }
+                }
+            }
+        }
     },
     defaults: {
         columnWidth: 1
@@ -32,7 +46,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 title: '轴配置',
                 xtype: 'GridField',
                 name: 'axes',
-                submitFields:['type','position','fields','title','fieldAliases'],
+                submitFields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
@@ -66,8 +80,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 xtype: 'GridField',
                 title: 'series配置',
                 name: 'series',
-                xtype: 'GridField',
-                submitFields:['type','xField','xFieldAlias','yFields','yFieldAliases','axis'],
+                submitFields: ['type', 'xField', 'xFieldAlias', 'yFields', 'yFieldAliases', 'axis'],
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',

@@ -49,6 +49,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                 xtype: 'GridField',
                 name: 'kpiConfigurations',
                 submitFields: ['name', 'field', 'expression', 'dataType', 'format', 'formatter', 'description'],
+                roweditable: true,
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
@@ -56,7 +57,10 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                     sortable: false
                 }, {
                     text: '名称',
-                    dataIndex: 'name'
+                    dataIndex: 'name',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }, {
                     text: '字段',
                     dataIndex: 'field'
@@ -98,12 +102,18 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                     dataIndex: 'title'
                 }],
                 addHandler: function () {
-                    var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow');
+                    var me = this;
+                    var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow', {
+                        chartConfiguration: me
+                    });
                     form.show();
                 },
                 listeners: {
                     itemdblclick: function ($this, record, item, index, e, eOpts) {
-                        var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow');
+                        var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow', {
+                            chartConfiguration: $this,
+                            record: record
+                        });
                         form.loadRecord(record);
                         form.show();
                     },
