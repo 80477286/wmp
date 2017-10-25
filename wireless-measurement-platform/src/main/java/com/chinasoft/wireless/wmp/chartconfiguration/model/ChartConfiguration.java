@@ -1,15 +1,14 @@
 package com.chinasoft.wireless.wmp.chartconfiguration.model;
 
 import com.mouse.web.supports.model.BaseEntity;
+import com.mouse.web.supports.model.IdentifyEntity;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +17,18 @@ import java.util.List;
 @DynamicInsert(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "[chart_configuration]")
-public class ChartConfiguration extends BaseEntity {
+public class ChartConfiguration extends IdentifyEntity {
 
     /**
      * 图的标题
      */
     private String title;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "chart_configuration_id")
     private List<Axis> axes = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "chart_configuration_id")
     private List<Series> series = new ArrayList<>();
 
@@ -56,4 +55,5 @@ public class ChartConfiguration extends BaseEntity {
     public void setAxes(List<Axis> axes) {
         this.axes = axes;
     }
+
 }

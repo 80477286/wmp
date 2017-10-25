@@ -2,12 +2,13 @@ package com.chinasoft.wireless.wmp.reportconfiguration.model;
 
 import com.chinasoft.wireless.wmp.chartconfiguration.model.ChartConfiguration;
 import com.mouse.web.supports.model.BaseEntity;
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,11 +29,11 @@ public class ReportConfiguration extends BaseEntity {
     private String description;
     private String projectId;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "report_configuration_id")
     private List<KpiConfiguration> kpiConfigurations = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "report_configuration_id")
     private List<ChartConfiguration> chartConfigurations = new ArrayList<>();
 
