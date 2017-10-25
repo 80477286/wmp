@@ -1,7 +1,10 @@
 Ext.define("App.management.project.report.view.IterationReportEditor", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.report_editor',
-    requires: ['App.management.project.report.model.KpiModel'],
+    requires: ['App.management.project.report.model.KpiModel',
+        'App.management.project.report.view.field.IterationComboBox',
+        'App.management.project.report.view.field.ReportConfigurationComboBox',
+        'App.management.project.report.view.field.IterationGroupComboBox'],
     config: {
         unmaskable: false,
         entity: 'entity',
@@ -16,23 +19,26 @@ Ext.define("App.management.project.report.view.IterationReportEditor", {
         }
     },
     items: [{
-        xtype: 'textfield',
-        name: 'reportConfiguration.type',
+        xtype: 'ReportConfigurationComboBox',
+        name: 'reportConfiguration.id',
         fieldLabel: '度量类型',
         readOnly: true,
+        displayField: 'type',
         submitValues: false
     }, {
-        xtype: 'textfield',
-        name: 'iteration.name',
+        xtype: 'IterationComboBox',
+        name: 'iteration.id',
         fieldLabel: '迭代',
-        readOnly: true,
-        submitValues: false
+        allowBlank: false,
+        blankText: '迭代为必填字段，不允许为空！',
+        readOnly: true
     }, {
-        xtype: 'textfield',
+        xtype: 'IterationGroupComboBox',
         name: 'groupName',
         fieldLabel: '分组',
-        readOnly: true,
-        submitValues: false
+        allowBlank: false,
+        blankText: '迭代为必填字段，不允许为空！',
+        readOnly: true
     }, {
         name: 'kpis',
         xtype: 'gridfield',
@@ -70,12 +76,6 @@ Ext.define("App.management.project.report.view.IterationReportEditor", {
         name: 'project.id'
     }, {
         xtype: 'hidden',
-        name: 'reportConfiguration.id'
-    }, {
-        xtype: 'hidden',
-        name: 'iteration.id'
-    }, {
-        xtype: 'hidden',
         name: 'id'
     }, {
         xtype: 'hidden',
@@ -84,9 +84,16 @@ Ext.define("App.management.project.report.view.IterationReportEditor", {
         xtype: 'hidden',
         name: 'creator'
     }],
-    loadRecord: function (opts) {
+    loadRecord: function (record) {
         var me = this;
         me.callParent(arguments);
+
+        if (Ext.isEmpty(record.get('id')) || record.get('id').indexOf('-') > -1) {
+            me.down('IterationComboBox').setReadOnly(false);
+            me.down('ReportConfigurationComboBox').setReadOnly(false);
+            me.down('IterationGroupComboBox').setReadOnly(false);
+
+        }
         Ext.Ajax.request({
             url: 'report_configuration/current_project_report_configuration',
             params: {'params.type_eq': '迭代度量'},

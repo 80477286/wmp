@@ -8,9 +8,6 @@ Ext.define('App.management.project.report.view.IterationReportList', {
         tbar: {
             quickCreate: {
                 hidden: true
-            },
-            add: {
-                hidden: true
             }
         }
     },
@@ -25,6 +22,10 @@ Ext.define('App.management.project.report.view.IterationReportList', {
         save: '/report/save',
         get: '/report/get_by_id',
         del: '/report/deletes',
-        dataType: 'Report'
+        dataType: 'Report',
+        model: 'App.management.iteration.model.IterationModel'
+    },
+    addHandler: function () {
+        this.editHandler(null, false, {'reportConfiguration.id': '迭代度量'});
     }
 });
