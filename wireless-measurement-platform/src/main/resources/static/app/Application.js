@@ -1,8 +1,12 @@
 Ext.application({
     name: 'App',
     appFolder: 'app',
-    requires: ['App.commons.grid.column.CdtColumn'],
-    autoCreateViewport: 'App.' + (Ext.isEmpty(role) == true ? 'main' : ( 'management.' + role )) + '.view.Viewport',
+    requires: [
+        'App.commons.grid.column.CdtColumn',
+        'App.InitView',
+        'App.' + (Ext.isEmpty(role) == true ? 'main' : ( 'management.' + role )) + '.view.Viewport'],
+    mainViewClass: 'App.' + (Ext.isEmpty(role) == true ? 'main' : ( 'management.' + role )) + '.view.Viewport',
+    mainView: 'App.InitView',
     init: function (application) {
         Ext.log.info('development:true');
         Ext.log.info('libsPath:' + libsPath);
@@ -175,11 +179,18 @@ Ext.application({
                 }
             }
         });
+        var me = this;
         Ext.Ajax.request({
-            url: 'get_localhost',
+            url: 'load_initial_information',
             success: function (resp) {
                 var result = resp.result;
-                app.localhost = result.host;
+                app.localhost = result.localhost;
+                app.user = result.user;
+                if (me.getMainView().isMasked()) {
+                    me.getMainView().unmask();
+                }
+                me.mainView = me.mainViewClass;
+                me.setMainView(Ext.create(me.mainView));
                 Ext.log({
                     level: 'info',
                     msg: app.localhost
@@ -192,6 +203,8 @@ Ext.application({
             }
             return null;
         }
+
+
     },
     checkBrowser: function () {
         if ((Ext.browser.name == 'Chrome' && Ext.browser.version.major < 42)

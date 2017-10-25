@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 public class GlobalController {
@@ -33,4 +34,23 @@ public class GlobalController {
         String host = request.getRemoteHost();
         return host;
     }
+
+
+    @RequestMapping({"/load_initial_information"})
+    @JSON
+    public Object loadInitialInformation(HttpServletRequest request) {
+        Map<String, Object> inf = new LinkedHashMap<String, Object>(0);
+        LinkedHashMap user = versionService.getCurrentUser();
+        String host = request.getRemoteHost();
+        inf.put("user", user);
+        inf.put("localhost", host);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return inf;
+    }
+
+
 }
