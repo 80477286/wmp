@@ -189,6 +189,7 @@ Ext.application({
                 if (me.getMainView().isMasked()) {
                     me.getMainView().unmask();
                 }
+                me.getMainView().destroy();
                 me.mainView = me.mainViewClass;
                 me.setMainView(Ext.create(me.mainView));
                 Ext.log({
