@@ -32,7 +32,7 @@ public class ReportConfiguration extends BaseEntity {
     @JoinColumn(name = "report_configuration_id")
     private List<KpiConfiguration> kpiConfigurations = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "report_configuration_id")
     private List<ChartConfiguration> chartConfigurations = new ArrayList<>();
 

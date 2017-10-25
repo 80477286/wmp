@@ -92,7 +92,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationWindow", {
                 title: '图配置',
                 name: 'chartConfigurations',
                 xtype: 'GridField',
-                submitFields: ['title'],
+                submitFields: ['title','axes.type', 'axes.position', 'axes.fields', 'axes.title', 'axes.fieldAliases','series.type', 'series.xField', 'series.xFieldAlias', 'series.yFields', 'series.yFieldAliases', 'series.axis'],
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
