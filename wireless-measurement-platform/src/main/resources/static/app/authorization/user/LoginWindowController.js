@@ -1,4 +1,4 @@
-Ext.define('App.management.authorization.user.LoginWindowController', {
+Ext.define('App.authorization.user.LoginWindowController', {
 	extend : 'Ext.app.ViewController',
 	alias : 'controller.login_window_controller',
 	init : function(view) {

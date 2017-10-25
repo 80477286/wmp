@@ -1,4 +1,4 @@
-Ext.define('App.management.authorization.user.view.UserEditor', {
+Ext.define('App.authorization.user.view.UserEditor', {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.UserEditor',
     config: {
@@ -76,7 +76,7 @@ Ext.define('App.management.authorization.user.view.UserEditor', {
             var grid = this;
             Ext.create('Extend.window.SelectionWindow', {
                 height: 500,
-                grid: 'App.management.authorization.role.view.RoleSelection',
+                grid: 'App.authorization.role.view.RoleSelection',
                 listeners: {
                     selected: function (rs) {
                         grid.loadRecords(rs, true);

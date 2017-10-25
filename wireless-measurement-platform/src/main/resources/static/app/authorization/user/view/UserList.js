@@ -1,7 +1,7 @@
-Ext.define('App.management.authorization.user.view.UserList', {
+Ext.define('App.authorization.user.view.UserList', {
     extend: 'Extend.grid.CrudGridPanel',
     alias: 'widget.UserList',
-    requires: ['App.management.authorization.user.UserViewModel'],
+    requires: ['App.authorization.user.UserViewModel'],
     viewModel: 'UserViewModel',
     config: {
         tbar: {
@@ -16,8 +16,8 @@ Ext.define('App.management.authorization.user.view.UserList', {
         search: '{search}'
     },
     editor: {
-        model: 'App.management.authorization.user.UserModel',
-        formClazz: 'App.management.authorization.user.view.UserEditor',
+        model: 'App.authorization.user.UserModel',
+        formClazz: 'App.authorization.user.view.UserEditor',
         save: 'authorization/user/save',
         get: 'authorization/user/get_by_id',
         del: 'authorization/user/delete',

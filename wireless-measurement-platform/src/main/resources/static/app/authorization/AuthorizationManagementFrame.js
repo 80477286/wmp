@@ -1,8 +1,8 @@
-Ext.define('App.management.authorization.view.AuthorizationManagementFrame', {
-    extend: 'App.management.main.view.BaseFrame',
+Ext.define('App.authorization.AuthorizationManagementFrame', {
+    extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.AuthorizationManagementFrame'],
     title: '授权管理',
-    requires: ['App.management.authorization.resource.view.ResourceList', 'App.management.authorization.user.view.UserList', 'App.management.authorization.role.view.RoleList'],
+    requires: ['App.authorization.resource.view.ResourceList', 'App.authorization.user.view.UserList', 'App.authorization.role.view.RoleList'],
     tabitems: [{
         xtype: 'ResourceList',
         border: false,

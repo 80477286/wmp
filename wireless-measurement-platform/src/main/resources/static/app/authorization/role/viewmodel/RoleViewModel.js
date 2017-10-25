@@ -1,7 +1,7 @@
-Ext.define('App.management.authorization.role.viewmodel.RoleViewModel', {
+Ext.define('App.authorization.role.viewmodel.RoleViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.role_viewmodel',
-    requires: ['App.management.authorization.role.model.RoleModel'],
+    requires: ['App.authorization.role.model.RoleModel'],
     data: {
         columns: [{
             header: 'ID',
@@ -42,7 +42,7 @@ Ext.define('App.management.authorization.role.viewmodel.RoleViewModel', {
     stores: {
         Query: {
             autoLoad: false,
-            model: 'App.management.authorization.role.model.RoleModel',
+            model: 'App.authorization.role.model.RoleModel',
             pageSize: 25,
             remoteSort: true,
             sorters: [{

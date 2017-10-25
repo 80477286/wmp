@@ -1,30 +1,35 @@
-Ext.define('App.management.authorization.resource.ResourceViewModel', {
+Ext.define('App.authorization.user.UserViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.ResourceViewModel',
-    requires: ['App.management.authorization.resource.ResourceModel'],
+    alias: 'viewmodel.UserViewModel',
+    requires: ['App.authorization.user.UserModel'],
     data: {
         columns: [{
             header: 'ID',
             dataIndex: 'id',
             hidden: true
         }, {
-            header: '资源名称',
+            header: '用户名',
+            dataIndex: 'username'
+        }, {
+            header: '姓名',
             dataIndex: 'name'
+        }, , {
+            header: '锁定',
+            dataIndex: 'locked'
         }, {
-            header: 'URL',
-            dataIndex: 'url'
+            xtype: 'YmdColumn',
+            header: '帐号失效时间',
+            dataIndex: 'accountExpiringDate'
         }, {
-            header: 'UIID',
-            dataIndex: 'uiid'
-        }, {
-            header: '描述',
-            dataIndex: 'description'
+            xtype: 'YmdColumn',
+            header: '密码失效时间',
+            dataIndex: 'credentialsExpiringDate'
         }, {
             header: '创建人',
             dataIndex: 'creator',
             hidden: true
         }, {
-            xtype: 'cdtcolumn',
+            xtype: 'CdtColumn',
             header: '创建时间',
             dataIndex: 'cdt',
             hidden: true
@@ -34,21 +39,27 @@ Ext.define('App.management.authorization.resource.ResourceViewModel', {
             advancedSearch: true,
             fields: [{
                 "field": "name",
-                "name": "资源名称",
+                "name": "姓名",
                 vtype: 's',
                 opt: 'like'
             }, {
-                "field": "url",
-                "name": "URL",
-                vtype: 's',
+                "field": "username",
+                "name": "用户名",
+                vtype: 'tx',
                 opt: 'like'
+            }, {
+                "field": "locked",
+                "name": "锁定",
+                vtype: 'bl',
+                opt: '=',
+                datas: [['是', true], ['否', false]]
             }]
         }
     },
     stores: {
         Query: {
             autoLoad: false,
-            model: 'App.management.authorization.resource.ResourceModel',
+            model: 'App.authorization.user.UserModel',
             pageSize: 25,
             remoteSort: true,
             sorters: [{
@@ -57,7 +68,7 @@ Ext.define('App.management.authorization.resource.ResourceViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/authorization/resource/query',
+                url: '/authorization/user/query',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

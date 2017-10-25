@@ -1,4 +1,4 @@
-Ext.define('App.management.authorization.user.UserModel', {
+Ext.define('App.authorization.user.UserModel', {
             extend : 'Extend.data.BaseModel',
             fields : [{
                         name : 'locked',

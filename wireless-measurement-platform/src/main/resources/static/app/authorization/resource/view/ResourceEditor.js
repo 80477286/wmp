@@ -1,4 +1,4 @@
-Ext.define("App.management.authorization.resource.view.ResourceEditor", {
+Ext.define("App.authorization.resource.view.ResourceEditor", {
     extend: 'Extend.window.EditWindow',
     alias: 'widget.resource_editor',
     config: {
@@ -52,7 +52,7 @@ Ext.define("App.management.authorization.resource.view.ResourceEditor", {
             var grid = this;
             Ext.create('Extend.window.SelectionWindow', {
                 height: 500,
-                grid: 'App.management.authorization.role.view.RoleSelection',
+                grid: 'App.authorization.role.view.RoleSelection',
                 listeners: {
                     selected: function (rs) {
                         grid.loadRecords(rs, true);

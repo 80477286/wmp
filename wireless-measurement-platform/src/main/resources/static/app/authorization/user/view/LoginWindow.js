@@ -1,7 +1,7 @@
-Ext.define('App.management.authorization.user.view.LoginWindow', {
+Ext.define('App.authorization.user.view.LoginWindow', {
     extend : 'Ext.window.Window',
     alias : 'widget.login_window',
-    requires : ['App.management.authorization.user.LoginWindowController'],
+    requires : ['App.authorization.user.LoginWindowController'],
     controller : 'login_window_controller',
     // ---------------------新增配置------------------------
     usernameText : '用户帐号',

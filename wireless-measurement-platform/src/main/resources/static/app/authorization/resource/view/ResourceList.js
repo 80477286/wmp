@@ -1,7 +1,7 @@
-Ext.define('App.management.authorization.resource.view.ResourceList', {
+Ext.define('App.authorization.resource.view.ResourceList', {
     extend: 'Extend.grid.CrudGridPanel',
     alias: 'widget.ResourceList',
-    requires: ['App.management.authorization.resource.ResourceViewModel'],
+    requires: ['App.authorization.resource.ResourceViewModel'],
     viewModel: 'ResourceViewModel',
     config: {
         tbar: {
@@ -16,7 +16,7 @@ Ext.define('App.management.authorization.resource.view.ResourceList', {
         search: '{search}'
     },
     editor: {
-        formClazz: 'App.management.authorization.resource.view.ResourceEditor',
+        formClazz: 'App.authorization.resource.view.ResourceEditor',
         save: '/authorization/resource/save',
         get: '/authorization/resource/get_by_id',
         del: '/authorization/resource/deletes',

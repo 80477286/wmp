@@ -1,4 +1,4 @@
-Ext.define('App.management.main.view.BaseFrame', {
+Ext.define('App.commons.tab.BaseFrame', {
     extend: 'Ext.panel.Panel',
     alias: ['widget.BaseFrame'],
     layout: 'border',

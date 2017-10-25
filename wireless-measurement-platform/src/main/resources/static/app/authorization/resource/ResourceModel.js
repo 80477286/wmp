@@ -1,4 +1,4 @@
-Ext.define('App.management.authorization.role.model.RoleModel', {
+Ext.define('App.authorization.resource.ResourceModel', {
             extend : 'Extend.data.BaseModel',
             fields : []
         });

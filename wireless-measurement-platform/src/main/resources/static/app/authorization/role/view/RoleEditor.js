@@ -1,4 +1,4 @@
-Ext.define("App.management.authorization.role.view.RoleEditor", {
+Ext.define("App.authorization.role.view.RoleEditor", {
 	extend : 'Extend.window.FormWindow',
 	alias : 'widget.role_editor',
 	config : {
@@ -40,7 +40,7 @@ Ext.define("App.management.authorization.role.view.RoleEditor", {
 					var grid = this;
 					Ext.create('Extend.window.SelectionWindow', {
 								height : 500,
-								grid : 'App.management.authorization.user.view.UserSelection',
+								grid : 'App.authorization.user.view.UserSelection',
 								listeners : {
 									selected : function(rs) {
 										grid.loadRecords(rs, true);
@@ -69,7 +69,7 @@ Ext.define("App.management.authorization.role.view.RoleEditor", {
 					var grid = this;
 					Ext.create('Extend.window.SelectionWindow', {
 						height : 500,
-						grid : 'App.management.authorization.resource.view.ResourceSelection',
+						grid : 'App.authorization.resource.view.ResourceSelection',
 						listeners : {
 							selected : function(rs) {
 								grid.loadRecords(rs, true);
