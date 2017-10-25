@@ -23,10 +23,11 @@ Ext.define('App.management.pm.view.Viewport', {
     },
 
     items: [{
-        xtype: 'PmReportFrame',
-        iconCls: 'fa-user'
-    }, {
         xtype: 'PmReportConfigurationFrame',
         iconCls: 'fa-user'
-    }]
+    }, {
+        xtype: 'PmReportFrame',
+        iconCls: 'fa-user'
+    }
+    ]
 })
