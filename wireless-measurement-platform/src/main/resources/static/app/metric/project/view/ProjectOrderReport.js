@@ -8,10 +8,10 @@ Ext.define('App.metric.project.view.ProjectOrderReport', {
             listeners: {
                 afterrender: function () {
                     var me = this;
-                     me.load('report/queryReport', {
-                         'params.poId': me.up().node.data.id,
-                         'params.reportConfigurationType': 'PO度量'
-                     });
+                    me.load('report/queryReport', {
+                        'params.projectOrder.id': me.up().node.data.id,
+                        'params.reportConfiguration.type': 'PO度量'
+                    });
                 }
             },
         }]

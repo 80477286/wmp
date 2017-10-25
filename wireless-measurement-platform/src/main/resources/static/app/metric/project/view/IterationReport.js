@@ -9,8 +9,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                 afterrender: function () {
                     var me = this;
                     me.load('report/queryReport', {
-                        'params.projectId': me.up().node.data.id,
-                        'params.reportConfigurationType': '迭代度量',
+                        'params.project.id': me.up().node.data.id,
+                        'params.reportConfiguration.type': '迭代度量',
                         'params.groupName': '需求'
                     });
                 }
