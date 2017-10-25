@@ -1,6 +1,7 @@
 package com.chinasoft.wireless.wmp.reportconfiguration.controller;
 
 import com.chinasoft.wireless.wmp.authorization.user.service.UserService;
+import com.chinasoft.wireless.wmp.chartconfiguration.model.ChartConfiguration;
 import com.chinasoft.wireless.wmp.reportconfiguration.model.ReportConfiguration;
 import com.chinasoft.wireless.wmp.reportconfiguration.service.IReportConfigurationService;
 import com.mouse.web.supports.jpa.controller.BaseController;
