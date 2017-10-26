@@ -1,5 +1,5 @@
 Ext.define('App.main.view.Viewport', {
-    extend: 'Ext.container.Viewport',
+    extend: 'Ext.panel.Panel',
     alias: 'widget.Viewport',
     requires: ['App.main.view.MainNavbar', 'App.main.view.MainFrame', 'App.main.controller.ViewportController'],
     controller: 'ViewportController',
