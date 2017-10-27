@@ -1,6 +1,6 @@
 Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow", {
     extend: 'Extend.window.FormWindow',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.chartconfiguration.model.SeriesModel'],
     alias: 'widget.chart_configuration_editor',
     config: {
         window: {
@@ -51,9 +51,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: '轴的类型',
                     dataIndex: 'type',
-                    editor: {
-                        xtype: 'combobox'
-                    }
+                    editor: {}
                 }, {
                     text: '位置',
                     dataIndex: 'position'
@@ -73,6 +71,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 title: 'series配置',
                 name: 'series',
                 roweditable: true,
+                model: 'App.reportconfiguration.chartconfiguration.model.SeriesModel',
                 submitFields: ['type', 'xField', 'xFieldAlias', 'yFields', 'yFieldAliases', 'axis'],
                 columns: [{
                     text: 'ID',
@@ -80,10 +79,10 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     hidden: true,
                 }, {
                     text: '类型',
-                    dataIndex: 'type'
+                    dataIndex: 'type', editor: {}
                 }, {
                     text: 'xField',
-                    dataIndex: 'xField'
+                    dataIndex: 'xField', editor: {}
                 }, {
                     text: 'xFieldAlias',
                     dataIndex: 'xFieldAlias'
