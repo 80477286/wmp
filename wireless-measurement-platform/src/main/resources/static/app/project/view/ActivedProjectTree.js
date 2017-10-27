@@ -165,7 +165,7 @@ Ext.define('App.project.view.ActivedProjectTree', {
 				});
 	},
 	editHandler : function(me, parent, node) {
-		var clazz = 'App.po.project.view.ProjectEditorWindow';
+		var clazz = 'App.project.view.ProjectEditorWindow';
 		var url = 'pm/project/save';
 		if (!Ext.isEmpty(parent)) {
 			node = {

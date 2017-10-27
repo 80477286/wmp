@@ -1,4 +1,4 @@
-Ext.define('App.pm.project.model.ProjectModel', {
+Ext.define('App.project.model.ProjectModel', {
             extend : 'Extend.data.BaseModel',
             fields : [{
                         name : 'startDate',

@@ -1,8 +1,7 @@
 Ext.define('App.management.po.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.management.po.controller.ViewportController'],
-    controller: 'ViewportController',
+    requires: ['App.project.PoProjectFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -23,5 +22,8 @@ Ext.define('App.management.po.view.Viewport', {
         }
     },
 
-    items: [{title: '运行中'}, {title: "已结题"}]
+    items: [{
+        title: '运行中',
+        xtype: 'PoProjectFrame'
+    }]
 })

@@ -1,7 +1,7 @@
 Ext.define('App.management.administrator.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.authorization.AuthorizationManagementFrame'],
+    requires: ['App.authorization.AuthorizationManagementFrame', 'App.organization.AdministratorOrganizationFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -24,6 +24,9 @@ Ext.define('App.management.administrator.view.Viewport', {
 
     items: [{
         xtype: 'AuthorizationManagementFrame',
+        iconCls: 'fa-user'
+    }, {
+        xtype: 'AdministratorOrganizationFrame',
         iconCls: 'fa-user'
     }]
 })
