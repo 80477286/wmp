@@ -19,21 +19,24 @@ import java.util.List;
 @Table(name = "[report_configuration]", uniqueConstraints = {@UniqueConstraint(columnNames = {"type", "projectId"}), @UniqueConstraint(columnNames = {"name"})})
 public class ReportConfiguration extends BaseEntity {
 
+    @Column(nullable = false, length = 128)
+    private String name;
+
     /**
      * 报表类型
      */
     @Column(nullable = false, length = 128)
     private String type;
-    @Column(nullable = false, length = 128)
-    private String name;
+
     private String description;
+
     private String projectId;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_configuration_id")
     private List<KpiConfiguration> kpiConfigurations = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_configuration_id")
     private List<ChartConfiguration> chartConfigurations = new ArrayList<>();
 
