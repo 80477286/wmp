@@ -27,5 +27,10 @@ Ext.define('App.report.iteration.view.IterationReportList', {
     },
     addHandler: function () {
         this.editHandler(null, false, {'reportConfiguration.id': '迭代度量'});
+    },
+    listeners: {
+        load: function ($this, records) {
+            console.log('log')
+        }
     }
 });

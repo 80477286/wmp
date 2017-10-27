@@ -24,8 +24,8 @@ Ext.define('App.report.iteration.model.IterationReportViewModel', {
             header: '创建人',
             dataIndex: 'creator'
         }, {
-            xtype: 'cdtcolumn',
             header: '创建时间',
+            xtype: 'cdtcolumn',
             dataIndex: 'cdt'
         }],
         search: {
