@@ -7,6 +7,7 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
     forceFit: true,
     rowLines: true,
     columnLines: true,
+    rootVisible:false,
     initComponent: function () {
         var me = this;
         this.callParent(arguments);
@@ -28,6 +29,16 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
         xtype: 'treecolumn',
         text: '名称',
         dataIndex: 'name'
+    }, {
+        text: '类型',
+        dataIndex: 'type'
+    }, {
+        text: '创建人',
+        dataIndex: 'creator'
+    }, {
+        xtype: 'cdtcolumn',
+        text: '创建时间',
+        dataIndex: 'cdt'
     }],
     store: {
         autoLoad: false,

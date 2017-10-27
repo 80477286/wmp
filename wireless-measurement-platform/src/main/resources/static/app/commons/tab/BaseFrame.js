@@ -5,12 +5,26 @@ Ext.define('App.commons.tab.BaseFrame', {
     requires: [],
     items: [{
         height: 66, region: 'north', bodyStyle: 'background-color:#333;'
-    }, {
-        xtype: 'tabpanel', region: 'center'
     }],
     initComponent: function () {
         this.callParent(arguments);
-        this.down('tabpanel').add(this.tabitems);
-        this.down('tabpanel').setActiveTab(0)
+        var tabpanel = {
+            xtype: 'tabpanel',
+            region: 'center',
+            activeTab: 0
+        };
+        if (!Ext.isEmpty(this.tabitems)) {
+            if (this.tabitems.length == 1) {
+                tabpanel = this.tabitems[0];
+                tabpanel.region = 'center';
+                if (Ext.isEmpty(this.title)) {
+                    this.title = tabpanel.title;
+                }
+                delete tabpanel.title;
+            } else {
+                tabpanel.items = this.tabitems;
+            }
+        }
+        this.add(tabpanel);
     }
 })
