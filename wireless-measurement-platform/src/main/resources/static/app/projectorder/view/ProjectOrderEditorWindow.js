@@ -21,7 +21,7 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
         name: 'id'
     }, {
         xtype: 'hidden',
-        name: 'parent.id'
+        name: 'organization.id'
     }, {
         xtype: 'hidden',
         name: 'creator'
@@ -30,15 +30,10 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
         name: 'cdt'
     }, {
         xtype: 'textfield',
-        fieldLabel: '组织类型',
-        name: 'type',
-        readOnly: true
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '组织名称',
+        fieldLabel: 'PO名称',
         name: 'name',
         allowBlank: false,
-        blankText: '项目名称为必填字段，不能为空！',
+        blankText: 'PO名称为必填字段，不能为空！',
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }]

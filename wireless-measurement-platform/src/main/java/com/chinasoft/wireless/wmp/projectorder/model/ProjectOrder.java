@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,12 +23,12 @@ public class ProjectOrder extends BaseEntity {
     @Column(nullable = false, length = 255)
     private String name;
 
-    @OneToMany(mappedBy = "projectOrder")
-    private List<Project> projects;
-
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "Organization_id")
     private Organization organization;
+
+    @OneToMany(mappedBy = "projectOrder")
+    private List<Project> projects = new ArrayList<>(0);
 
     @JSON(name = "children")
     public List<Project> getProjects() {

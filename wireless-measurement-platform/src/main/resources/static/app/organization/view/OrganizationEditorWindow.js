@@ -38,7 +38,7 @@ Ext.define("App.organization.view.OrganizationEditorWindow", {
         fieldLabel: '组织名称',
         name: 'name',
         allowBlank: false,
-        blankText: '项目名称为必填字段，不能为空！',
+        blankText: '组织名称为必填字段，不能为空！',
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }]

@@ -26,6 +26,7 @@ Ext.define('App.management.administrator.view.Viewport', {
         xtype: 'AuthorizationManagementFrame',
         iconCls: 'fa-user'
     }, {
+        title: '组织管理',
         xtype: 'AdministratorOrganizationFrame',
         iconCls: 'fa-user'
     }]

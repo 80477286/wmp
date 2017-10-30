@@ -7,6 +7,8 @@ Ext.define('App.project.view.BaseProjectTree', {
     forceFit: true,
     rowLines: true,
     columnLines: true,
+    rootVisible: false,
+    config: {multiCheck: false},
     initComponent: function () {
         var me = this;
         this.callParent(arguments);
@@ -20,10 +22,34 @@ Ext.define('App.project.view.BaseProjectTree', {
                                        tr, rowIndex, e, eOpts) {
                 me.createtmenu($this, td, cellIndex, record, tr,
                     rowIndex, e, eOpts);
+            },
+            beforeitemexpand: function (node) {
+                if (node.get('type') == 'pdu') {
+                    this.getStore().getProxy().setUrl('projectorder/query_by_organization')
+                } else if (node.get('type') == 'po') {
+                    this.getStore().getProxy().setUrl('project/query_by_po')
+                } else {
+                    this.getStore().getProxy().setUrl('organization/get_children')
+                }
+            },
+            itemexpand: function (node) {
+                var nodes = node.childNodes;
+                Ext.Array.each(nodes, function (item) {
+                    if (item.get('checked') == undefined) {
+                        item.set('checked', false)
+                    }
+                });
+            },
+            selectionchange: function ($this, selected, eOpts) {
+                var me = this;
+                if (selected.length > 0) {
+                    Ext.Array.each(selected, function (item) {
+                        item.set('checked', true)
+                        me.fireEvent('checkchange', item, true, null)
+                    });
+                }
             }
-
-        });
-
+        })
     },
     columns: [{
         xtype: 'treecolumn',
@@ -32,13 +58,13 @@ Ext.define('App.project.view.BaseProjectTree', {
     }],
     store: {
         autoLoad: false,
-        model: 'App.project.model.ProjectNode',
+        model: 'App.project.model.ProjectModel',
         nodeParam: "id",
         root: {
-            name: '项目管理',
+            name: '加载...',
             expanded: false,
-            level: 0,
-            id: 'root'
+            id: 'root',
+            type: 'root'
         },
         sorters: [{
             property: 'index',
@@ -46,77 +72,79 @@ Ext.define('App.project.view.BaseProjectTree', {
         }],
         proxy: {
             type: 'ajax',
-            url: 'commons/domain/get_children',
+            url: 'organization/get_children',
             idParam: 'id',
-            extraParams: {
-                actived: true
-            },
             reader: {
                 type: 'json',
                 rootProperty: 'data'
             }
         }
     },
+    createMenuItems: function (record) {
+        var me = this;
+        var items = [{
+            text: '刷新',
+            iconCls: 'refresh',
+            handler: function () {
+                me.reloadNode(record);
+            }
+        }, {
+            text: '展开',
+            iconCls: 'refresh',
+            disabled: record.get('type').toLowerCase() == 'po',
+            handler: function () {
+                var nodes = me.getSelection();
+                if (nodes.length > 0) {
+                    me.expandNode(nodes[0], false);
+                }
+            }
+        }, {
+            text: '全展开',
+            iconCls: 'refresh',
+            disabled: record.get('type').toLowerCase() == 'po',
+            handler: function () {
+                var nodes = me.getSelection();
+                if (nodes.length > 0) {
+                    me.expandNode(nodes[0], true);
+                }
+            }
+        }];
+        return items;
+    },
     createtmenu: function ($this, td, cellIndex, record, tr, rowIndex, e, eOpts) {
         var me = this;
         if (cellIndex == 0) {
+            var items = me.createMenuItems(record);
             var menu = Ext.create('Ext.menu.Menu', {
-                items: [{
-                    text: '刷新',
-                    iconCls: 'refresh',
-                    disabled: Ext.isEmpty(record.get('level'))
-                    || record.get('level') == 0,
-                    handler: function () {
-                        me.mask('刷新...');
-                        me.reloadNode(record);
-                    }
-                }, {
-                    text: '展开',
-                    iconCls: 'refresh',
-                    disabled: Ext.isEmpty(record.get('level')),
-                    handler: function () {
-                        var nodes = me.getSelection();
-                        if (nodes.length > 0) {
-                            me.expandNode(nodes[0], false);
-                        }
-                    }
-                }, {
-                    text: '全展开',
-                    iconCls: 'refresh',
-                    disabled: Ext.isEmpty(record.get('level')),
-                    handler: function () {
-                        var nodes = me.getSelection();
-                        if (nodes.length > 0) {
-                            me.expandNode(nodes[0], true);
-                        }
-                    }
-                }]
-            });
+                items: items
+            })
             e.preventDefault();
             e.stopEvent();// 这两个很重要，否则点击鼠标右键还是会出现浏览器的选项
-
             menu.showAt(e.getXY());
         }
     },
     reloadNode: function (record) {
         var me = this;
-        if (record.get('level') == 0) {
-            record.set('loaded', false)
-            record.set('expanded', false)
-            me.expandNode(record, false);
+        me.mask('刷新...');
+        var me = this;
+        var url = "organization/get_simple_by_id";
+        if (record.get('type') == 'po') {
+            url = "project/get_simple_by_id";
         }
         var opts = {
-            success: function (record, operation) {
-                if (!Ext.isEmpty(record.get('level'))) {
+            url: url,
+            success: function (loadedRecord, operation) {
+                if (record.get('leaf') != true) {
                     record.set('loaded', false)
                     record.set('expanded', false)
-                    me.expandNode(record, false);
+                    me.expandNode(record, false, function () {
+                        me.unmask();
+                    });
+                } else {
+                    me.unmask();
                 }
             }
         };
-        if (Ext.isEmpty(record.get('level'))) {
-            opts.url = "project/get_by_id";
-        }
         record.load(opts);
     }
 })

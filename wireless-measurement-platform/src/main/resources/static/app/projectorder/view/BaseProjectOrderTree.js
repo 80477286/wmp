@@ -23,6 +23,13 @@ Ext.define('App.projectorder.view.BaseProjectOrderTree', {
                 me.createtmenu($this, td, cellIndex, record, tr,
                     rowIndex, e, eOpts);
             },
+            beforeitemexpand: function (node) {
+                if (node.get('type') == 'pdu') {
+                    this.getStore().getProxy().setUrl('projectorder/query_by_organization')
+                } else {
+                    this.getStore().getProxy().setUrl( 'organization/get_children')
+                }
+            },
             itemexpand: function (node) {
                 var nodes = node.childNodes;
                 Ext.Array.each(nodes, function (item) {
@@ -118,7 +125,12 @@ Ext.define('App.projectorder.view.BaseProjectOrderTree', {
         var me = this;
         me.mask('刷新...');
         var me = this;
+        var url = "organization/get_simple_by_id";
+        if (record.get('type') == 'po') {
+            url = "projectorder/get_simple_by_id";
+        }
         var opts = {
+            url: url,
             success: function (loadedRecord, operation) {
                 if (record.get('leaf') != true) {
                     record.set('loaded', false)

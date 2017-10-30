@@ -1,7 +1,7 @@
 Ext.define('App.management.qa.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.reportconfiguration.CommonReportConfigurationFrame'],
+    requires: ['App.reportconfiguration.CommonReportConfigurationFrame', 'App.project.QaProjectFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -23,6 +23,10 @@ Ext.define('App.management.qa.view.Viewport', {
     },
 
     items: [{
+        title: '项目管理',
+        xtype: 'QaProjectFrame',
+        iconCls: 'fa-user'
+    }, {
         xtype: 'CommonReportConfigurationFrame',
         iconCls: 'fa-user'
     }]

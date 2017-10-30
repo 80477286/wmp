@@ -144,7 +144,7 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
                 }
             }).show().loadRecord(node);
         } else {
-            var getUrl = 'organization/get_by_id';
+            var getUrl = 'organization/edit';
             parent = node.parentNode;
             Ext.create(clazz, {
                 url: url,

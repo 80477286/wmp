@@ -1,6 +1,6 @@
-Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
-    extend: 'App.projectorder.view.BaseProjectOrderTree',
-    alias: 'widget.ProjectOrderTreeGrid',
+Ext.define('App.project.view.ProjectTreeGrid', {
+    extend: 'App.project.view.BaseProjectTree',
+    alias: 'widget.ProjectTreeGrid',
     config: {
         tbar: {
             add: {
@@ -8,7 +8,7 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
                 iconCls: 'add',
                 disabled: true,
                 handler: function () {
-                    var me = this.up('ProjectOrderTreeGrid');
+                    var me = this.up('ProjectTreeGrid');
                     var records = me.getSelection();
                     if (records.length > 0) {
                         me.editHandler.call(me, me, records[0], null);
@@ -22,7 +22,7 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
                 iconCls: 'edit',
                 disabled: true,
                 handler: function () {
-                    var me = this.up('ProjectOrderTreeGrid');
+                    var me = this.up('ProjectTreeGrid');
                     var records = me.getSelection();
                     if (records.length > 0) {
                         me.editHandler.call(me, me, null, records[0]);
@@ -35,14 +35,14 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
                 text: '删除',
                 disabled: true,
                 handler: function () {
-                    var view = this.up('ProjectOrderTreeGrid');
+                    var view = this.up('ProjectTreeGrid');
                     view.removeSelectionNode();
                 }
             },
             refresh: {
                 text: '刷新',
                 handler: function () {
-                    var view = this.up('ProjectOrderTreeGrid');
+                    var view = this.up('ProjectTreeGrid');
                     var selection = view.getChecked();
                     if (selection.length > 0) {
                         view.reloadNode(selection[0]);
@@ -81,10 +81,10 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
                 me.down('button[text="编辑"]').disable();
                 me.down('button[text="删除"]').disable();
                 if (selected.length > 0) {
-                    if (selected[0].get('type').toLowerCase() == 'po') {
+                    if (selected[0].get('type').toLowerCase() == 'project') {
                         me.down('button[text="编辑"]').enable();
                         me.down('button[text="删除"]').enable();
-                    } else if (selected[0].get('type').toLowerCase() == 'pdu') {
+                    } else if (selected[0].get('type').toLowerCase() == 'po') {
                         me.down('button[text="添加"]').enable();
                     }
                 }
@@ -99,7 +99,7 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
                     view.mask('删除...');
                     var ids = view.getSelectedIds();
                     Ext.Ajax.request({
-                        url: 'projectorder/deletes',
+                        url: 'project/deletes',
                         params: {'ids': ids},
                         success: function (resp) {
                             try {
@@ -116,11 +116,11 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
             });
     },
     editHandler: function (me, parent, node) {
-        var clazz = 'App.projectorder.view.ProjectOrderEditorWindow';
-        var url = 'projectorder/save';
+        var clazz = 'App.project.view.ProjectEditorWindow';
+        var url = 'project/save';
         if (!Ext.isEmpty(parent)) {
             var node = {
-                organization: {
+                projectOrder: {
                     id: parent.get('id')
                 }
             }
@@ -135,11 +135,11 @@ Ext.define('App.projectorder.view.ProjectOrderTreeGrid', {
                 }
             }).show().loadRecord(node);
         } else {
-            var getUrl = 'projectorder/edit';
+            var getUrl = 'project/edit';
             parent = node.parentNode;
             Ext.create(clazz, {
                 url: url,
-                model: 'App.projectorder.model.ProjectOrderModel',
+                model: 'App.project.model.ProjectModel',
                 listeners: {
                     save: function () {
                         parent.set('loaded', false)

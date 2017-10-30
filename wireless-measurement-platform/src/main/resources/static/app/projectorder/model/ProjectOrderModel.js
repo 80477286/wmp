@@ -5,11 +5,17 @@ Ext.define('App.projectorder.model.ProjectOrderModel', {
         convert: function (v, r) {
             var type = r.get('type');
             if (!Ext.isEmpty(type)) {
-                if (type.toLocaleLowerCase() == 'project') {
+                if (type.toLocaleLowerCase() == 'po') {
                     return true;
                 }
             }
             return false;
+        }
+    }, {
+        name: 'organization',
+        convert: function (v, r) {
+            var val = r.get('parent');
+            return val;
         }
     }],
     proxy: {
