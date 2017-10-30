@@ -1,6 +1,6 @@
 Ext.define("App.reportconfiguration.view.ReportConfigurationForm", {
     extend: 'Extend.form.Panel',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel','App.reportconfiguration.kpiconfiguration.field.KpiDataTypeCombobox'],
     alias: ['widget.ReportConfigurationForm'],
     config: {
         entity: 'reportConfiguration'
@@ -65,7 +65,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationForm", {
                     text: '类型',
                     dataIndex: 'dataType',
                     editor: {
-                        xtype: 'textfield'
+                        xtype: 'KpiDataTypeCombobox'
                     }
                 }, {
                     text: '日期格式',
