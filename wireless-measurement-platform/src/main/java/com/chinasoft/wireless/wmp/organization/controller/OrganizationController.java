@@ -28,8 +28,7 @@ public class OrganizationController extends BaseController<Organization, String>
         return service;
     }
 
-
-    @JSON()
+    @JSON(excludeProperties = {"data.*\\.projectOrders", "data.*\\.parent", "data.*\\.children"})
     @RequestMapping(value = "/get_children")
     private Page<Organization> getChildren(String id) {
         Map<String, Object> params = new HashMap<String, Object>(0);
@@ -39,5 +38,32 @@ public class OrganizationController extends BaseController<Organization, String>
             params.put("parent.id", id);
         }
         return service.query(params, null);
+    }
+
+
+    @JSON(excludeProperties = {"data.*\\.projectOrders", "data.*\\.parent.*\\.parent", "data.*\\.children"})
+    @RequestMapping(value = "/edit")
+    public Organization edit(String id) {
+        Organization result = getService().findOne(id);
+        return result;
+    }
+
+    @JSON()
+    @RequestMapping(value = "/get_descendants")
+    private Page<Organization> getDescendants(String id) {
+        Map<String, Object> params = new HashMap<String, Object>(0);
+        if (id == null || id.trim().isEmpty() || id.trim().toLowerCase().equals("root")) {
+            params.put("parent.id_isnull", "");
+        } else {
+            params.put("parent.id", id);
+        }
+        return service.query(params, null);
+    }
+
+    @JSON(excludeProperties = {"data.*\\.projectOrders", "data.*\\.parent", "data.*\\.children"})
+    @RequestMapping(value = "/get_simple_by_id")
+    public Organization getSimpleById(String id) {
+        Organization result = getService().findOne(id);
+        return result;
     }
 }

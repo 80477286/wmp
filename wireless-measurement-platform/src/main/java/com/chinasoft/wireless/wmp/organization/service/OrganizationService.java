@@ -5,6 +5,7 @@ import com.chinasoft.wireless.wmp.organization.repository.OrganizationRepository
 import com.mouse.web.supports.jpa.repository.BaseRepository;
 import com.mouse.web.supports.jpa.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,4 +22,15 @@ public class OrganizationService extends BaseService<Organization, String> imple
     public BaseRepository<Organization, String> getRepository() {
         return repository;
     }
+
+
+    @Override
+    public <S extends Organization> S save(S entity) {
+        if (entity.getCreator() == null) {
+            String creator = SecurityContextHolder.getContext().getAuthentication().getName();
+            entity.setCreator(creator);
+        }
+        return super.save(entity);
+    }
+
 }

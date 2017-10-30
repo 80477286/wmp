@@ -9,6 +9,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,15 +28,16 @@ public class Organization extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne()
     @JoinColumn(name = "p_id")
     private Organization parent;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")
-    private List<Organization> children;
+    @OneToMany(mappedBy = "parent", orphanRemoval = true)
+    private List<Organization> children = new ArrayList<>(0);
 
-    @OneToMany(mappedBy = "organization")
-    private List<ProjectOrder> projectOrders;
+    @OneToMany(mappedBy = "organization", orphanRemoval = true)
+    private List<ProjectOrder> projectOrders = new ArrayList<>(0);
+    ;
 
 
     public String getName() {

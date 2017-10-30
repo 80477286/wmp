@@ -24,7 +24,11 @@ Ext.define('App.organization.model.OrganizationModel', {
     }],
     proxy: {
         type: 'ajax',
-        url: 'organization/get_by_id',
-        idParam: 'id'
+        url: 'organization/get_simple_by_id',
+        idParam: 'id',
+        reader: {
+            type: 'json',
+            rootProperty: 'data'
+        }
     }
 });

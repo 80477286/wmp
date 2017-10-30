@@ -17,7 +17,7 @@ Ext.define('App.commons.view.NavbarTree', {
         afterrender: function () {
             var me = this;
             Ext.Ajax.request({
-                url: 'organization/query',
+                url: 'organization/get_descendants',
                 params: {'params.parent.id_isnull': ''},
                 success: function (resp, opts) {
                     var data = resp.result.data;
