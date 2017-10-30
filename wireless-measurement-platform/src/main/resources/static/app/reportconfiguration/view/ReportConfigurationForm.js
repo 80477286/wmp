@@ -1,6 +1,6 @@
 Ext.define("App.reportconfiguration.view.ReportConfigurationForm", {
     extend: 'Extend.form.Panel',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel'],
     alias: ['widget.ReportConfigurationForm'],
     config: {
         entity: 'reportConfiguration'
@@ -35,6 +35,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationForm", {
                 xtype: 'GridField',
                 name: 'kpiConfigurations',
                 border: false,
+                model:'App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel',
                 submitFields: ['name', 'field', 'expression', 'dataType', 'format', 'formatter', 'description'],
                 roweditable: true,
                 columns: [{
@@ -50,22 +51,40 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationForm", {
                     }
                 }, {
                     text: '字段',
-                    dataIndex: 'field'
+                    dataIndex: 'field',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }, {
                     text: '表达式',
-                    dataIndex: 'expression'
+                    dataIndex: 'expression',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }, {
                     text: '类型',
-                    dataIndex: 'dataType'
+                    dataIndex: 'dataType',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }, {
                     text: '日期格式',
-                    dataIndex: 'format'
+                    dataIndex: 'format',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }, {
                     text: '格式化',
-                    dataIndex: 'formatter'
+                    dataIndex: 'formatter',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }, {
                     text: '描述',
-                    dataIndex: 'description'
+                    dataIndex: 'description',
+                    editor: {
+                        xtype: 'textfield'
+                    }
                 }],
                 addHandler: function () {
                     var me = this;
