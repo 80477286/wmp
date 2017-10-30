@@ -3,7 +3,9 @@ Ext.define('App.reportconfiguration.chartconfiguration.model.SeriesModel', {
     fields: [
         {name: 'type'},
         {name: 'xField'},
+        {name: 'xFieldAlias'},
         {name: 'yFields'},
+        {name: 'yFieldAliases'},
         {name: 'axis'}
     ]
 });

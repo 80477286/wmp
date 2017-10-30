@@ -1,6 +1,6 @@
 Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow", {
     extend: 'Extend.window.FormWindow',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.chartconfiguration.model.SeriesModel'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList', 'App.reportconfiguration.chartconfiguration.model.SeriesModel', 'App.reportconfiguration.chartconfiguration.model.AxisModel'],
     alias: 'widget.chart_configuration_editor',
     config: {
         window: {
@@ -42,6 +42,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 border: false,
                 name: 'axes',
                 roweditable: true,
+                model: 'App.reportconfiguration.chartconfiguration.model.AxisModel',
                 submitFields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
                 columns: [{
                     text: 'ID',
@@ -54,16 +55,20 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     editor: {}
                 }, {
                     text: '位置',
-                    dataIndex: 'position'
+                    dataIndex: 'position',
+                    editor: {}
                 }, {
                     text: '字段',
-                    dataIndex: 'fields'
+                    dataIndex: 'fields',
+                    editor: {}
                 }, {
                     text: '标题',
-                    dataIndex: 'title'
+                    dataIndex: 'title',
+                    editor: {}
                 }, {
                     text: '字段别名',
-                    dataIndex: 'fieldAliases'
+                    dataIndex: 'fieldAliases',
+                    editor: {}
                 }]
 
             }, {
@@ -79,22 +84,28 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     hidden: true,
                 }, {
                     text: '类型',
-                    dataIndex: 'type', editor: {}
+                    dataIndex: 'type',
+                    editor: {}
                 }, {
                     text: 'xField',
-                    dataIndex: 'xField', editor: {}
+                    dataIndex: 'xField',
+                    editor: {}
                 }, {
                     text: 'xFieldAlias',
-                    dataIndex: 'xFieldAlias'
+                    dataIndex: 'xFieldAlias',
+                    editor: {}
                 }, {
                     text: 'yFields',
-                    dataIndex: 'yFields'
+                    dataIndex: 'yFields',
+                    editor: {}
                 }, {
                     text: 'yFieldAliases',
-                    dataIndex: 'yFieldAliases'
+                    dataIndex: 'yFieldAliases',
+                    editor: {}
                 }, {
                     text: 'axis',
-                    dataIndex: 'axis'
+                    dataIndex: 'axis',
+                    editor: {}
                 }]
             }]
         }
