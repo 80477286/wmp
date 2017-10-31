@@ -1,7 +1,7 @@
 Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.QaReportConfigurationFrame'],
-    requires: ["App.reportconfiguration.view.ReportConfigurationForm"],
+    requires: ["App.reportconfiguration.view.ReportConfigurationForm", "App.reportconfiguration.view.ReportConfigurationList"],
     title: '报表配置',
     defaults: {},
     tabitems: [
@@ -70,13 +70,9 @@ Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
             }
         },
         {
-            xtype: 'ReportConfigurationForm',
-            title: '迭代报表配置 ',
-            listeners: {
-                afterrender: function () {
-                    this.load({url: '/report_configuration/get_by_id', params: {id: "INTERATION1"}});
-                }
-            }
+            xtype: 'ReportConfigurationList',
+            title: '迭代报表 ',
+            extraParams: {'params.type_like': '迭代度量-%'}
         }
     ]
 })

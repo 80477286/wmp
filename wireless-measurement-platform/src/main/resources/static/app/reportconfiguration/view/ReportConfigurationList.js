@@ -1,8 +1,8 @@
 Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
     extend: "Extend.grid.CrudGridPanel",
     alias: 'widget.ReportConfigurationList',
-    requires: ['App.reportconfiguration.viewmodel.ReportConfigurationViewModel'],
-    viewModel: 'report_configuration_viewmodel',
+    requires: ['App.reportconfiguration.model.ReportConfigurationViewModel'],
+    viewModel: 'ReportConfigurationViewModel',
     config: {
         tbar: {
             quickCreate: {
