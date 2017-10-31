@@ -61,15 +61,29 @@ Ext.define('App.project.view.ProjectTreeGrid', {
         text: '名称',
         dataIndex: 'name'
     }, {
-        text: '类型',
-        dataIndex: 'type'
+        xtype:'YmdColumn',
+        text: '开始时间',
+        dataIndex: 'startDate'
+    }, {
+        xtype:'YmdColumn',
+        text: '计划结项时间',
+        dataIndex: 'plannedEndDate'
+    }, {
+        xtype:'YmdColumn',
+        text: '实际结项时间',
+        dataIndex: 'actualEndDate'
+    }, {
+        text: '项目经理',
+        dataIndex: 'projectManager'
     }, {
         text: '创建人',
-        dataIndex: 'creator'
+        dataIndex: 'creator',
+        hidden: true
     }, {
         xtype: 'cdtcolumn',
         text: '创建时间',
-        dataIndex: 'cdt'
+        dataIndex: 'cdt',
+        hidden: true
     }],
     initComponent: function () {
         var me = this;

@@ -17,6 +17,15 @@ Ext.define('App.project.model.ProjectModel', {
             var val = r.get('parent');
             return val;
         }
+    }, {
+        name : 'startDate',
+        type : 'date'
+    }, {
+        name : 'plannedEndDate',
+        type : 'date'
+    }, {
+        name : 'actualEndDate',
+        type : 'date'
     }],
     proxy: {
         type: 'ajax',

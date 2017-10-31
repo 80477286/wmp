@@ -28,7 +28,7 @@ public class Project extends BaseEntity {
     private Date startDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date planedEndDate;
+    private Date plannedEndDate;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date actualEndDate;
@@ -42,7 +42,7 @@ public class Project extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @ManyToOne()
+    @ManyToOne(optional = false)
     @JoinColumn(name = "ProjectOrder_id")
     private ProjectOrder projectOrder;
 
@@ -66,14 +66,6 @@ public class Project extends BaseEntity {
         this.startDate = startDate;
     }
 
-    public Date getPlanedEndDate() {
-        return planedEndDate;
-    }
-
-    public void setPlanedEndDate(Date planedEndDate) {
-        this.planedEndDate = planedEndDate;
-    }
-
     public Date getActualEndDate() {
         return actualEndDate;
     }
@@ -84,6 +76,14 @@ public class Project extends BaseEntity {
 
     public String getDescription() {
         return description;
+    }
+
+    public Date getPlannedEndDate() {
+        return plannedEndDate;
+    }
+
+    public void setPlannedEndDate(Date plannedEndDate) {
+        this.plannedEndDate = plannedEndDate;
     }
 
     public void setDescription(String description) {
