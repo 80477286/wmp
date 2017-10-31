@@ -7,7 +7,7 @@ Ext.define('App.reportconfiguration.CommonReportConfigurationFrame', {
         {
             xtype: 'ReportConfigurationForm',
             title: 'BU报表配置 ',
-            tbar: [{
+            tbar: ['->', {
                 xtype: 'button',
                 text: '保存',
                 handler: function () {

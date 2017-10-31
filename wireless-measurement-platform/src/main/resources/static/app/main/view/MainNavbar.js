@@ -6,7 +6,7 @@ Ext.define('App.main.view.MainNavbar', {
     itemWidth: '100px',
     menus: [
         {
-            icon: '/images/logo5.png',
+            icon: '/css/icons/logo.png',
             logo: true,
             href: '/',
             style: {
