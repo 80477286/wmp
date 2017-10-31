@@ -1,5 +1,5 @@
-Ext.define('App.management.employee.view.EmployeeManagementFrame', {
-    extend: 'App.management.main.view.BaseFrame',
+Ext.define('App.hrm.employee.view.EmployeeManagementFrame', {
+    extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.EmployeeManagementFrame'],
     title: '人力管理',
     requires: [],

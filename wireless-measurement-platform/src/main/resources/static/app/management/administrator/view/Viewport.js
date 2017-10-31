@@ -1,7 +1,11 @@
 Ext.define('App.management.administrator.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.authorization.AuthorizationManagementFrame', 'App.organization.AdministratorOrganizationFrame'],
+    requires: [
+        'App.hrm.employee.view.EmployeeManagementFrame',
+        'App.authorization.AuthorizationManagementFrame',
+        'App.organization.AdministratorOrganizationFrame'
+    ],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -28,6 +32,10 @@ Ext.define('App.management.administrator.view.Viewport', {
     }, {
         title: '组织管理',
         xtype: 'AdministratorOrganizationFrame',
+        iconCls: 'fa-user'
+    }, {
+        title: '人力管理',
+        xtype: 'EmployeeManagementFrame',
         iconCls: 'fa-user'
     }]
 })
