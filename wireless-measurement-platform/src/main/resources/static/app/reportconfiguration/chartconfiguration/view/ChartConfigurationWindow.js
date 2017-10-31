@@ -1,6 +1,6 @@
 Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow", {
     extend: 'Extend.window.FormWindow',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList', 'App.reportconfiguration.chartconfiguration.model.SeriesModel', 'App.reportconfiguration.chartconfiguration.model.AxisModel'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList', 'App.reportconfiguration.chartconfiguration.model.SeriesModel', 'App.reportconfiguration.chartconfiguration.model.AxisModel','App.reportconfiguration.field.AxisTypeComboBox'],
     alias: 'widget.chart_configuration_editor',
     config: {
         window: {
@@ -52,7 +52,9 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: '轴的类型',
                     dataIndex: 'type',
-                    editor: {}
+                    editor: {
+                        xtype:'AxisTypeComboBox'
+                    }
                 }, {
                     text: '位置',
                     dataIndex: 'position',
