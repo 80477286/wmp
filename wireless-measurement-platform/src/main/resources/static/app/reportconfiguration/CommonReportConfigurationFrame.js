@@ -28,7 +28,7 @@ Ext.define('App.reportconfiguration.CommonReportConfigurationFrame', {
             }],
             listeners: {
                 afterrender: function () {
-                    this.load({url: '/report_configuration/get_by_id', params: {id: 1}});
+                    this.load({url: '/report_configuration/get_by_id', params: {id: "INTERATION1"}});
                 }
             }
         },
