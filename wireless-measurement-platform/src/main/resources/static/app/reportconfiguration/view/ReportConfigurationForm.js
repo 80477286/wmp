@@ -1,4 +1,4 @@
-Ext.define("App.reportconfiguration.view.ReportConfigurationForm", {
+Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
     extend: 'Extend.form.Panel',
     requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel','App.reportconfiguration.kpiconfiguration.field.KpiDataTypeCombobox'],
     alias: ['widget.ReportConfigurationForm'],

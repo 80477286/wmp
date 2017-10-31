@@ -16,7 +16,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
         search: '{search}'
     },
     editor: {
-        formClass: 'App.reportconfiguration.view.ReportConfigurationWindow',
+        formClass:'App.reportconfiguration.view.ReportConfigurationEditorWindow',
         save: '/report_configuration/save',
         get: '/report_configuration/get_by_id',
         del: '/report_configuration/deletes'
