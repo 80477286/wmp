@@ -184,8 +184,9 @@ Ext.application({
             url: 'load_initial_information',
             success: function (resp) {
                 var result = resp.result;
-                app.localhost = result.localhost;
-                app.user = result.user;
+                app.localhost = result.data.localhost;
+                app.user = result.data.user;
+                app.project = result.data.project;
                 if (me.getMainView().isMasked()) {
                     me.getMainView().unmask();
                 }

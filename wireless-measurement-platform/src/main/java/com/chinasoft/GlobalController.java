@@ -1,6 +1,8 @@
 package com.chinasoft;
 
 import com.chinasoft.wireless.wmp.authorization.user.service.UserService;
+import com.chinasoft.wireless.wmp.project.model.Project;
+import com.chinasoft.wireless.wmp.project.service.IProjectService;
 import com.mouse.web.supports.mvc.bind.annotation.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,8 @@ public class GlobalController {
 
     @Autowired
     private UserService versionService;
+    @Autowired
+    private IProjectService projectService;
 
     @RequestMapping({"/get_current_user"})
     @JSON
@@ -37,13 +41,15 @@ public class GlobalController {
 
 
     @RequestMapping({"/load_initial_information"})
-    @JSON
+    @JSON(excludeProperties = {"data.*\\.projectOrder", "data.*\\.iterations"})
     public Object loadInitialInformation(HttpServletRequest request) {
         Map<String, Object> inf = new LinkedHashMap<String, Object>(0);
         LinkedHashMap user = versionService.getCurrentUser();
+        Project project = projectService.getUserCurrentProject();
         String host = request.getRemoteHost();
         inf.put("user", user);
         inf.put("localhost", host);
+        inf.put("project", project);
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {

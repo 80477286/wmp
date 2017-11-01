@@ -59,6 +59,7 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         fieldLabel: '项目经理',
         name: 'projectManager',
         allowBlank: false,
+        valueField:'huaweiNumber',
         blankText: '中软项目经理为必填字段，不能为空！',
         beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
         extraParams: {

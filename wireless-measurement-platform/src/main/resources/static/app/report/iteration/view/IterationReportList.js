@@ -16,7 +16,7 @@ Ext.define('App.report.iteration.view.IterationReportList', {
         columns: '{columns}',
         search: '{search}'
     },
-    extraParams: {'params.reportConfiguration.type_eq': '迭代度量'},
+    extraParams: {'params.reportConfiguration.type_like': '迭代度量-%'},
     editor: {
         formClazz: 'App.report.iteration.view.IterationReportEditor',
         save: '/report/save',

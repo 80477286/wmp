@@ -94,9 +94,10 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
             me.down('IterationGroupComboBox').setReadOnly(false);
 
         }
+        var groupName = record.get('groupName');
         Ext.Ajax.request({
-            url: 'report_configuration/current_project_report_configuration',
-            params: {'params.type_eq': '迭代度量'},
+            url: 'report_configuration/project_report_configuration',
+            params: {'params.type_eq': '迭代度量-' + groupName, 'params.projectId_eq': app.project.id},
             success: function (resp) {
                 var reportConfiguration = resp.result.data;
                 var gridfield = me.down('gridfield');
