@@ -16,7 +16,12 @@ Ext.define('App.report.iteration.view.IterationReportList', {
         columns: '{columns}',
         search: '{search}'
     },
-    extraParams: {'params.reportConfiguration.type_like': '迭代度量-%'},
+    getExtraParams: function () {
+        return {
+            'params.reportConfigurationType_like': '迭代度量-%',
+            'params.project.id_eq': app.project.id
+        }
+    },
     editor: {
         formClazz: 'App.report.iteration.view.IterationReportEditor',
         save: '/report/save',
@@ -26,7 +31,7 @@ Ext.define('App.report.iteration.view.IterationReportList', {
         model: 'App.iteration.model.IterationModel'
     },
     addHandler: function () {
-        this.editHandler(null, false, {'reportConfiguration.id': '迭代度量'});
+        this.editHandler(null, false, {});
     },
     listeners: {
         load: function ($this, records) {

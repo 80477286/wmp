@@ -39,9 +39,8 @@ public class Report extends BaseEntity {
     @ManyToOne()
     @JoinColumn(name = "iteration_id")
     private Iteration iteration;
-    @ManyToOne()
-    @JoinColumn(name = "report_configuration_id")
-    private ReportConfiguration reportConfiguration;
+
+    private String reportConfigurationType;
 
     private String groupName;
 
@@ -97,12 +96,12 @@ public class Report extends BaseEntity {
         this.iteration = iteration;
     }
 
-    public ReportConfiguration getReportConfiguration() {
-        return reportConfiguration;
+    public String getReportConfigurationType() {
+        return reportConfigurationType;
     }
 
-    public void setReportConfiguration(ReportConfiguration reportConfiguration) {
-        this.reportConfiguration = reportConfiguration;
+    public void setReportConfigurationType(String reportConfigurationType) {
+        reportConfigurationType = reportConfigurationType;
     }
 
     public String getGroupName() {

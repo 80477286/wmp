@@ -53,12 +53,8 @@ public class ReportService extends BaseService<Report, String> implements IRepor
         List<Report> reports = page.getContent();
 
         if (reports != null && reports.size() > 0) {
-            ReportConfiguration reportConfiguration = null;
             List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>(0);
             for (Report report : reports) {
-                if (reportConfiguration == null) {
-                    reportConfiguration = report.getReportConfiguration();
-                }
                 Map<String, Object> line = new HashMap<String, Object>(0);
                 for (Kpi kpi : report.getKpis()) {
                     line.put(kpi.getField(), kpi.getValue());
@@ -66,7 +62,6 @@ public class ReportService extends BaseService<Report, String> implements IRepor
                 datas.add(line);
             }
             result.put("data", datas);
-            result.put("reportConfiguration", reportConfiguration);
             result.put("total", page.getSize());
         }
         result.put("success", true);

@@ -5,13 +5,17 @@ Ext.define('App.reportconfiguration.field.ReportConfigurationComboBox', {
     valueField: 'id',
     editable: false,
     multiSelect: false,
+    queryStr: '',
     store: {
         fields: ['id', 'name'],
         pageSize: 999,
         proxy: {
-            extraParams: {'params.type': '迭代度量'},
+            extraParams: {
+                'params.type_like': '迭代度量-%',
+                'params.projectId_isnull': ''
+            },
             type: 'ajax',
-            url: 'report_configuration/query',
+            url: 'report_configuration/query_simple',
             reader: {
                 type: 'json',
                 rootProperty: 'data'

@@ -1,6 +1,6 @@
 Ext.define("App.report.iteration.view.IterationReportEditor", {
     extend: 'Extend.window.FormWindow',
-    alias: 'widget.report_editor',
+    alias: ['widget.IterationReportEditor'],
     requires: ['App.report.model.KpiModel',
         'App.iteration.field.IterationComboBox',
         'App.report.iteration.field.IterationGroupComboBox',
@@ -20,11 +20,16 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
     },
     items: [{
         xtype: 'ReportConfigurationComboBox',
-        name: 'reportConfiguration.id',
+        name: 'reportConfigurationType',
         fieldLabel: '度量类型',
         readOnly: true,
         displayField: 'type',
-        submitValues: false
+        valueField: 'type',
+        submitValues: false, listeners: {
+            select: function ($this, record, eOpts) {
+                this.up('IterationReportEditor').initKips(record.get('type'));
+            }
+        }
     }, {
         xtype: 'IterationComboBox',
         name: 'iteration.id',
@@ -92,12 +97,18 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
             me.down('IterationComboBox').setReadOnly(false);
             me.down('ReportConfigurationComboBox').setReadOnly(false);
             me.down('IterationGroupComboBox').setReadOnly(false);
-
+        } else {
+            me.initKips(record.get('reportConfigurationType'));
         }
-        var groupName = record.get('groupName');
+    },
+    initKips: function (type) {
+        var me = this;
         Ext.Ajax.request({
             url: 'report_configuration/project_report_configuration',
-            params: {'params.type_eq': '迭代度量-' + groupName, 'params.projectId_eq': app.project.id},
+            params: {
+                'params.type_eq': type,
+                'params.projectId_eq': app.project.id
+            },
             success: function (resp) {
                 var reportConfiguration = resp.result.data;
                 var gridfield = me.down('gridfield');

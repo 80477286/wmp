@@ -9,6 +9,7 @@ import com.mouse.web.supports.jpa.service.IBaseService;
 import com.mouse.web.supports.mvc.bind.annotation.EntityParam;
 import com.mouse.web.supports.mvc.bind.annotation.JSON;
 import com.mouse.web.supports.mvc.bind.annotation.MapParam;
+import com.mouse.web.supports.mvc.request.PageParam;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,9 +27,6 @@ public class ReportConfigurationController extends BaseController<ReportConfigur
     private IReportConfigurationService reportConfigurationService;
     @Autowired
     private IProjectService projectService;
-
-    @Autowired
-    private UserService userService;
 
     @Override
     protected IBaseService<ReportConfiguration, String> getService() {
@@ -58,5 +56,12 @@ public class ReportConfigurationController extends BaseController<ReportConfigur
         } else {
             return null;
         }
+    }
+
+
+    @JSON(excludeProperties = {"data.*\\.kpiConfigurations", "data.*\\.chartConfigurations"})
+    @RequestMapping(value = "/query_simple")
+    public Page<ReportConfiguration> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
+        return getService().query(params, pageable);
     }
 }
