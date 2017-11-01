@@ -1,6 +1,6 @@
 Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
     extend: 'Extend.form.Panel',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList','App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel','App.reportconfiguration.kpiconfiguration.field.KpiDataTypeCombobox'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList', 'App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel', 'App.reportconfiguration.kpiconfiguration.field.KpiDataTypeCombobox'],
     alias: ['widget.ReportConfigurationForm'],
     config: {
         entity: 'reportConfiguration'
@@ -35,7 +35,7 @@ Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
                 xtype: 'GridField',
                 name: 'kpiConfigurations',
                 border: false,
-                model:'App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel',
+                model: 'App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel',
                 submitFields: ['name', 'field', 'expression', 'dataType', 'format', 'formatter', 'description'],
                 roweditable: true,
                 columns: [{
@@ -119,7 +119,9 @@ Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
                     itemdblclick: function ($this, record, item, index, e, eOpts) {
                         var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow', {
                             chartConfiguration: $this,
-                            record: record, window: {height: 600, width: 800}
+                            record: record,
+                            window: {height: 600, width: 800},
+                            kpiStore:$this.up('').up('').down('GridField').getStore()
                         });
                         form.loadRecord(record);
                         form.show();

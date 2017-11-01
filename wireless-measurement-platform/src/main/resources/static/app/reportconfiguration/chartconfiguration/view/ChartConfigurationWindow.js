@@ -1,6 +1,12 @@
 Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow", {
     extend: 'Extend.window.FormWindow',
-    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList', 'App.reportconfiguration.chartconfiguration.model.SeriesModel', 'App.reportconfiguration.chartconfiguration.model.AxisModel','App.reportconfiguration.field.AxisTypeComboBox'],
+    requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList',
+        'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList',
+        'App.reportconfiguration.chartconfiguration.model.SeriesModel',
+        'App.reportconfiguration.chartconfiguration.model.AxisModel',
+        'App.reportconfiguration.field.AxisTypeComboBox',
+        'App.reportconfiguration.field.AxisPositionComboBox',
+        'App.reportconfiguration.field.KpiFieldComboBox'],
     alias: 'widget.chart_configuration_editor',
     config: {
         window: {
@@ -53,16 +59,83 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     text: '轴的类型',
                     dataIndex: 'type',
                     editor: {
-                        xtype:'AxisTypeComboBox'
+                        xtype: 'AxisTypeComboBox',
+                        listeners: {
+                            select: function (combo, record, index, eOpts) {
+                                var me = this;
+                                var positionCombo = me.up('').down('AxisPositionComboBox');
+                                if (combo.getValue() == "category") {
+                                    positionCombo.getStore().setData([{name: 'bottom', value: 'bottom'}]);
+                                    positionCombo.setValue('bottom');
+                                } else {
+                                    positionCombo.getStore().setData([{name: 'left', value: 'left'}, {
+                                        name: 'right',
+                                        value: 'right'
+                                    }]);
+                                    positionCombo.setValue('left');
+                                }
+                            }
+                        }
                     }
                 }, {
                     text: '位置',
                     dataIndex: 'position',
-                    editor: {}
+                    editor: {
+                        xtype: 'AxisPositionComboBox',
+                        listeners: {
+                            beforequery: function (queryPlan, eOpts) {
+                                var me = this;
+                                var axisTypeCombo = me.up('').down('AxisTypeComboBox');
+                                if (axisTypeCombo.getValue() == 'category') {
+                                    me.getStore().setData([{name: 'bottom', value: 'bottom'}]);
+                                } else {
+                                    me.getStore().setData([{name: 'left', value: 'left'}, {
+                                        name: 'right',
+                                        value: 'right'
+                                    }]);
+                                }
+                            }
+                        }
+                    }
                 }, {
                     text: '字段',
                     dataIndex: 'fields',
-                    editor: {}
+                    editor: {
+                        xtype: 'KpiFieldComboBox',
+                        listeners: {
+                            beforequery: function (queryPlan, eOpts) {
+                                var me = this;
+                                var form = me.up('window').down('panel');
+                                me.setStore(form.kpiStore);
+                            },
+                            beforeselect: function (combo, record, index, eOpts) {
+                                var me = this;
+                                var array = new Array();
+                                var value = combo.getValue();
+                                for (var i = 0; i < value.length; i++) {
+                                    array.push(me.getStore().findRecord('field', value[i]).get('name'));
+                                }
+                                array.push(record.get('name'));
+                                me.up('').down('[dataIndex=fieldAliases]').setValue(array.join(","));
+                            },
+                            beforedeselect: function (combo, record, index, eOpts) {
+                                var me = this;
+                                var field = record.get('field');
+                                var value = combo.getValue();
+                                var array = new Array();
+                                for (var i = 0; i < value.length; i++) {
+                                    if (field != value[i]) {
+                                        array.push(value[i]);
+                                    }
+                                }
+                                var newArray = new Array();
+                                for (var i = 0; i < array.length; i++) {
+                                    newArray.push(me.getStore().findRecord('field', array[i]).get('name'))
+                                }
+                                me.up('').down('[dataIndex=fieldAliases]').setValue(newArray.join(","));
+                            }
+                        }
+                    }
                 }, {
                     text: '标题',
                     dataIndex: 'title',
