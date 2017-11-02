@@ -112,9 +112,9 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var array = new Array();
                                 var value = combo.getValue();
-                                for (var i = 0; i < value.length; i++) {
-                                    array.push(me.getStore().findRecord('field', value[i]).get('name'));
-                                }
+                                Ext.Array.each(value, function (name) {
+                                    array.push(me.getStore().findRecord('field', name).get('name'));
+                                });
                                 array.push(record.get('name'));
                                 me.up('').down('[dataIndex=fieldAliases]').setValue(array.join(","));
                             },
@@ -122,16 +122,11 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var field = record.get('field');
                                 var value = combo.getValue();
-                                var array = new Array();
-                                for (var i = 0; i < value.length; i++) {
-                                    if (field != value[i]) {
-                                        array.push(value[i]);
-                                    }
-                                }
+                                Ext.Array.remove(value, field);
                                 var newArray = new Array();
-                                for (var i = 0; i < array.length; i++) {
-                                    newArray.push(me.getStore().findRecord('field', array[i]).get('name'))
-                                }
+                                Ext.Array.each(value, function (name) {
+                                    newArray.push(me.getStore().findRecord('field', name).get('name'))
+                                })
                                 me.up('').down('[dataIndex=fieldAliases]').setValue(newArray.join(","));
                             }
                         }
