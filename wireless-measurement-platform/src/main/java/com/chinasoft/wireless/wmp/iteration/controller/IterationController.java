@@ -30,9 +30,9 @@ public class IterationController extends BaseController<Iteration, String> {
     }
 
 
-    @JSON()
+    @JSON(excludeProperties = {"data.*\\.project"})
     @RequestMapping(value = "/query_simple")
-    public Page<Iteration> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
+    public Page<Iteration> querySimple(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return getService().query(params, pageable);
     }
 }

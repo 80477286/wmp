@@ -42,8 +42,6 @@ public class Report extends BaseEntity {
 
     private String reportConfigurationType;
 
-    private String groupName;
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_id")
     private List<Kpi> kpis = new ArrayList<>();
@@ -101,15 +99,7 @@ public class Report extends BaseEntity {
     }
 
     public void setReportConfigurationType(String reportConfigurationType) {
-        reportConfigurationType = reportConfigurationType;
-    }
-
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+        this.reportConfigurationType = reportConfigurationType;
     }
 
     public List<Kpi> getKpis() {

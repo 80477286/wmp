@@ -38,13 +38,6 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
         blankText: '迭代为必填字段，不允许为空！',
         readOnly: true
     }, {
-        xtype: 'IterationGroupComboBox',
-        name: 'groupName',
-        fieldLabel: '分组',
-        allowBlank: false,
-        blankText: '迭代为必填字段，不允许为空！',
-        readOnly: true
-    }, {
         name: 'kpis',
         xtype: 'gridfield',
         fieldLabel: '角色配置',
