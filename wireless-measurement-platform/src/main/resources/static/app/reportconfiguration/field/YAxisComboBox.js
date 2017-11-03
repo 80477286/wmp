@@ -3,14 +3,14 @@ Ext.define('App.reportconfiguration.field.YAxisComboBox', {
     alias: 'widget.YAxisComboBox',
     editable: false,
     queryMode: 'local',
-    valueField: 'fields',
+    valueField: 'fieldAliases',
     multiSelect: true,
-    displayField: 'fields',
+    displayField: 'fieldAliases',
     store: Ext.create('Ext.data.Store', {
-        fields: ['fields', 'fields'],
+        fields: ['fieldAliases', 'fieldAliases'],
         data: [{
-            value: 'iteration',
-            name: "iteration"
+            value: '迭代',
+            name: "迭代"
         }]
     })
 })

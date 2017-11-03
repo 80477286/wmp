@@ -3,13 +3,13 @@ Ext.define('App.reportconfiguration.field.XAxisComboBox', {
     alias: 'widget.XAxisComboBox',
     editable: false,
     queryMode: 'local',
-    valueField: 'fields',
-    displayField: 'fields',
+    valueField: 'fieldAliases',
+    displayField: 'fieldAliases',
     store: Ext.create('Ext.data.Store', {
-        fields: ['fields', 'fields'],
+        fields: ['fieldAliases', 'fieldAliases'],
         data: [{
-            value: 'iteration',
-            name: "iteration"
+            value: '迭代',
+            name: "迭代"
         }]
     })
 })

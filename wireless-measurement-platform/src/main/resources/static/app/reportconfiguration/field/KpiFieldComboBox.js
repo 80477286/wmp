@@ -3,14 +3,14 @@ Ext.define('App.reportconfiguration.field.KpiFieldComboBox', {
     alias: 'widget.KpiFieldComboBox',
     editable: false,
     queryMode: 'local',
-    valueField: 'field',
-    displayField: 'field',
-    multiSelect:true,
+    valueField: 'name',
+    displayField: 'name',
+    multiSelect: true,
     store: Ext.create('Ext.data.Store', {
-        fields: ['field', 'field'],
+        fields: ['name', 'name'],
         data: [{
-            value: 'iteration',
-            name: "iteration"
+            value: '迭代',
+            name: "迭代"
         }]
     })
 })
