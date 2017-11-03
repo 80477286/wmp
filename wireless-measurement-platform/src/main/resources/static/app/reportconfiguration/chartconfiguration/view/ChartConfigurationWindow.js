@@ -6,7 +6,11 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
         'App.reportconfiguration.chartconfiguration.model.AxisModel',
         'App.reportconfiguration.field.AxisTypeComboBox',
         'App.reportconfiguration.field.AxisPositionComboBox',
-        'App.reportconfiguration.field.KpiFieldComboBox'],
+        'App.reportconfiguration.field.KpiFieldComboBox',
+        'App.reportconfiguration.field.SeriesTypeComboBox',
+        'App.reportconfiguration.field.AxisDirectionComboBox',
+        'App.reportconfiguration.field.XAxisComboBox',
+        'App.reportconfiguration.field.YAxisComboBox'],
     alias: 'widget.chart_configuration_editor',
     config: {
         window: {
@@ -155,11 +159,49 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: '类型',
                     dataIndex: 'type',
-                    editor: {}
+                    editor: {
+                        xtype: 'SeriesTypeComboBox'
+                    }
                 }, {
                     text: 'xField',
                     dataIndex: 'xField',
-                    editor: {}
+                    editor: {
+                        xtype: 'XAxisComboBox',
+                        listeners: {
+                            beforequery: function () {
+                                var me = this;
+                                var axis = me.up('').up('').up('').down('GridField');
+                                var records = axis.getStore().getData().items;
+                                var data = new Array();
+                                Ext.Array.each(records, function (record) {
+                                    if (record.get('type') == 'category') {
+                                        var type = record.get('type');
+                                        var position = record.get('position');
+                                        var fields = record.get('fields');
+                                        var title = record.get('title');
+                                        var fieldAliases = record.get('fieldAliases');
+                                        data.push({
+                                            type: type,
+                                            position: position,
+                                            fields: fields,
+                                            title: title,
+                                            fieldAliases: fieldAliases
+                                        });
+                                    }
+                                });
+                                var store = Ext.create('Ext.data.Store', {
+                                    fields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
+                                    data: data
+                                });
+                                me.setStore(store);
+                            },
+                            select: function (combo, record, eOpts) {
+                                var me = combo;
+                                var r = me.getStore().findRecord('fields', record.get('fields'));
+                                me.up('').down('[dataIndex=xFieldAlias]').setValue(r.get('fieldAliases'))
+                            }
+                        }
+                    }
                 }, {
                     text: 'xFieldAlias',
                     dataIndex: 'xFieldAlias',
@@ -167,7 +209,53 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: 'yFields',
                     dataIndex: 'yFields',
-                    editor: {}
+                    editor: {
+                        xtype: 'YAxisComboBox',
+                        listeners: {
+                            beforequery: function () {
+                                var axis = this.up('').up('').up('').down('GridField');
+                                var records = axis.getStore().getData().items;
+                                var data = new Array();
+                                Ext.Array.each(records, function (record) {
+                                    if (record.get('type') == 'numeric') {
+                                        var type = record.get('type');
+                                        var position = record.get('position');
+                                        var fields = record.get('fields');
+                                        var title = record.get('title');
+                                        var fieldAliases = record.get('fieldAliases');
+                                        data.push({
+                                            type: type,
+                                            position: position,
+                                            fields: fields,
+                                            title: title,
+                                            fieldAliases: fieldAliases
+                                        });
+                                    }
+                                });
+                                var store = Ext.create('Ext.data.Store', {
+                                    fields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
+                                    data: data
+                                });
+                                this.setStore(store);
+                            },
+                            select: function (combo, record, eOpts) {
+                                var me = combo;
+                                var array = new Array();
+                                Ext.Array.each(combo.getValue(), function (name) {
+                                    array.push(me.getStore().findRecord('fields', name).get('fieldAliases'));
+                                });
+                                me.up('').down('[dataIndex=yFieldAliases]').setValue(array.join(","))
+                            },
+                            beforedeselect: function (combo, record, index, eOpts) {
+                                var me = combo;
+                                var array = new Array();
+                                Ext.Array.each(combo.getValue(), function (name) {
+                                    array.push(me.getStore().findRecord('fields', name).get('fieldAliases'));
+                                });
+                                me.up('').down('[dataIndex=yFieldAliases]').setValue(array.join(","))
+                            }
+                        }
+                    }
                 }, {
                     text: 'yFieldAliases',
                     dataIndex: 'yFieldAliases',
@@ -175,7 +263,9 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: 'axis',
                     dataIndex: 'axis',
-                    editor: {}
+                    editor: {
+                        xtype: 'AxisDirectionComboBox'
+                    }
                 }]
             }]
         }
