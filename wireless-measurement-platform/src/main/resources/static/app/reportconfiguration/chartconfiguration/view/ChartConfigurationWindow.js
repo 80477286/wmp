@@ -257,7 +257,30 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                     text: 'axis',
                     dataIndex: 'axis',
                     editor: {
-                        xtype: 'AxisDirectionComboBox'
+                        xtype: 'AxisDirectionComboBox',
+                        listeners: {
+                            beforequery: function () {
+                                var me = this;
+                                var axis = this.up('').up('').up('').down('GridField');
+                                var records = axis.getStore().getData().items;
+                                var data = new Array();
+                                Ext.Array.each(records, function (record) {
+                                    var position = record.get('position');
+                                    if (position != 'bottom') {
+                                        if (!Ext.Array.contains(position)) {
+                                            data.push({
+                                                name: position
+                                            });
+                                        }
+                                    }
+                                });
+                                var store = Ext.create('Ext.data.Store', {
+                                    fields: ['name', 'value'],
+                                    data: data
+                                });
+                                me.setStore(store);
+                            }
+                        }
                     }
                 }]
             }]
