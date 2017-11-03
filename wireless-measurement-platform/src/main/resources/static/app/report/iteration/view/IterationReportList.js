@@ -31,7 +31,14 @@ Ext.define('App.report.iteration.view.IterationReportList', {
         model: 'App.iteration.model.IterationModel'
     },
     addHandler: function () {
-        this.editHandler(null, false, {});
+        var project = app.project;
+        this.editHandler(null, false, {
+            project: {id: project.id},
+            projectOrder: {id: project.parent.id},
+            pdu: {id: project.parent.parent.id},
+            du: {id: project.parent.parent.parent.id},
+            bu: {id: project.parent.parent.parent.parent.id},
+        });
     },
     listeners: {
         load: function ($this, records) {
