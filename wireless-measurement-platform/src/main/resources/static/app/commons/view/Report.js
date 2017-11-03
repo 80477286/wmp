@@ -25,13 +25,15 @@ Ext.define('App.commons.view.Report', {
             for (var i = 0; i < datas.length; i++) {
                 var report = datas[i];
                 var reportConfiguration = report.reportConfiguration;
-                var chartConfigurations = report.reportConfiguration.chartConfigurations;
-                var reportDatas = this.initReportData(reportConfiguration.kpiConfigurations, report.data);
+                if (!Ext.isEmpty(reportConfiguration)) {
+                    var chartConfigurations = reportConfiguration.chartConfigurations;
+                    var reportDatas = this.initReportData(reportConfiguration.kpiConfigurations, report.data);
 
-                var grid = this.createGrid(reportConfiguration, reportDatas);
-                for (var j = 0; j < chartConfigurations.length; j++) {
-                    var chartConfiguration = chartConfigurations[j];
-                    this.createChart(grid.getStore(), chartConfiguration)
+                    var grid = this.createGrid(reportConfiguration, reportDatas);
+                    for (var j = 0; j < chartConfigurations.length; j++) {
+                        var chartConfiguration = chartConfigurations[j];
+                        this.createChart(grid.getStore(), chartConfiguration)
+                    }
                 }
             }
         }
@@ -183,33 +185,33 @@ Ext.define('App.commons.view.Report', {
             }
         }
         var opts = {
-                width: '100%',
-                height: 400,
-                innerPadding: '0 40 0 40',
-                legend: {
-                    listeners: {
-                        initialize: function () {
-                            console.log(argumets)
-                        }
-                    },
-                    // type: 'sprite', // 'dom' is another possible value
-                    docked: 'bottom',
-                    store: {}
+            width: '100%',
+            height: 400,
+            innerPadding: '0 40 0 40',
+            legend: {
+                listeners: {
+                    initialize: function () {
+                        console.log(argumets)
+                    }
                 },
-                insetPadding: Ext.isEmpty(chartConfiguration.title) ? 0 : '50 10 0 10',
-                sprites: Ext.isEmpty(chartConfiguration.title) ? [] : [{
-                    type: 'text',
-                    text: chartConfiguration.title,
-                    fontSize: 22,
-                    width: 100,
-                    height: 30,
-                    x: 40, // the sprite x position
-                    y: 20 // the sprite y position
-                }],
-                store: store,
-                axes: axes,
-                series: series
-            }
+                // type: 'sprite', // 'dom' is another possible value
+                docked: 'bottom',
+                store: {}
+            },
+            insetPadding: Ext.isEmpty(chartConfiguration.title) ? 0 : '50 10 0 10',
+            sprites: Ext.isEmpty(chartConfiguration.title) ? [] : [{
+                type: 'text',
+                text: chartConfiguration.title,
+                fontSize: 22,
+                width: 100,
+                height: 30,
+                x: 40, // the sprite x position
+                y: 20 // the sprite y position
+            }],
+            store: store,
+            axes: axes,
+            series: series
+        }
         var chart = Ext.create('Ext.chart.CartesianChart', opts)
         this.add(chart)
     }

@@ -9,5 +9,7 @@ import java.util.Map;
 
 public interface IReportService extends IBaseService<Report, String> {
 
-    Map<String, Object> queryReport(final Map<String, Object> params, final Pageable pageable);
+    Map<String, Object> queryIterationReport(String projectId, String reportConfigurationType, final Pageable pageable);
+
+    Map<String, Object> queryReport(Map<String, Object> params, Pageable pageable);
 }

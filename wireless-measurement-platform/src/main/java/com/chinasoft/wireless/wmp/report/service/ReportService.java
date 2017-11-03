@@ -34,24 +34,38 @@ public class ReportService extends BaseService<Report, String> implements IRepor
     }
 
     /**
-     * 传入参数列表：
-     * projectId
-     * groupName
-     * reportType
-     *
-     * @param params
+     * @param projectId
+     * @param reportConfigurationType
      * @param pageable
      * @return
      */
     @Override
-    public Map<String, Object> queryReport(Map<String, Object> params, Pageable pageable) {
+    public Map<String, Object> queryIterationReport(String projectId, String reportConfigurationType, final Pageable pageable) {
+        Map<String, Object> params = new HashMap<String, Object>(0);
+        params.put("project.id", projectId);
+        params.put("reportConfigurationType", reportConfigurationType);
+        Map<String, Object> data = queryReport(params, pageable);
+
+        params = new HashMap<String, Object>(0);
+        params.put("projectId_eq", projectId);
+        params.put("type_eq", reportConfigurationType);
+        Page<ReportConfiguration> result = reportConfigurationService.query(params, null);
+        if (result.getContent().isEmpty()) {
+            params.remove("projectId_eq");
+            result = reportConfigurationService.query(params, null);
+        }
+        if (!result.getContent().isEmpty()) {
+            data.put("reportConfiguration", result.getContent().get(0));
+        }
+        data.put("success", true);
+        return data;
+    }
+
+    @Override
+    public Map<String, Object> queryReport(Map<String, Object> params, final Pageable pageable) {
         Map<String, Object> result = new HashMap<String, Object>(0);
-
-
-        Page<Report> page = query(params, pageable);
-
+        Page<Report> page = query(params, null);
         List<Report> reports = page.getContent();
-
         if (reports != null && reports.size() > 0) {
             List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>(0);
             for (Report report : reports) {
@@ -64,7 +78,6 @@ public class ReportService extends BaseService<Report, String> implements IRepor
             result.put("data", datas);
             result.put("total", page.getSize());
         }
-        result.put("success", true);
         return result;
     }
 }

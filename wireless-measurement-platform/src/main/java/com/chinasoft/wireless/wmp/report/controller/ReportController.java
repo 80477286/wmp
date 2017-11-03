@@ -29,9 +29,9 @@ public class ReportController extends BaseController<Report, String> {
     }
 
     @JSON()
-    @RequestMapping(value = "/queryReport")
-    public Map<String, Object> queryReport(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
-        return getService().queryReport(params, pageable);
+    @RequestMapping(value = "/query_iteration_report")
+    public Map<String, Object> queryIterationReport(String projectId, String reportConfigurationType, @EntityParam PageParam pageable) {
+        return getService().queryIterationReport(projectId, reportConfigurationType, pageable);
     }
 
     @Override
