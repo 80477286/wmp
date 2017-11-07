@@ -54,6 +54,67 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 roweditable: true,
                 model: 'App.reportconfiguration.chartconfiguration.model.AxisModel',
                 submitFields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
+                getValue: function () {
+                    var me = this;
+                    if (me.submitValue === false) {
+                        return null;
+                    }
+                    var data = null;
+                    if (!me.disabled) {
+                        var rs = me.getRecords();
+                        if (rs.length > 0) {
+                            data = {};
+                            var sfs = me.getSubmitFields();
+                            if (!Ext.isEmpty(sfs) && sfs.length > 0) {
+                                for (var i = 0; i < rs.length; i++) {
+                                    var record = rs[i].data;
+                                    for (var j = 0; j < sfs.length; j++) {
+                                        var sf = sfs[j];
+                                        if (!Ext.isObject(sf)) {
+                                            sf = {
+                                                field: sf,
+                                                column: sf,
+                                                valueList: false
+                                            };
+                                        }
+                                        if (sfs.length > 1) {
+                                            sf.valueList = false;
+                                        }
+                                        var values = this._getValuesBySubmitField(record,
+                                            sf, i);
+                                        var fieldAliases = values.fieldAliases;
+                                        if (fieldAliases) {
+                                            var paramName = sf.valueList == true ? (me
+                                                .getName()) : (me.getName() + '[' + i
+                                                + '].' + 'fieldAliases');
+                                            if (Ext.isEmpty(data[paramName])) {
+                                                data[paramName] = [];
+                                            }
+                                            if (Array.isArray(fieldAliases)) {
+                                                data[paramName].push(fieldAliases.join(","));
+                                            } else {
+                                                data[paramName].push(fieldAliases);
+                                            }
+                                        } else {
+                                            for (var key in values) {
+                                                var paramName = sf.valueList == true ? (me
+                                                    .getName()) : (me.getName() + '[' + i
+                                                    + '].' + key);
+                                                if (Ext.isEmpty(data[paramName])) {
+                                                    data[paramName] = [];
+                                                }
+                                                data[paramName].push(values[key]);
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                Ext.log.warn('未配置提交字段列表属性:submitFields')
+                            }
+                        }
+                    }
+                    return data;
+                },
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
@@ -119,6 +180,20 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var form = me.up('window').down('panel');
                                 me.setStore(form.kpiStore);
+                                var array = new Array();
+                                var values = me.getValue();
+                                Ext.Array.each(values, function (value) {
+                                    while (true) {
+                                        var index = value.indexOf(",");
+                                        if (index == -1) {
+                                            array.push(value);
+                                            break;
+                                        }
+                                        array.push(value.substring(0, index));
+                                        value = value.substring(index + 1, value.length);
+                                    }
+                                })
+                                me.setValue(array);
                             },
                             beforeselect: function (combo, record, index, eOpts) {
                                 var me = this;
@@ -134,7 +209,11 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var value = combo.getValue();
                                 Ext.Array.remove(value, record.get('name'));
-                                me.up('').down('[dataIndex=fields]').setValue(value.join(","));
+                                var array = new Array();
+                                Ext.Array.each(value, function (name) {
+                                    array.push(me.getStore().findRecord('name', name).get('field'))
+                                });
+                                me.up('').down('[dataIndex=fields]').setValue(array.join(","));
                             }
                         }
                     }
@@ -264,12 +343,15 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var axis = this.up('').up('').up('').down('GridField');
                                 var records = axis.getStore().getData().items;
                                 var data = new Array();
+                                var filter = new Array();
                                 Ext.Array.each(records, function (record) {
                                     var position = record.get('position');
                                     if (position != 'bottom') {
-                                        if (!Ext.Array.contains(position)) {
+                                        if (!Ext.Array.contains(filter, position)) {
+                                            filter.push(position);
                                             data.push({
-                                                name: position
+                                                name: position,
+                                                value: position
                                             });
                                         }
                                     }
