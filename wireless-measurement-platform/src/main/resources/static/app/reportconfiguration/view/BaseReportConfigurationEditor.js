@@ -1,9 +1,17 @@
-Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
+Ext.define('App.reportconfiguration.view.BaseReportConfigurationEditor', {
     extend: 'Extend.form.Panel',
     requires: ['App.reportconfiguration.kpiconfiguration.view.KpiConfigurationList', 'App.reportconfiguration.chartconfiguration.view.ChartConfigurationList', 'App.reportconfiguration.kpiconfiguration.model.KpiConfigurationModel', 'App.reportconfiguration.kpiconfiguration.field.KpiDataTypeCombobox'],
-    alias: ['widget.ReportConfigurationForm'],
+    alias: ['widget.BaseReportConfigurationEditor'],
+    url: '/report_configuration/save',
     config: {
         entity: 'reportConfiguration'
+    },
+    load: function (opts) {
+        this.lastOpts = opts;
+        this.callParent(arguments);
+    },
+    reload: function () {
+        this.load(this.lastOpts);
     },
     defaults: {
         columnWidth: 1
@@ -16,12 +24,14 @@ Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
         xtype: 'textfield',
         name: 'name',
         columnWidth: 0.5,
-        fieldLabel: '名称'
+        fieldLabel: '名称',
+        readOnly: true
     }, {
         xtype: 'textfield',
         name: 'type',
         columnWidth: 0.5,
-        fieldLabel: '类型'
+        fieldLabel: '类型',
+        readOnly: true
     }, {
         xtype: 'textfield',
         name: 'description',
@@ -121,7 +131,7 @@ Ext.define('App.reportconfiguration.view.ReportConfigurationForm', {
                             chartConfiguration: $this,
                             record: record,
                             window: {height: 600, width: 800},
-                            kpiStore:$this.up('').up('').down('GridField').getStore()
+                            kpiStore: $this.up('').up('').down('GridField').getStore()
                         });
                         form.loadRecord(record);
                         form.show();

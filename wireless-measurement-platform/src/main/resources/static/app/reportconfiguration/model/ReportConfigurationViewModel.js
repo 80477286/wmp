@@ -48,7 +48,7 @@ Ext.define('App.reportconfiguration.model.ReportConfigurationViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/report_configuration/query',
+                url: '/report_configuration/query_simple',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

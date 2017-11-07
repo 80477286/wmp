@@ -7,7 +7,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
         tbar: {
             quickCreate: {
                 hidden: true
-            }
+            }, add: {hidden: true}, remove: {hidden: true}
         }
     },
     bind: {
@@ -15,8 +15,9 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
         columns: '{columns}',
         search: '{search}'
     },
+    extraParams: {'params.type_like': '迭代度量-%'},
     editor: {
-        formClass:'App.reportconfiguration.view.ReportConfigurationEditorWindow',
+        formClass: 'App.reportconfiguration.view.ReportConfigurationEditorWindow',
         save: '/report_configuration/save',
         get: '/report_configuration/get_by_id',
         del: '/report_configuration/deletes'

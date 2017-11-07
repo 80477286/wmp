@@ -1,40 +1,21 @@
 Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.QaReportConfigurationFrame'],
-    requires: ["App.reportconfiguration.view.ReportConfigurationForm", "App.reportconfiguration.view.ReportConfigurationList"],
+    requires: ['App.reportconfiguration.view.ReportConfigurationEditorPanel', "App.reportconfiguration.view.ReportConfigurationList"],
     title: '报表配置',
     defaults: {},
     tabitems: [
         {
-            xtype: 'ReportConfigurationForm',
+            xtype: 'ReportConfigurationEditorPanel',
             title: 'BU报表配置 ',
             listeners: {
                 afterrender: function () {
-                    this.load({url: '/report_configuration/get_by_id', params: {id: "INTERATION1"}});
+                    this.load({url: '/report_configuration/get_by_id', params: {id: "BU"}});
                 }
-            },
-            tbar: ['->', {
-                xtype: 'button',
-                text: '保存',
-                handler: function () {
-                    var me = this;
-                    var form = me.up('ReportConfigurationForm');
-                    form.submit({
-                        url: '/report_configuration/save',
-                        method: 'POST',
-                        success: function () {
-                            Ext.MessageBox.alert('提示', '保存成功');
-                        },
-                        failure: function () {
-                            Ext.MessageBox.alert('提示', '保存失败');
-                        }
-                    });
-
-                }
-            }]
+            }
         },
         {
-            xtype: 'ReportConfigurationForm',
+            xtype: 'ReportConfigurationEditorPanel',
             title: 'DU报表配置 ',
             listeners: {
                 afterrender: function () {
@@ -43,7 +24,7 @@ Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
             }
         },
         {
-            xtype: 'ReportConfigurationForm',
+            xtype: 'ReportConfigurationEditorPanel',
             title: 'PDU报表配置 ',
             listeners: {
                 afterrender: function () {
@@ -52,7 +33,7 @@ Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
             }
         },
         {
-            xtype: 'ReportConfigurationForm',
+            xtype: 'ReportConfigurationEditorPanel',
             title: 'PO报表配置 ',
             listeners: {
                 afterrender: function () {
@@ -61,7 +42,7 @@ Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
             }
         },
         {
-            xtype: 'ReportConfigurationForm',
+            xtype: 'ReportConfigurationEditorPanel',
             title: '项目报表配置 ',
             listeners: {
                 afterrender: function () {

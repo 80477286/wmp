@@ -1,5 +1,5 @@
 Ext.define('App.reportconfiguration.view.ReportConfigurationEditorWindow', {
-    extend: 'App.reportconfiguration.view.ReportConfigurationForm',
+    extend: 'App.reportconfiguration.view.BaseReportConfigurationEditor',
     alias: 'widget.FormWindow',
     config: {
         window: {
@@ -61,6 +61,12 @@ Ext.define('App.reportconfiguration.view.ReportConfigurationEditorWindow', {
                     }
                 }
             }
+        }
+    },
+    listeners: {
+        save: function () {
+            this.window.form.resetBySave=false;
+            this.close();
         }
     },
     createWindow: function (options) {

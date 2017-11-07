@@ -61,7 +61,7 @@ public class ReportConfigurationController extends BaseController<ReportConfigur
 
     @JSON(excludeProperties = {"data.*\\.kpiConfigurations", "data.*\\.chartConfigurations"})
     @RequestMapping(value = "/query_simple")
-    public Page<ReportConfiguration> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
+    public Page<ReportConfiguration> querySimple(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return getService().query(params, pageable);
     }
 }
