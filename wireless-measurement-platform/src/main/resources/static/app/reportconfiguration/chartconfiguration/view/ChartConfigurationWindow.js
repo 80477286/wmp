@@ -134,7 +134,11 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var value = combo.getValue();
                                 Ext.Array.remove(value, record.get('name'));
-                                me.up('').down('[dataIndex=fields]').setValue(value.join(","));
+                                var array = new Array();
+                                Ext.Array.each(value, function (name) {
+                                    array.push(me.getStore().findRecord('name', name).get('field'))
+                                });
+                                me.up('').down('[dataIndex=fields]').setValue(array.join(","));
                             }
                         }
                     }
