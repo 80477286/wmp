@@ -4,7 +4,6 @@ Ext.define('App.reportconfiguration.field.YAxisComboBox', {
     editable: false,
     queryMode: 'local',
     valueField: 'fieldAliases',
-    multiSelect: true,
     displayField: 'fieldAliases',
     store: Ext.create('Ext.data.Store', {
         fields: ['fieldAliases', 'fieldAliases'],
