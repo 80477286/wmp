@@ -3,7 +3,6 @@ Ext.define('App.report.project.view.ProjectReportList', {
     alias: 'widget.ProjectReportList',
     requires: ['App.report.project.model.ProjectReportViewModel'],
     viewModel: 'ProjectReportViewModel',
-    title: '项目度量报表',
     config: {
         tbar: {
             quickCreate: {
@@ -19,7 +18,12 @@ Ext.define('App.report.project.view.ProjectReportList', {
         columns: '{columns}',
         search: '{search}'
     },
-    extraParams: {'params.reportConfiguration.type_eq': '项目度量'},
+    extraParams: function () {
+        return {
+            'params.reportConfigurationType_eq': '项目度量',
+            'params.project.id_eq': app.project.id
+        }
+    },
     editor: {
         formClazz: 'App.report.project.view.ProjectReportEditor',
         save: '/report/save',

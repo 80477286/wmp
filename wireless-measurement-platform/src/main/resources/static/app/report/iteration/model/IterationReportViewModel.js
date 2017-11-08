@@ -18,9 +18,6 @@ Ext.define('App.report.iteration.model.IterationReportViewModel', {
                 return '';
             }
         }, {
-            header: '分组',
-            dataIndex: 'groupName'
-        }, {
             header: '创建人',
             dataIndex: 'creator'
         }, {

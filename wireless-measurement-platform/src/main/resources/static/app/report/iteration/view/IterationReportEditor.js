@@ -22,9 +22,9 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
         xtype: 'ReportConfigurationComboBox',
         name: 'reportConfigurationType',
         fieldLabel: '度量类型',
-        readOnly: true,
         displayField: 'type',
         valueField: 'type',
+        readOnly: true,
         submitValues: false, listeners: {
             select: function ($this, record, eOpts) {
                 this.up('IterationReportEditor').initKips(record.get('type'));
@@ -88,11 +88,8 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
 
         if (Ext.isEmpty(record.get('id')) || record.get('id').indexOf('-') > -1) {
             me.down('IterationComboBox').setReadOnly(false);
-            me.down('ReportConfigurationComboBox').setReadOnly(false);
-            me.down('IterationGroupComboBox').setReadOnly(false);
-        } else {
-            me.initKips(record.get('reportConfigurationType'));
         }
+        me.initKips(record.get('reportConfigurationType'));
     },
     initKips: function (type) {
         var me = this;
