@@ -129,6 +129,8 @@ Ext.define('App.project.view.BaseProjectTree', {
         var me = this;
         var url = "organization/get_simple_by_id";
         if (record.get('type') == 'po') {
+            url = "projectorder/get_simple_by_id";
+        } else if (record.get('type') == 'project') {
             url = "project/get_simple_by_id";
         }
         var opts = {

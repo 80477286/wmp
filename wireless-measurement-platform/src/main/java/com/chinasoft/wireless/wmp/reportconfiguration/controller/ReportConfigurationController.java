@@ -64,4 +64,27 @@ public class ReportConfigurationController extends BaseController<ReportConfigur
     public Page<ReportConfiguration> querySimple(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return getService().query(params, pageable);
     }
+
+
+    @JSON(excludeProperties = {"data.*\\.kpiConfigurations", "data.*\\.chartConfigurations"})
+    @RequestMapping(value = "/query_simple_by_project")
+    public Page<ReportConfiguration> querySimpleByProject(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
+        Page<ReportConfiguration> commons = getService().query(params, pageable);
+        if (params.containsKey("projectId")) {
+            params.remove("projectId");
+            if (commons.hasContent()) {
+                for (ReportConfiguration rc : commons.getContent()) {
+                    params.put("id_ne", rc.getId());
+                }
+            }
+            Page<ReportConfiguration> all = getService().query(params, pageable);
+
+            if (commons.hasContent()) {
+                all.getContent().addAll(commons.getContent());
+            }
+            return all;
+        } else {
+            return commons;
+        }
+    }
 }
