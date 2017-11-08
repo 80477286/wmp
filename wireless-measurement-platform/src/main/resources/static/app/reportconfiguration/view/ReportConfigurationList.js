@@ -16,7 +16,6 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
         columns: '{columns}',
         search: '{search}'
     },
-    extraParams: {'params.type_like': '迭代度量-%'},
     editor: {
         formClass: 'App.reportconfiguration.view.ReportConfigurationEditorWindow',
         save: '/report_configuration/save',

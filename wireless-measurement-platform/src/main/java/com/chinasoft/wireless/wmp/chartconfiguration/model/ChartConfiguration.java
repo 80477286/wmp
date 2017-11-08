@@ -26,11 +26,11 @@ public class ChartConfiguration extends IdentifyEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "chart_configuration_id")
-    private List<Axis> axes = new ArrayList<>();
+    private List<Axis> axes = new ArrayList<>(0);
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "chart_configuration_id")
-    private List<Series> series = new ArrayList<>();
+    private List<Series> series = new ArrayList<>(0);
 
     public String getTitle() {
         return title;

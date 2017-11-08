@@ -4,6 +4,7 @@ import com.chinasoft.wireless.wmp.chartconfiguration.model.ChartConfiguration;
 import com.mouse.web.supports.model.BaseEntity;
 import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.internal.util.SerializationHelper;
 
 import javax.persistence.*;
 import javax.persistence.CascadeType;
@@ -16,7 +17,7 @@ import java.util.List;
 @DynamicUpdate(true)
 @DynamicInsert(true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "[report_configuration]", uniqueConstraints = {@UniqueConstraint(columnNames = {"type", "projectId"}), @UniqueConstraint(columnNames = {"name"})})
+@Table(name = "[report_configuration]", uniqueConstraints = {@UniqueConstraint(columnNames = {"type", "projectId"})})
 public class ReportConfiguration extends BaseEntity {
 
     @Column(nullable = false, length = 128)
@@ -34,11 +35,11 @@ public class ReportConfiguration extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_configuration_id")
-    private List<KpiConfiguration> kpiConfigurations = new ArrayList<>();
+    private List<KpiConfiguration> kpiConfigurations = new ArrayList<>(0);
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "report_configuration_id")
-    private List<ChartConfiguration> chartConfigurations = new ArrayList<>();
+    private List<ChartConfiguration> chartConfigurations = new ArrayList<>(0);
 
     public String getType() {
         return type;

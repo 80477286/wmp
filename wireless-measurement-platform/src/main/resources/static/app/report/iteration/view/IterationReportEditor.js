@@ -94,10 +94,10 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
     initKips: function (type) {
         var me = this;
         Ext.Ajax.request({
-            url: 'report_configuration/project_report_configuration',
+            url: 'report_configuration/get_report_configuration',
             params: {
-                'params.type_eq': type,
-                'params.projectId_eq': app.project.id
+                'type': type,
+                'projectId': app.project.id
             },
             success: function (resp) {
                 var reportConfiguration = resp.result.data;
