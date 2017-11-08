@@ -3,6 +3,7 @@ Ext.define('App.report.iteration.view.IterationReportList', {
     alias: 'widget.IterationReportList',
     requires: ['App.report.iteration.model.IterationReportViewModel'],
     viewModel: 'IterationReportViewModel',
+    border:false,
     config: {
         tbar: {
             quickCreate: {

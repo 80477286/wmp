@@ -3,6 +3,7 @@ Ext.define("App.reportconfiguration.view.ReportConfigurationList", {
     alias: 'widget.ReportConfigurationList',
     requires: ['App.reportconfiguration.model.ReportConfigurationViewModel'],
     viewModel: 'ReportConfigurationViewModel',
+    border:false,
     config: {
         tbar: {
             quickCreate: {

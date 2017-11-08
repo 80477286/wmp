@@ -83,11 +83,16 @@ height:46px;
 }
 
 .x-breadcrumb-navbar {
-    background-color: #222;
+    background-color: #333;
 }
 
 .x-breadcrumb-btn-navbar {
     height: 32px;
+}
+
+/*树缩进减少,源来为18*/
+.x-tree-elbow-img.x-tree-elbow-empty{
+    width:10px;
 }
 
 .x-breadcrumb-btn-navbar > .x-btn-wrap-plain-toolbar-small > .x-btn-button-plain-toolbar-small > .x-btn-inner-plain-toolbar-small {

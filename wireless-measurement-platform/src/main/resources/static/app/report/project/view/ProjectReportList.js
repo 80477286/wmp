@@ -3,6 +3,7 @@ Ext.define('App.report.project.view.ProjectReportList', {
     alias: 'widget.ProjectReportList',
     requires: ['App.report.project.model.ProjectReportViewModel'],
     viewModel: 'ProjectReportViewModel',
+    border:false,
     config: {
         tbar: {
             quickCreate: {
