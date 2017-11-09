@@ -79,7 +79,7 @@ Ext.define('App.reportconfiguration.model.ReportConfigurationViewModel', {
         QueryByProject: {
             autoLoad: false,
             model: 'App.reportconfiguration.model.ReportConfigurationModel',
-            pageSize: 20,
+            pageSize: 999,
             remoteSort: true,
             sorters: [{
                 property: 'cdt',

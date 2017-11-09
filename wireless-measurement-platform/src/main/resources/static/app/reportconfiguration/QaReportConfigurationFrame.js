@@ -1,7 +1,7 @@
 Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.QaReportConfigurationFrame'],
-    requires: ['App.reportconfiguration.view.ReportConfigurationEditorPanel', "App.reportconfiguration.view.ReportConfigurationList"],
+    requires: ['App.reportconfiguration.view.ReportConfigurationEditorPanel', "App.reportconfiguration.view.CommonReportConfigurationList"],
     title: '报表配置',
     defaults: {},
     tabitems: [
@@ -51,7 +51,7 @@ Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
             }
         },
         {
-            xtype: 'ReportConfigurationList',
+            xtype: 'CommonReportConfigurationList',
             title: '迭代报表 ',
             extraParams: {'params.type_like': '迭代度量-%'}
         }
