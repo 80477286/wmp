@@ -28,7 +28,7 @@ Ext.define('App.report.iteration.view.IterationReportList', {
         get: '/report/get_by_id',
         del: '/report/deletes',
         dataType: 'Report',
-        model: 'App.iteration.model.IterationModel'
+        model:'App.report.model.ReportModel'
     },
     addHandler: function () {
         var project = app.project;

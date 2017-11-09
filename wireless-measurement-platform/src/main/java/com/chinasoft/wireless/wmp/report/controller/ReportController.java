@@ -40,6 +40,12 @@ public class ReportController extends BaseController<Report, String> {
         return getService().queryIterationReport(projectId, reportConfigurationType, pageable);
     }
 
+    @JSON()
+    @RequestMapping(value = "/query_report")
+    public Map<String, Object> queryReport(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
+        return getService().queryReport(params, pageable);
+    }
+
     @Override
     @RequestMapping(value = "/get_by_id")
 

@@ -3,13 +3,11 @@ Ext.define('App.report.project.view.ProjectReportList', {
     alias: 'widget.ProjectReportList',
     requires: ['App.report.project.model.ProjectReportViewModel'],
     viewModel: 'ProjectReportViewModel',
-    border:false,
+    border: false,
     config: {
+        reportConfigurationType: '项目度量',
         tbar: {
             quickCreate: {
-                hidden: true
-            },
-            add: {
                 hidden: true
             }
         }
@@ -21,7 +19,7 @@ Ext.define('App.report.project.view.ProjectReportList', {
     },
     extraParams: function () {
         return {
-            'params.reportConfigurationType_eq': '项目度量',
+            'params.reportConfigurationType_eq': this.reportConfigurationType,
             'params.project.id_eq': app.project.id
         }
     },
@@ -30,6 +28,18 @@ Ext.define('App.report.project.view.ProjectReportList', {
         save: '/report/save',
         get: '/report/get_by_id',
         del: '/report/deletes',
-        dataType: 'Report'
+        dataType: 'Report',
+        model: 'App.report.model.ReportModel'
+    },
+    addHandler: function () {
+        var project = app.project;
+        this.editHandler(null, false, {
+            project: {id: project.id},
+            projectOrder: {id: project.parent.id},
+            pdu: {id: project.parent.parent.id},
+            du: {id: project.parent.parent.parent.id},
+            bu: {id: project.parent.parent.parent.parent.id},
+            reportConfigurationType: this.reportConfigurationType
+        });
     }
 });
