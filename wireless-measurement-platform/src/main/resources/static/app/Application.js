@@ -165,6 +165,19 @@ Ext.application({
                     var error = '请求超时：' + url;
                     Extend.Msg.error('错误(status=' + status + ')', error);
                 }
+                else if (status === 401) {
+                    var error = '用户未登录或长时未使用超时，将为您重新加载页面。';
+                    var cfg = {
+                        title: '错误(status=' + status + ')',
+                        icon: Extend.Msg.ERROR,
+                        message: error,
+                        buttons: Extend.Msg.OK,
+                        callback: function () {
+                            location.reload();
+                        }
+                    }
+                    Extend.Msg.show(cfg);
+                }
                 else if (status === 404) {
                     var error = '请求地址未找到：' + url;
                     Extend.Msg

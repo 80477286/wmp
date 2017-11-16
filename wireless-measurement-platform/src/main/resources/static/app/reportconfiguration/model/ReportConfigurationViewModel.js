@@ -31,7 +31,8 @@ Ext.define('App.reportconfiguration.model.ReportConfigurationViewModel', {
             dataIndex: 'description'
         }, {
             header: '公共模板',
-            dataIndex: 'public'
+            dataIndex: 'public',
+            sortable: false
         }, {
             header: '创建者',
             dataIndex: 'creator'

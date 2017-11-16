@@ -93,7 +93,7 @@ public class ReportConfigurationController extends BaseController<ReportConfigur
                     params.put("projectId_isnull", "");
                 }
             }
-            Page<ReportConfiguration> all = getService().query(params, null);
+            Page<ReportConfiguration> all = getService().query(params, pageable);
 
             if (all.hasContent()) {
                 for (ReportConfiguration rc : all.getContent()) {

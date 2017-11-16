@@ -162,7 +162,7 @@
     <orderEntry type="library" name="Maven: org.webjars:extjs:6.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.mouse.web:web-base:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.11" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.7" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.7" level="project" />
     <orderEntry type="library" name="Maven: org.apache.struts:struts2-json-plugin:2.3.12" level="project" />
     <orderEntry type="library" name="Maven: org.apache.struts:struts2-core:2.3.12" level="project" />

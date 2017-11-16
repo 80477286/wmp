@@ -18,8 +18,8 @@ security:
       resources-cachetime: 10
 logging:
   level:
-    org.springframework.security: DEBUG
-    org.springframework.web: DEBUG
+    org.springframework.security: WARN
+    org.springframework.web: WARN
 eureka:
   instance:
     preferIpAddress: true
