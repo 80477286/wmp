@@ -121,7 +121,8 @@ Ext.define('App.reportconfiguration.view.BaseReportConfigurationEditor', {
                 addHandler: function () {
                     var me = this;
                     var form = Ext.create('App.reportconfiguration.chartconfiguration.view.ChartConfigurationWindow', {
-                        chartConfiguration: me, window: {height: 600, width: 800}
+                        chartConfiguration: me, window: {height: 600, width: 800},
+                        kpiStore: me.up('').up('').down('GridField').getStore()
                     });
                     form.show();
                 },
