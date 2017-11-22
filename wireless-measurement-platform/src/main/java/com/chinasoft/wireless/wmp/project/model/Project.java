@@ -45,6 +45,17 @@ public class Project extends BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "ProjectOrder_id")
     private ProjectOrder projectOrder;
+    private String projectCode;
+    private String projectType;
+    private String implementationStatus;
+    private String businessCategory;
+    private String isInternetProject;
+    private String businessSubclasses;
+    private String size;
+    private String qa;
+    private String poProportion;
+    private String projectWorkload;
+    private String billingType;
 
 
     @OneToMany(mappedBy = "project")
@@ -125,5 +136,93 @@ public class Project extends BaseEntity {
 
     public void setCurrentManaged(Boolean currentManaged) {
         this.currentManaged = currentManaged;
+    }
+
+    public String getProjectCode() {
+        return projectCode;
+    }
+
+    public void setProjectCode(String projectCode) {
+        this.projectCode = projectCode;
+    }
+
+    public String getProjectType() {
+        return projectType;
+    }
+
+    public void setProjectType(String projectType) {
+        this.projectType = projectType;
+    }
+
+    public String getImplementationStatus() {
+        return implementationStatus;
+    }
+
+    public void setImplementationStatus(String implementationStatus) {
+        this.implementationStatus = implementationStatus;
+    }
+
+    public String getBusinessCategory() {
+        return businessCategory;
+    }
+
+    public void setBusinessCategory(String businessCategory) {
+        this.businessCategory = businessCategory;
+    }
+
+    public String getIsInternetProject() {
+        return isInternetProject;
+    }
+
+    public void setIsInternetProject(String isInternetProject) {
+        this.isInternetProject = isInternetProject;
+    }
+
+    public String getBusinessSubclasses() {
+        return businessSubclasses;
+    }
+
+    public void setBusinessSubclasses(String businessSubclasses) {
+        this.businessSubclasses = businessSubclasses;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getQa() {
+        return qa;
+    }
+
+    public void setQa(String qa) {
+        this.qa = qa;
+    }
+
+    public String getPoProportion() {
+        return poProportion;
+    }
+
+    public void setPoProportion(String poProportion) {
+        this.poProportion = poProportion;
+    }
+
+    public String getProjectWorkload() {
+        return projectWorkload;
+    }
+
+    public void setProjectWorkload(String projectWorkload) {
+        this.projectWorkload = projectWorkload;
+    }
+
+    public String getBillingType() {
+        return billingType;
+    }
+
+    public void setBillingType(String billingType) {
+        this.billingType = billingType;
     }
 }

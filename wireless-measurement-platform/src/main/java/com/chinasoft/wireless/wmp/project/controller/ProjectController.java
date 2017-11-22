@@ -3,9 +3,11 @@ package com.chinasoft.wireless.wmp.project.controller;
 import com.chinasoft.wireless.wmp.project.model.Project;
 import com.chinasoft.wireless.wmp.project.service.IProjectService;
 import com.mouse.web.supports.jpa.controller.BaseController;
+import com.mouse.web.supports.mvc.bind.annotation.EntityParam;
 import com.mouse.web.supports.mvc.bind.annotation.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,15 @@ public class ProjectController extends BaseController<Project, String> {
         return projectService;
     }
 
+    @JSON()
+    @RequestMapping(value = "/save")
+    public Project save(@EntityParam Project entity) {
+        if (entity.getCreator() == null) {
+            entity.setCreator(SecurityContextHolder.getContext().getAuthentication().getName());
+        }
+        Project result = getService().save(entity);
+        return result;
+    }
 
     @JSON(excludeProperties = {"data.*\\.iterations", "data.*\\.parent"})
     @RequestMapping(value = "/query_by_po")

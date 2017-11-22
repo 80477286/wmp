@@ -8,13 +8,13 @@ Ext.define("App.project.view.ProjectEditorWindow", {
     listeners: {},
     config: {
         window: {
-            height: 600,
-            width: 800
+            height: 500,
+            width: 1000
         }
     },
     defaults: {
         labelWidth: 110,
-        columnWidth: 1
+        columnWidth: 0.5
     },
     items: [{
         xtype: 'hidden',
@@ -34,6 +34,100 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         name: 'name',
         allowBlank: false,
         blankText: '项目名称为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '项目类型',
+        name: 'projectType',
+        allowBlank: false,
+        blankText: '项目类型为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '项目编码',
+        name: 'projectCode',
+        allowBlank: false,
+        blankText: '项目名称为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'PO名称',
+        name: 'projectOrder.name',
+        readOnly: true,
+        maxLength: 128
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '业务大类',
+        name: 'businessCategory',
+        allowBlank: false,
+        blankText: '业务大类为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '业务小类',
+        name: 'businessSubclasses',
+        allowBlank: false,
+        blankText: '业务小类为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '是否上网项目',
+        name: 'isInternetProject',
+        allowBlank: false,
+        blankText: '是否上网项目为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '规模(KLOC)',
+        name: 'size',
+        allowBlank: false,
+        blankText: '规模(KLOC)为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'QA',
+        name: 'qa',
+        allowBlank: false,
+        blankText: 'QA为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'PO占比',
+        name: 'poProportion',
+        allowBlank: false,
+        blankText: 'PO占比为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '项目工作量',
+        name: 'projectWorkload',
+        allowBlank: false,
+        blankText: '项目工作量为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '计费类型',
+        name: 'billingType',
+        allowBlank: false,
+        blankText: '计费类型为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '实施状态',
+        name: 'implementationStatus',
+        allowBlank: false,
+        blankText: '实施状态为必填字段，不能为空！',
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
@@ -59,7 +153,7 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         fieldLabel: '项目经理',
         name: 'projectManager',
         allowBlank: false,
-        valueField:'huaweiNumber',
+        valueField: 'huaweiNumber',
         blankText: '中软项目经理为必填字段，不能为空！',
         beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
         extraParams: {
@@ -68,6 +162,7 @@ Ext.define("App.project.view.ProjectEditorWindow", {
     }, {
         xtype: 'textarea',
         fieldLabel: '描述',
-        name: 'description'
+        name: 'description',
+        columnWidth: 1
     }]
 })
