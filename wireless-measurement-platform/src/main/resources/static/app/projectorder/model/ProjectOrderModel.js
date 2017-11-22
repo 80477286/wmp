@@ -17,6 +17,15 @@ Ext.define('App.projectorder.model.ProjectOrderModel', {
             var val = r.get('parent');
             return val;
         }
+    }, {
+        name: 'startTime',
+        type: 'date'
+    }, {
+        name: 'endTime',
+        type: 'date'
+    }, {
+        name: 'planStartTime',
+        type: 'date'
     }],
     proxy: {
         type: 'ajax',

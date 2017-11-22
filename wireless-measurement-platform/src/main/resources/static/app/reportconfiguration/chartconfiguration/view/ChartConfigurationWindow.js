@@ -299,7 +299,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                     var position = record.get('position');
                                     var fields = record.get('fields');
                                     var title = record.get('title');
-                                    var fieldAliases = record.get('fieldAliases');
+                                    var fieldAliases = record.get('fieldAliases').join(",");
                                     data.push({
                                         type: type,
                                         position: position,
