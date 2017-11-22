@@ -68,6 +68,19 @@ Ext.define('App.metric.project.view.IterationReport', {
             }
         },
         {
+            title: '转测试',
+            xtype: 'Report',
+            listeners: {
+                afterrender: function () {
+                    var me = this;
+                    me.load('report/query_iteration_report', {
+                        'projectId': me.up().node.data.id,
+                        'reportConfigurationType': '迭代度量-转测试'
+                    });
+                }
+            }
+        },
+        {
             title: '测试执行',
             xtype: 'Report',
             listeners: {
@@ -102,19 +115,6 @@ Ext.define('App.metric.project.view.IterationReport', {
                     me.load('report/query_iteration_report', {
                         'projectId': me.up().node.data.id,
                         'reportConfigurationType': '迭代度量-构建'
-                    });
-                }
-            }
-        },
-        {
-            title: '转测试',
-            xtype: 'Report',
-            listeners: {
-                afterrender: function () {
-                    var me = this;
-                    me.load('report/query_iteration_report', {
-                        'projectId': me.up().node.data.id,
-                        'reportConfigurationType': '迭代度量-转测试'
                     });
                 }
             }
