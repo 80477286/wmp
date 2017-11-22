@@ -47,9 +47,32 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
         roweditable: true,
         tbar: {add: {hidden: true}, remove: {hidden: true}}, border: false,
         model: 'App.report.model.KpiModel',
+        listeners: {
+            selectionchange: function ($this, selected, eOpts) {
+                this.down('button[itemId="btnDelete"]').disable();
+                if (selected.length > 0 && selected[0].get('abandoned') == true) {
+                    this.down('button[itemId="btnDelete"]').enable();
+                }
+            }
+        },
+        tbar: ['->', {
+            text: '删除',
+            itemId: 'btnDelete',
+            disabled: true,
+            handler: function () {
+                var record = this.up('gridfield').getSelection()[0];
+                this.up('gridpanel').getStore().remove([record])
+            }
+        }],
         columns: [{
             header: '指标名称',
-            dataIndex: 'name'
+            dataIndex: 'name',
+            renderer: function (v, m, r) {
+                if (r.get('abandoned') == true) {
+                    return "<span style='background-color: red;'>" + v + "</span>"
+                }
+                return v;
+            }
         }, {
             header: '字段名',
             dataIndex: 'field'
@@ -110,6 +133,7 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
                         }
                         return false;
                     });
+                    //如果报表数据在配置 的KPI中存在则更新一下name和field，不然增加一个指标
                     if (rds.getCount() > 0) {
                         var rd = rds.getAt(0);
                         rd.set('name', kpi.name);
@@ -121,6 +145,19 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
                         });
                         newrd.set('id', newrd.get('id').replace(/-/g, ''));
                         gridfield.loadRecords([newrd], true);
+                    }
+                }
+                for (var i = 0; i < gridfield.getStore().getCount(); i++) {
+                    var recd = gridfield.getStore().getAt(i);
+                    var find = false;
+                    for (var j = 0; j < reportConfiguration.kpiConfigurations.length; j++) {
+                        var kpi = reportConfiguration.kpiConfigurations[j];
+                        if (recd.get('name') == kpi.name) {
+                            find = true;
+                        }
+                    }
+                    if (find == false) {
+                        recd.set('abandoned', true);
                     }
                 }
             },
