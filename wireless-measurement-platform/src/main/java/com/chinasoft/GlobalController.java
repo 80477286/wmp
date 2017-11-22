@@ -50,11 +50,6 @@ public class GlobalController {
         inf.put("user", user);
         inf.put("localhost", host);
         inf.put("project", project);
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return inf;
     }
 

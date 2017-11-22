@@ -29,27 +29,66 @@ Ext.define('App.metric.project.view.IterationReport', {
             }
         },
         {
-            title: '开发',
+            title: '迭代开发',
             xtype: 'Report',
             listeners: {
                 afterrender: function () {
                     var me = this;
                     me.load('report/query_iteration_report', {
                         'projectId': me.up().node.data.id,
-                        'reportConfigurationType': '迭代度量-开发'
+                        'reportConfigurationType': '迭代度量-迭代开发'
                     });
                 }
             }
         },
         {
-            title: '测试',
+            title: '开发防护',
             xtype: 'Report',
             listeners: {
                 afterrender: function () {
                     var me = this;
                     me.load('report/query_iteration_report', {
                         'projectId': me.up().node.data.id,
-                        'reportConfigurationType': '迭代度量-测试'
+                        'reportConfigurationType': '迭代度量-开发防护'
+                    });
+                }
+            }
+        },
+        {
+            title: '工程能力',
+            xtype: 'Report',
+            listeners: {
+                afterrender: function () {
+                    var me = this;
+                    me.load('report/query_iteration_report', {
+                        'projectId': me.up().node.data.id,
+                        'reportConfigurationType': '迭代度量-工程能力'
+                    });
+                }
+            }
+        },
+        {
+            title: '测试执行',
+            xtype: 'Report',
+            listeners: {
+                afterrender: function () {
+                    var me = this;
+                    me.load('report/query_iteration_report', {
+                        'projectId': me.up().node.data.id,
+                        'reportConfigurationType': '迭代度量-测试执行'
+                    });
+                }
+            }
+        },
+        {
+            title: '自动化',
+            xtype: 'Report',
+            listeners: {
+                afterrender: function () {
+                    var me = this;
+                    me.load('report/query_iteration_report', {
+                        'projectId': me.up().node.data.id,
+                        'reportConfigurationType': '迭代度量-自动化'
                     });
                 }
             }
@@ -89,19 +128,6 @@ Ext.define('App.metric.project.view.IterationReport', {
                     me.load('report/query_iteration_report', {
                         'projectId': me.up().node.data.id,
                         'reportConfigurationType': '迭代度量-迭代管理'
-                    });
-                }
-            }
-        },
-        {
-            title: '工程能力',
-            xtype: 'Report',
-            listeners: {
-                afterrender: function () {
-                    var me = this;
-                    me.load('report/query_iteration_report', {
-                        'projectId': me.up().node.data.id,
-                        'reportConfigurationType': '迭代度量-工程能力'
                     });
                 }
             }
