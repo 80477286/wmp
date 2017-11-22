@@ -28,7 +28,7 @@ Ext.define('App.reportconfiguration.kpiconfiguration.view.KpiConfigurationWindow
         xtype: 'textfield',
         name: 'expression',
         fieldLabel: '计算表达式',
-        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+        allowBlank: true
     }, {
         xtype: 'textfield',
         name: 'format',
