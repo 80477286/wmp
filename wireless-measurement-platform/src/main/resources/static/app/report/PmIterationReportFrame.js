@@ -24,6 +24,10 @@ Ext.define('App.report.PmIterationReportFrame', {
         xtype: 'IterationReportList',
         reportConfigurationType: '迭代度量-工程能力'
     }, {
+        title: '转测试',
+        xtype: 'IterationReportList',
+        reportConfigurationType: '迭代度量-转测试'
+    }, {
         title: '测试执行',
         xtype: 'IterationReportList',
         reportConfigurationType: '迭代度量-测试执行'
@@ -35,10 +39,6 @@ Ext.define('App.report.PmIterationReportFrame', {
         title: '构建',
         xtype: 'IterationReportList',
         reportConfigurationType: '迭代度量-构建'
-    }, {
-        title: '转测试',
-        xtype: 'IterationReportList',
-        reportConfigurationType: '迭代度量-转测试'
     }, {
         title: '验收管理',
         xtype: 'IterationReportList',
