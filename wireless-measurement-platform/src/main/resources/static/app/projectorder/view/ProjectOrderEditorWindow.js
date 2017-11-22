@@ -8,13 +8,18 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
     listeners: {},
     config: {
         window: {
-            height: 200,
-            width: 600
+            height: 400,
+            width: 1200
         }
     },
     defaults: {
         labelWidth: 110,
-        columnWidth: 1
+        columnWidth: 0.5,
+        allowBlank: false,
+        blankText: '必填字段，不能为空！',
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
+        maxLength: 128,
+        labelWidth: 128
     },
     items: [{
         xtype: 'hidden',
@@ -30,11 +35,66 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
         name: 'cdt'
     }, {
         xtype: 'textfield',
+        fieldLabel: 'po号',
+        name: 'po'
+    }, {
+        xtype: 'textfield',
         fieldLabel: 'PO名称',
-        name: 'name',
-        allowBlank: false,
-        blankText: 'PO名称为必填字段，不能为空！',
-        maxLength: 128,
-        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+        name: 'name'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '内部PO号',
+        name: 'innerPo'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '合同类型',
+        name: 'contractType'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '交付部',
+        name: 'deliveryDepartment'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '华为PDU',
+        name: 'huaweiPdu'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '项目类型',
+        name: 'projectType'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'onSite/offSite',
+        name: 'onSite'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '交付部经理',
+        name: 'deliveryManager'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '华为PDU外包代表',
+        name: 'huaweiPduOutsourcingRepresentatives'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '合同工作量',
+        name: 'contractWorkload'
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '合同金额',
+        name: 'contractAmount'
+    }, {
+        xtype: 'datefield',
+        fieldLabel: '立项时间',
+        name: 'startTime',
+        format: 'Y-m-d'
+    }, {
+        xtype: 'datefield',
+        fieldLabel: '预计开始时间',
+        name: 'planStartTime',
+        format: 'Y-m-d'
+    }, {
+        xtype: 'datefield',
+        fieldLabel: '项目结束时间',
+        name: 'endTime',
+        format: 'Y-m-d'
     }]
 })
