@@ -225,6 +225,16 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 roweditable: true,
                 model: 'App.reportconfiguration.chartconfiguration.model.SeriesModel',
                 submitFields: ['type', 'xField', 'xFieldAlias', 'yFields', 'yFieldAliases', 'axis'],
+                listeners: {
+                    activate: function ($this, eOpts) {
+                        var axis = this.up('').up('').up('').down('GridField');
+                        var records = axis.getStore().query('type', 'category');
+                        if (records.length == 0) {
+                            Ext.MessageBox.alert("提示", "请配置【category】");
+                            this.up('').setActiveTab(0);
+                        }
+                    }
+                },
                 columns: [{
                     text: 'ID',
                     dataIndex: 'id',
