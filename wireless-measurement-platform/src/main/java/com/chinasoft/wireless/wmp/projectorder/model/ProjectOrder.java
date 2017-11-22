@@ -8,6 +8,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -74,17 +75,20 @@ public class ProjectOrder extends BaseEntity {
     /**
      * 立项时间
      */
-    private String startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startTime;
 
     /**
      * 项目结束时间
      */
-    private String endTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endTime;
 
     /**
      * 预计开始时间
      */
-    private String planStartTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date planStartTime;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "Organization_id")
@@ -211,27 +215,27 @@ public class ProjectOrder extends BaseEntity {
         this.contractAmount = contractAmount;
     }
 
-    public String getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public Date getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
-    public String getPlanStartTime() {
+    public Date getPlanStartTime() {
         return planStartTime;
     }
 
-    public void setPlanStartTime(String planStartTime) {
+    public void setPlanStartTime(Date planStartTime) {
         this.planStartTime = planStartTime;
     }
 }
