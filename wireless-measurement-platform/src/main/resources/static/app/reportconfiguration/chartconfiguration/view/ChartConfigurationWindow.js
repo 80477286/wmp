@@ -165,6 +165,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: '字段',
                     dataIndex: 'fields',
+                    hidden: true,
                     editor: {}
                 }, {
                     text: '标题',
@@ -297,7 +298,8 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: 'xField',
                     dataIndex: 'xField',
-                    editor: {}
+                    editor: {},
+                    hidden: true
                 }, {
                     text: 'xFieldAlias',
                     dataIndex: 'xFieldAlias',
@@ -335,6 +337,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 }, {
                     text: 'yFields',
                     dataIndex: 'yFields',
+                    hidden: true,
                     editor: {}
                 }, {
                     text: 'yFieldAliases',
