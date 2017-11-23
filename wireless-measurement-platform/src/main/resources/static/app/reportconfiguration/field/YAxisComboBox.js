@@ -1,5 +1,5 @@
 Ext.define('App.reportconfiguration.field.YAxisComboBox', {
-    extend: 'Ext.form.field.ComboBox',
+    extend: 'Extend.form.field.CheckCombo',
     alias: 'widget.YAxisComboBox',
     editable: false,
     queryMode: 'local',

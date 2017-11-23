@@ -223,6 +223,67 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                 title: 'series配置',
                 name: 'series',
                 roweditable: true,
+                getValue: function () {
+                    var me = this;
+                    if (me.submitValue === false) {
+                        return null;
+                    }
+                    var data = null;
+                    if (!me.disabled) {
+                        var rs = me.getRecords();
+                        if (rs.length > 0) {
+                            data = {};
+                            var sfs = me.getSubmitFields();
+                            if (!Ext.isEmpty(sfs) && sfs.length > 0) {
+                                for (var i = 0; i < rs.length; i++) {
+                                    var record = rs[i].data;
+                                    for (var j = 0; j < sfs.length; j++) {
+                                        var sf = sfs[j];
+                                        if (!Ext.isObject(sf)) {
+                                            sf = {
+                                                field: sf,
+                                                column: sf,
+                                                valueList: false
+                                            };
+                                        }
+                                        if (sfs.length > 1) {
+                                            sf.valueList = false;
+                                        }
+                                        var values = this._getValuesBySubmitField(record,
+                                            sf, i);
+                                        var fieldAliases = values.yFieldAliases;
+                                        if (fieldAliases) {
+                                            var paramName = sf.valueList == true ? (me
+                                                .getName()) : (me.getName() + '[' + i
+                                                + '].' + 'yFieldAliases');
+                                            if (Ext.isEmpty(data[paramName])) {
+                                                data[paramName] = [];
+                                            }
+                                            if (Array.isArray(fieldAliases)) {
+                                                data[paramName].push(fieldAliases.join(","));
+                                            } else {
+                                                data[paramName].push(fieldAliases);
+                                            }
+                                        } else {
+                                            for (var key in values) {
+                                                var paramName = sf.valueList == true ? (me
+                                                    .getName()) : (me.getName() + '[' + i
+                                                    + '].' + key);
+                                                if (Ext.isEmpty(data[paramName])) {
+                                                    data[paramName] = [];
+                                                }
+                                                data[paramName].push(values[key]);
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                Ext.log.warn('未配置提交字段列表属性:submitFields')
+                            }
+                        }
+                    }
+                    return data;
+                },
                 model: 'App.reportconfiguration.chartconfiguration.model.SeriesModel',
                 submitFields: ['type', 'xField', 'xFieldAlias', 'yFields', 'yFieldAliases', 'axis'],
                 listeners: {
@@ -262,22 +323,16 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var data = new Array();
                                 Ext.Array.each(records, function (record) {
                                     if (record.get('type') == 'category') {
-                                        var type = record.get('type');
-                                        var position = record.get('position');
                                         var fields = record.get('fields');
-                                        var title = record.get('title');
                                         var fieldAliases = record.get('fieldAliases');
                                         data.push({
-                                            type: type,
-                                            position: position,
                                             fields: fields,
-                                            title: title,
                                             fieldAliases: fieldAliases
                                         });
                                     }
                                 });
                                 var store = Ext.create('Ext.data.Store', {
-                                    fields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
+                                    fields: ['fields', 'fieldAliases'],
                                     data: data
                                 });
                                 me.setStore(store);
@@ -303,23 +358,25 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var axis = this.up('').up('').up('').down('GridField');
                                 var records = axis.getStore().query('type', 'numeric');
                                 var data = new Array();
+                                var filterArray = new Array();
                                 for (var i = 0; i < records.length; i++) {
                                     var record = records.getAt(i);
-                                    var type = record.get('type');
-                                    var position = record.get('position');
                                     var fields = record.get('fields');
-                                    var title = record.get('title');
-                                    var fieldAliases = record.get('fieldAliases').join(",");
-                                    data.push({
-                                        type: type,
-                                        position: position,
-                                        fields: fields,
-                                        title: title,
-                                        fieldAliases: fieldAliases
-                                    });
+                                    var fieldArray = split(fields);
+                                    var fieldAliases = split(record.get('fieldAliases'));
+                                    for (var j = 0; j < fieldAliases.length; j++) {
+                                        var item = {
+                                            fields: fieldArray[j],
+                                            fieldAliases: fieldAliases[j]
+                                        };
+                                        if (!Ext.Array.contains(filterArray, fieldArray[j])) {
+                                            data.push(item);
+                                            filterArray.push(fieldArray[j]);
+                                        }
+                                    }
                                 }
                                 var store = Ext.create('Ext.data.Store', {
-                                    fields: ['type', 'position', 'fields', 'title', 'fieldAliases'],
+                                    fields: ['fields', 'fieldAliases'],
                                     data: data
                                 });
                                 this.setStore(store);
@@ -379,3 +436,26 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
         }
     ]
 })
+
+/**
+ * 将字符串或者数组按照逗号拆分为数组
+ * @param str
+ * @returns {Array}
+ */
+function split(str) {
+    var array = new Array();
+    while (true) {
+        if (str instanceof Array) {
+            str = str.join(",");
+        }
+        var index = str.indexOf(",");
+        if (index == -1) {
+            array.push(str);
+            break;
+        }
+        var temp = str.substring(0, index);
+        array.push(temp);
+        str = str.substring(index + 1, str.length);
+    }
+    return array;
+}

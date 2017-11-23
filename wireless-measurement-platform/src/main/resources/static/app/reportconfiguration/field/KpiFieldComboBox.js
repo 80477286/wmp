@@ -1,5 +1,5 @@
 Ext.define('App.reportconfiguration.field.KpiFieldComboBox', {
-    extend: 'Ext.form.field.ComboBox',
+    extend: 'Extend.form.field.CheckCombo',
     alias: 'widget.KpiFieldComboBox',
     editable: false,
     queryMode: 'local',
