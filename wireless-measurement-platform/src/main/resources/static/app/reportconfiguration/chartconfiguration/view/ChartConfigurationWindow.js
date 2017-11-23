@@ -180,19 +180,7 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var form = me.up('window').down('panel');
                                 me.setStore(form.kpiStore);
-                                var array = new Array();
-                                var values = me.getValue();
-                                Ext.Array.each(values, function (value) {
-                                    while (true) {
-                                        var index = value.indexOf(",");
-                                        if (index == -1) {
-                                            array.push(value);
-                                            break;
-                                        }
-                                        array.push(value.substring(0, index));
-                                        value = value.substring(index + 1, value.length);
-                                    }
-                                })
+                                var array = split(me.getValue());
                                 me.setValue(array);
                             },
                             beforeselect: function (combo, record, index, eOpts) {
