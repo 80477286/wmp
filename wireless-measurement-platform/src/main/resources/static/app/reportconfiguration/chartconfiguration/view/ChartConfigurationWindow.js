@@ -313,15 +313,6 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                     data: data
                                 });
                                 me.setStore(store);
-                            },
-                            select: function (combo, record, eOpts) {
-                                array = new Array();
-                                var selection = combo.getChecked();
-                                for (var i = 0; i < selection.length; i++) {
-                                    var rec = selection[i];
-                                    array.push(rec.get("fields"));
-                                }
-                                combo.up().down('[dataIndex=xField]').setValue(array.join(","));
                             }
                         }
                     }
