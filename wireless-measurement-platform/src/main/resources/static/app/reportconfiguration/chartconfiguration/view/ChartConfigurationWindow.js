@@ -181,28 +181,15 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 var me = this;
                                 var form = me.up('window').down('panel');
                                 me.setStore(form.kpiStore);
-                                var array = split(me.getValue());
-                                me.setValue(array);
                             },
-                            beforeselect: function (combo, record, index, eOpts) {
-                                var me = this;
-                                var array = new Array();
-                                var value = combo.getValue();
-                                Ext.Array.each(value, function (name) {
-                                    array.push(me.getStore().findRecord('name', name).get('field'));
-                                });
-                                array.push(record.get('field'));
-                                me.up('').down('[dataIndex=fields]').setValue(array.join(","));
-                            },
-                            beforedeselect: function (combo, record, index, eOpts) {
-                                var me = this;
-                                var value = combo.getValue();
-                                Ext.Array.remove(value, record.get('name'));
-                                var array = new Array();
-                                Ext.Array.each(value, function (name) {
-                                    array.push(me.getStore().findRecord('name', name).get('field'))
-                                });
-                                me.up('').down('[dataIndex=fields]').setValue(array.join(","));
+                            change: function (combo, nv, ov) {
+                                array = new Array();
+                                var selection = combo.getChecked();
+                                for (var i = 0; i < selection.length; i++) {
+                                    var rec = selection[i];
+                                    array.push(rec.get("field"));
+                                }
+                                combo.up().down('[dataIndex=fields]').setValue(array.join(","));
                             }
                         }
                     }
@@ -328,9 +315,13 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 me.setStore(store);
                             },
                             select: function (combo, record, eOpts) {
-                                var me = combo;
-                                var r = me.getStore().findRecord('fields', record.get('fields'));
-                                me.up('').down('[dataIndex=xField]').setValue(r.get('fields'))
+                                array = new Array();
+                                var selection = combo.getChecked();
+                                for (var i = 0; i < selection.length; i++) {
+                                    var rec = selection[i];
+                                    array.push(rec.get("fields"));
+                                }
+                                combo.up().down('[dataIndex=xField]').setValue(array.join(","));
                             }
                         }
                     }
@@ -372,21 +363,14 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 });
                                 this.setStore(store);
                             },
-                            select: function (combo, record, eOpts) {
-                                var me = combo;
-                                var array = new Array();
-                                Ext.Array.each(combo.getValue(), function (name) {
-                                    array.push(me.getStore().findRecord('fieldAliases', name).get('fields'));
-                                });
-                                me.up('').down('[dataIndex=yFields]').setValue(array.join(","))
-                            },
-                            beforedeselect: function (combo, record, index, eOpts) {
-                                var me = combo;
-                                var array = new Array();
-                                Ext.Array.each(combo.getValue(), function (name) {
-                                    array.push(me.getStore().findRecord('fieldAliases', name).get('fields'));
-                                });
-                                me.up('').down('[dataIndex=yFields]').setValue(array.join(","))
+                            change: function (combo, nv, ov) {
+                                array = new Array();
+                                var selection = combo.getChecked();
+                                for (var i = 0; i < selection.length; i++) {
+                                    var rec = selection[i];
+                                    array.push(rec.get("fields"));
+                                }
+                                combo.up().down('[dataIndex=yFields]').setValue(array.join(","));
                             }
                         }
                     }

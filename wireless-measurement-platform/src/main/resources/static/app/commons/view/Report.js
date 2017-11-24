@@ -165,10 +165,9 @@ Ext.define('App.commons.view.Report', {
                     highlight: true,
                     //数字标注
                     label: {
-                        field: item.yFields,
+                        field: item.yField,
                         display: 'insideEnd',
                         renderer: function (sprite, config, rendererData, index) {
-
                         }
                     },//鼠标提示
                     tooltip: {
@@ -177,7 +176,12 @@ Ext.define('App.commons.view.Report', {
                         dismissDelay: 0,
                         hideDelay: 0,
                         renderer: function (tooltip, record, item) {
-                            tooltip.setHtml(record.get('name') + ' \ ' + item.field + ': ' + record.get(item.field));
+                            for (var i = 0; i < item.series._yField.length; i++) {
+                                if (item.series._yField[i] == item.field) {
+                                    tooltip.setHtml(item.series._title[i] + ' : ' + record.get(item.field));
+                                    break;
+                                }
+                            }
                         }
                     }
                 };
