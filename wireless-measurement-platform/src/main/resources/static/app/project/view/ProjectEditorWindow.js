@@ -2,7 +2,8 @@ Ext.define("App.project.view.ProjectEditorWindow", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.ProjectEditorWindow',
     entity: 'entity',
-    requires: ['App.hrm.employee.field.EmployeeComboBox'],
+    requires: ['App.hrm.employee.field.EmployeeComboBox', 'App.project.field.ProjectTypeComboBox', 'App.project.field.IsInternetProjectComboBox', 'App.project.field.BillingTypeComboBox',
+        'App.project.field.ImplementationStatusComboBox'],
     url: 'project/save',
     resetBySave: false,
     listeners: {},
@@ -37,7 +38,7 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
+        xtype: 'ProjectTypeComboBox',
         fieldLabel: '项目类型',
         name: 'projectType',
         allowBlank: false,
@@ -52,6 +53,20 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         blankText: '项目名称为必填字段，不能为空！',
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: '项目工作量',
+        name: 'projectWorkload',
+        allowBlank: false,
+        blankText: '项目工作量为必填字段，不能为空！',
+        maxLength: 128,
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'PO号',
+        name: 'projectOrder.po',
+        readOnly: true,
+        maxLength: 128
     }, {
         xtype: 'textfield',
         fieldLabel: 'PO名称',
@@ -75,7 +90,7 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
+        xtype: 'IsInternetProjectComboBox',
         fieldLabel: '是否上网项目',
         name: 'isInternetProject',
         allowBlank: false,
@@ -100,22 +115,14 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
         xtype: 'textfield',
-        fieldLabel: 'PO占比',
+        fieldLabel: 'PO占比(%)',
         name: 'poProportion',
         allowBlank: false,
         blankText: 'PO占比为必填字段，不能为空！',
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
-        fieldLabel: '项目工作量',
-        name: 'projectWorkload',
-        allowBlank: false,
-        blankText: '项目工作量为必填字段，不能为空！',
-        maxLength: 128,
-        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
-    }, {
-        xtype: 'textfield',
+        xtype: 'BillingTypeComboBox',
         fieldLabel: '计费类型',
         name: 'billingType',
         allowBlank: false,
@@ -123,7 +130,7 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
+        xtype: 'ImplementationStatusComboBox',
         fieldLabel: '实施状态',
         name: 'implementationStatus',
         allowBlank: false,

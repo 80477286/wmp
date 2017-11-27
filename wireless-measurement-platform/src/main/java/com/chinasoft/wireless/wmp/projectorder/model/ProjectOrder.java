@@ -44,7 +44,6 @@ public class ProjectOrder extends BaseEntity {
      * 交付部
      */
     private String deliveryDepartment;
-    private String huaweiPdu;
 
     /**
      * 项目类型
@@ -159,13 +158,6 @@ public class ProjectOrder extends BaseEntity {
         this.deliveryDepartment = deliveryDepartment;
     }
 
-    public String getHuaweiPdu() {
-        return huaweiPdu;
-    }
-
-    public void setHuaweiPdu(String huaweiPdu) {
-        this.huaweiPdu = huaweiPdu;
-    }
 
     public String getProjectType() {
         return projectType;
