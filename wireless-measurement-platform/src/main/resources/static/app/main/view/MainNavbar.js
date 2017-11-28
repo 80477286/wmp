@@ -24,11 +24,6 @@ Ext.define('App.main.view.MainNavbar', {
         },
         {
             name: '版本度量'
-        },
-        {
-            name: '配置',
-            href: '/management.html',
-            target: '_blank'
         }
     ], listeners: {
         afterrender: function () {
