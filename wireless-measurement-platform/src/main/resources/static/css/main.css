@@ -1,6 +1,6 @@
-.logo{
-height:46px;
-    width:128px;
+.logo {
+    height: 46px;
+    width: 128px;
     background-image: url("icons/logo.png") !important;
     background-repeat: no-repeat;
 }
@@ -91,13 +91,13 @@ height:46px;
 }
 
 /*树缩进减少,源来为18*/
-.x-tree-elbow-img.x-tree-elbow-empty{
-    width:10px;
+.x-tree-elbow-img.x-tree-elbow-empty {
+    width: 10px;
 }
 
 .x-breadcrumb-btn-navbar > .x-btn-wrap-plain-toolbar-small > .x-btn-button-plain-toolbar-small > .x-btn-inner-plain-toolbar-small {
     font-size: 15px;
-    font-family:微软雅黑,宋体,helvetica, arial, verdana, sans-serif;
+    font-family: 微软雅黑, 宋体, helvetica, arial, verdana, sans-serif;
     padding: 0 5px;
     color: #999;
 
@@ -112,3 +112,77 @@ height:46px;
     background-image: none;
 }
 
+.buttons-ul {
+    position: fixed;
+    right: 10px;
+    top: 12px;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-ul li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.buttons-ul li a {
+    height: 36px;
+    width: 36px;
+    background-size: 36px 36px;
+    display: block;
+}
+
+.buttons-ul li a:hover {
+    box-shadow: 0px 0px 10px #FFF ;
+    border-radius:18px;
+    -moz-border-radius:18px; /* Old Firefox */
+}
+
+.buttons-ul .logout .icon {
+    background-image: url("icons/logout.png");
+}
+
+.buttons-ul .logout .icon:hover {
+    bottom: 4px;
+    -webkit-box-shadow: aliceblue;
+}
+
+.buttons-ul .po-config .icon {
+    background-image: url("icons/po-config.png");
+}
+
+.buttons-ul .po-config .icon:hover {
+    bottom: 4px;
+}
+
+.buttons-ul .qa-config .icon {
+    background-image: url("icons/qa-config.png");
+}
+
+.buttons-ul .qa-config .icon:hover {
+    bottom: 4px;
+}
+
+.buttons-ul .admin-config .icon {
+    background-image: url("icons/admin-config.png");
+}
+
+.buttons-ul .admin-config .icon:hover {
+    bottom: 4px;
+}
+
+.buttons-ul .pm-config .icon {
+    background-image: url("icons/pm-config.png");
+}
+
+.buttons-ul .pm-config .icon:hover {
+    bottom: 4px;
+}
