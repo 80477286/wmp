@@ -3,7 +3,7 @@ Ext.define('App.metric.project.view.DuReport', {
     alias: ['widget.DuReport'],
     items: [
         {
-            xtype: 'Report',
+            xtype:  'Report',
             title: 'DU度量',
             listeners: {
                 afterrender: function () {

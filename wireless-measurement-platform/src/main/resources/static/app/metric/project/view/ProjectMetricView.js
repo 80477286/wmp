@@ -5,7 +5,7 @@ Ext.define('App.metric.project.view.ProjectMetricView', {
     requires: ['App.commons.view.NavbarTree', 'App.commons.view.Report', 'App.metric.project.controller.ProjectMetricController'],
     controller: 'ProjectMetricController',
     tbar: {
-        xtype: 'breadcrumb',
+        xtype:  'breadcrumb',
         ui: 'navbar',
         height: 40, showIcons: true, showMenuIcons: true, overflowHandler: 'scroller',
         dock: 'top', displayField: 'name',

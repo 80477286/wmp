@@ -4,7 +4,7 @@ Ext.define('App.metric.project.view.BuReport', {
     items: [
         {
             xtype: 'Report',
-            title: 'BU度量',
+            title:  'BU度量',
             listeners: {
                 afterrender: function () {
                     var me = this;
