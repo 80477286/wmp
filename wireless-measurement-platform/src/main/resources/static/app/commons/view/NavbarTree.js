@@ -5,7 +5,7 @@ Ext.define('App.commons.view.NavbarTree', {
     style: {backgroundColor: '#000'},
     displayField: 'name',
     store: {
-        xtype: 'treestore',
+        xtype:  'treestore',
         root: {
             expanded: true,
             rootVisible: false,

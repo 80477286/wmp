@@ -2,7 +2,7 @@ Ext.define('App.iteration.field.IterationComboBox', {
     extend: 'Ext.form.field.ComboBox',
     alias: 'widget.IterationComboBox',
     displayField: 'name',
-    valueField: 'id',
+    valueField:  'id',
     editable: false,
     multiSelect: false,
     store: {
