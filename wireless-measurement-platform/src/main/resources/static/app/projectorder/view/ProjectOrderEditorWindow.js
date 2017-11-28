@@ -2,7 +2,7 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.ProjectOrderEditorWindow',
     entity: 'entity',
-    requires: [],
+    requires: ['App.project.field.ProjectTypeComboBox', 'App.project.field.SiteComboBox'],
     url: 'projectorder/save',
     resetBySave: false,
     listeners: {},
@@ -56,13 +56,16 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
     }, {
         xtype: 'textfield',
         fieldLabel: '华为PDU',
-        name: 'huaweiPdu'
+        name: 'parent.name',
+        allowBlank: true,
+        beforeLabelTextTpl: [''],
+        readOnly: true
     }, {
-        xtype: 'textfield',
+        xtype: 'ProjectTypeComboBox',
         fieldLabel: '项目类型',
         name: 'projectType'
     }, {
-        xtype: 'textfield',
+        xtype: 'SiteComboBox',
         fieldLabel: 'onSite/offSite',
         name: 'onSite'
     }, {
@@ -75,11 +78,11 @@ Ext.define("App.projectorder.view.ProjectOrderEditorWindow", {
         name: 'huaweiPduOutsourcingRepresentatives'
     }, {
         xtype: 'textfield',
-        fieldLabel: '合同工作量',
+        fieldLabel: '合同工作量(人/天)',
         name: 'contractWorkload'
     }, {
         xtype: 'textfield',
-        fieldLabel: '合同金额',
+        fieldLabel: '合同金额(元)',
         name: 'contractAmount'
     }, {
         xtype: 'datefield',
