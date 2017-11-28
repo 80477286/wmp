@@ -64,7 +64,7 @@ Ext.define('App.main.view.MainNavbar', {
                 {
                     tag: 'li', cls: 'logout', title: '注销',
                     children: [
-                        {tag: 'a', cls: 'icon', href: "/logout", target: "_blank"}
+                        {tag: 'a', cls: 'icon', href: "/logout"}
                     ]
                 }
             ]
