@@ -1,7 +1,10 @@
 Ext.define('App.metric.project.view.ProjectOrderReport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.ProjectOrderReport'],
-    items: [
+    items: [{
+        title:'PO信息',
+        xtype:'panel'
+    },
         {
             xtype: 'Report',
             title: 'PO度量',
