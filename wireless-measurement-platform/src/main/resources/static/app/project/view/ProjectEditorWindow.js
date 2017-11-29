@@ -31,6 +31,18 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         name: 'cdt'
     }, {
         xtype: 'textfield',
+        fieldLabel: 'PO号',
+        name: 'projectOrder.po',
+        readOnly: true,
+        maxLength: 128
+    }, {
+        xtype: 'textfield',
+        fieldLabel: 'PO名称',
+        name: 'projectOrder.name',
+        readOnly: true,
+        maxLength: 128
+    }, {
+        xtype: 'textfield',
         fieldLabel: '项目名称',
         name: 'name',
         allowBlank: false,
@@ -61,18 +73,6 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         blankText: '项目工作量为必填字段，不能为空！',
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'PO号',
-        name: 'projectOrder.po',
-        readOnly: true,
-        maxLength: 128
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'PO名称',
-        name: 'projectOrder.name',
-        readOnly: true,
-        maxLength: 128
     }, {
         xtype: 'textfield',
         fieldLabel: '业务大类',
@@ -106,13 +106,16 @@ Ext.define("App.project.view.ProjectEditorWindow", {
         maxLength: 128,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>']
     }, {
-        xtype: 'textfield',
+        xtype: 'EmployeeComboBox',
         fieldLabel: 'QA',
         name: 'qa',
         allowBlank: false,
+        valueField: 'huaweiNumber',
         blankText: 'QA为必填字段，不能为空！',
-        maxLength: 128,
-        beforeLabelTextTpl: ['<span style="color:red;">*</span>']
+        beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
+        extraParams: {
+            'params.role_eq': 'QA'
+        }
     }, {
         xtype: 'textfield',
         fieldLabel: 'PO占比(%)',
