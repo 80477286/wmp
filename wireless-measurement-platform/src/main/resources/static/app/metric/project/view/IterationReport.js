@@ -10,22 +10,23 @@ Ext.define('App.metric.project.view.IterationReport', {
             listeners: {
                 afterrender: function () {
                     var me = this;
-                    me.down('ProjectFormPanel').load({
+                    var projectFormPanel = me.down('ProjectFormPanel');
+                    projectFormPanel.load({
                         url: 'project/edit',
                         params:
                             {
                                 id: me.up().node.data.id
                             },
                         success: function (form, result, data) {
-                            me.down('ProjectFormPanel').down('[name=projectOrder.name]').setValue(result.result.data.parent.name);
-                            me.down('ProjectFormPanel').down('[name=projectOrder.po]').setValue(result.result.data.parent.po);
+                            projectFormPanel.down('[name=projectOrder.name]').setValue(result.result.data.parent.name);
+                            projectFormPanel.down('[name=projectOrder.po]').setValue(result.result.data.parent.po);
                             var startDate = result.result.data.startDate;
                             var plannedEndDate = result.result.data.plannedEndDate;
                             if (startDate != null) {
-                                me.down('ProjectFormPanel').down('[name=startDate]').setValue(startDate.substring(0, startDate.indexOf('T')));
+                                projectFormPanel.down('[name=startDate]').setValue(substringTime(startDate));
                             }
                             if (plannedEndDate != null) {
-                                me.down('ProjectFormPanel').down('[name=plannedEndDate]').setValue(plannedEndDate.substring(0, plannedEndDate.indexOf('T')));
+                                projectFormPanel.down('[name=plannedEndDate]').setValue(substringTime(plannedEndDate));
                             }
                         }
                     });

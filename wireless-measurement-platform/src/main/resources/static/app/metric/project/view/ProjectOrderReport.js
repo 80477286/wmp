@@ -5,6 +5,7 @@ Ext.define('App.metric.project.view.ProjectOrderReport', {
     items: [{
         title: 'PO信息',
         xtype: 'panel',
+        layout: 'fit',
         items: [{
             xtype: 'ProjectOrderFormPanel'
         }],
@@ -51,6 +52,6 @@ Ext.define('App.metric.project.view.ProjectOrderReport', {
         }]
 })
 
-function substringTime(time) {
+window.substringTime = function (time) {
     return time.substring(0, time.indexOf('T'));
 }
