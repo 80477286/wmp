@@ -73,14 +73,12 @@ Ext.define("App.projectorder.view.ProjectOrderFormPanel", {
         name: 'startTime',
         format: 'Y-m-d'
     }, {
-        xtype: 'datefield',
+        xtype: 'textfield',
         fieldLabel: '预计开始时间',
-        name: 'planStartTime',
-        format: 'Y-m-d'
+        name: 'planStartTime'
     }, {
-        xtype: 'datefield',
+        xtype: 'textfield',
         fieldLabel: '项目结束时间',
-        name: 'endTime',
-        format: 'Y-m-d'
+        name: 'endTime'
     }]
 })

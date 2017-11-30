@@ -76,15 +76,13 @@ Ext.define("App.project.view.ProjectFormPanel", {
         fieldLabel: '实施状态',
         name: 'implementationStatus'
     }, {
-        xtype: 'datefield',
+        xtype: 'textfield',
         fieldLabel: '项目开始时间',
-        name: 'startDate',
-        format: 'Y-m-d'
+        name: 'startDate'
     }, {
-        xtype: 'datefield',
+        xtype: 'textfield',
         fieldLabel: '计划结项时间',
-        name: 'plannedEndDate',
-        format: 'Y-m-d'
+        name: 'plannedEndDate'
     }, {
         xtype: 'EmployeeComboBox',
         fieldLabel: '项目经理',
