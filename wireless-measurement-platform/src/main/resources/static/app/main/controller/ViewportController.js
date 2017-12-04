@@ -21,10 +21,15 @@ Ext.define('App.main.controller.ViewportController', {
     onMenuClick: function (ne, menu) {
         var mainFrame = this.getView().down('MainFrame');
         var clazz = 'App.metric.project.view.ProjectMetricView';
+        var en = 'pmetric';
         if (menu.name == '版本度量') {
+            var en = 'vmetric';
             clazz = 'App.metric.version.view.VersionMetricView';
+        } else if (menu.name == '人力信息') {
+            clazz = 'App.hrm.employee.view.EmployeeInfoView';
+            var en = 'einfo';
         }
-        var id = clazz.replace(/\./g, '_') + '_' + Ext.util.Base64.encode(menu.name);
+        var id = clazz.replace(/\./g, '_') + '_' + en;
         var cmp = mainFrame.queryById(id);
         if (Ext.isEmpty(cmp)) {
             var view = Ext.create(clazz, {id: id});

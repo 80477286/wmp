@@ -24,6 +24,9 @@ Ext.define('App.main.view.MainNavbar', {
         },
         {
             name: '版本度量'
+        },
+        {
+            name: '人力信息'
         }
     ], listeners: {
         afterrender: function () {
