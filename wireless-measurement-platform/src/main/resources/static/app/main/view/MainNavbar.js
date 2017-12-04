@@ -21,10 +21,6 @@ Ext.define('App.main.view.MainNavbar', {
                 width: '100px'
             },
             actived: true
-        },{
-            name:'人员管理',
-            href:'/?administrator'
-
         },
         {
             name: '版本度量'
