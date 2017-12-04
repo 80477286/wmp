@@ -31,10 +31,7 @@ Ext.define('App.project.model.ProjectViewModel', {
         }, {
             header: '项目类型',
             dataIndex: 'projectType'
-        }, {
-            header: '状态',
-            dataIndex: 'implementationStatus'
-        }, {
+        },{
             header: '业务类型',
             dataIndex: 'businessCategory'
         }, {
@@ -53,6 +50,9 @@ Ext.define('App.project.model.ProjectViewModel', {
             header: '付费类型',
             dataIndex: 'billingType'
         }, {
+            header: '状态',
+            dataIndex: 'implementationStatus'
+        },  {
             header: '描述',
             dataIndex: 'description'
         }, {
@@ -69,13 +69,23 @@ Ext.define('App.project.model.ProjectViewModel', {
             simpleSearch: true,
             advancedSearch: true,
             fields: [{
-                "field": "name",
-                "name": "角色名",
+                name: "项目名称",
+                field: "name",
                 vtype: 's',
                 opt: 'like'
             }, {
-                "field": "description",
-                "name": "描述",
+                name: "项目经理",
+                field: "projectManager",
+                vtype: 's',
+                opt: 'like'
+            }, {
+                name: "项目编号",
+                field: "projectCode",
+                vtype: 's',
+                opt: 'like'
+            }, {
+                name: "项目类型",
+                field: "projectType",
                 vtype: 's',
                 opt: 'like'
             }]
