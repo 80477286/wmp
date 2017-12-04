@@ -28,6 +28,9 @@ Ext.define('App.main.controller.ViewportController', {
         } else if (menu.name == '人力信息') {
             clazz = 'App.hrm.employee.view.EmployeeInfoView';
             var en = 'einfo';
+        } else if (menu.name == '项目信息') {
+            clazz = 'App.project.view.ProjectInfoView';
+            var en = 'pinfo';
         }
         var id = clazz.replace(/\./g, '_') + '_' + en;
         var cmp = mainFrame.queryById(id);
