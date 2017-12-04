@@ -7,78 +7,45 @@ Ext.define("App.projectorder.view.ProjectOrderFormPanel", {
         columnWidth: 1,
         readOnly: true
     },
-    items: [{
-        xtype: 'hidden',
-        name: 'id'
-    }, {
-        xtype: 'hidden',
-        name: 'organization.id'
-    }, {
-        xtype: 'hidden',
-        name: 'creator'
-    }, {
-        xtype: 'hidden',
-        name: 'cdt'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'po号',
-        name: 'po'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'PO名称',
-        name: 'name'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '内部PO号',
-        name: 'innerPo'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '合同类型',
-        name: 'contractType'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '交付部',
-        name: 'deliveryDepartment'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '华为PDU',
-        name: 'parent.name',
-    }, {
-        xtype: 'ProjectTypeComboBox',
-        fieldLabel: '项目类型',
-        name: 'projectType'
-    }, {
-        xtype: 'SiteComboBox',
-        fieldLabel: 'onSite/offSite',
-        name: 'onSite'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '交付部经理',
-        name: 'deliveryManager'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '华为PDU外包代表',
-        name: 'huaweiPduOutsourcingRepresentatives'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '合同工作量(人/天)',
-        name: 'contractWorkload'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '合同金额(元)',
-        name: 'contractAmount'
-    }, {
-        xtype: 'datefield',
-        fieldLabel: '立项时间',
-        name: 'startTime',
-        format: 'Y-m-d'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '预计开始时间',
-        name: 'planStartTime'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '项目结束时间',
-        name: 'endTime'
-    }]
+    title: 'PO信息',
+    tpl: ['<div style="padding: 5px;">',
+        '<style type="text/css">',
+        '.poinfo{list-style: none;padding: 0;margin: 0;} .poinfo .item{display: flex;height: 28px;line-height: 28px;}  .poinfo .item .title{width: 150px;text-align: right;}  .poinfo .item .content{margin-left: 10px;}',
+        '</style>',
+        '<ul class="poinfo">',
+        '<li class="item" style=""><div  class="title">PO名称:</div><div class="content"> {name}</div></li>',
+        '<li class="item" style=""><div  class="title">PO号:</div><div class="content"> {po}</div></li>',
+        '<li class="item" style=""><div  class="title">内部PO号:</div><div class="content"> {innerPo}</div></li>',
+        '<li class="item" style=""><div  class="title">合同类型:</div><div class="content"> {contractType}</div></li>',
+        '<li class="item" style=""><div  class="title">交付部:</div><div class="content"> {deliveryDepartment}</div></li>',
+        '<li class="item" style=""><div  class="title">华为PDU:</div><div class="content">{pdu.name}</div></li>',
+        '<li class="item" style=""><div  class="title">项目类型:</div><div class="content"> {projectType}</div></li>',
+        '<li class="item" style=""><div  class="title">交付部经理:</div><div class="content"> {deliveryManager}</div></li>',
+        '<li class="item" style=""><div  class="title">华为PDU外包代表:</div><div class="content"> {huaweiPduOutsourcingRepresentatives}</div></li>',
+        '<li class="item" style=""><div  class="title">合同工作量(人/天):</div><div class="content"> {contractWorkload}</div></li>',
+        '<li class="item" style=""><div  class="title">合同金额(元):</div><div class="content"> {contractAmount}</div></li>',
+        '<li class="item" style=""><div  class="title">立项时间:</div><div class="content"> {startTime:substr(0, 10)}</div></li>',
+        '<li class="item" style=""><div  class="title">预计开始时间:</div><div class="content"> {planStartTime:substr(0, 10)}</div></li>',
+        '<li class="item" style=""><div  class="title">项目结束时间:</div><div class="content"> {endTime:substr(0, 10)}</div></li>',
+        '</ul>',
+        '</div>'],
+    initComponent: function () {
+        var me = this;
+        this.loader = {
+            loadMask: '加载...',
+            loadOnRender: true,
+            autoLoad: true,
+            url: 'projectorder/edit',
+            params: {id: me.up('ProjectOrderReport').node.data.id},
+            renderer: function (loader, response, active) {
+                var result = response.result;
+                if (result.success == true) {
+                    response.result.data.pdu = response.result.data.parent;
+                    me.setData(response.result.data);
+                }
+                return true;
+            }
+        }
+        this.callParent(arguments);
+    }
 })
