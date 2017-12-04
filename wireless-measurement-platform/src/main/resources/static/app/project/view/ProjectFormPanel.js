@@ -1,8 +1,6 @@
 Ext.define("App.project.view.ProjectFormPanel", {
     extend: 'Ext.form.Panel',
     alias: 'widget.ProjectFormPanel',
-    requires: ['App.hrm.employee.field.EmployeeComboBox', 'App.project.field.ProjectTypeComboBox', 'App.project.field.IsInternetProjectComboBox', 'App.project.field.BillingTypeComboBox',
-        'App.project.field.ImplementationStatusComboBox'],
     defaults: {
         readOnly: true
     },
