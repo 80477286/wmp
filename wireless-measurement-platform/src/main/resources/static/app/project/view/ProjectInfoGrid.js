@@ -1,6 +1,6 @@
-Ext.define('App.project.view.ProjectInfoView', {
+Ext.define('App.project.view.ProjectInfoGrid', {
     extend: "Extend.grid.ExtendGridPanel",
-    alias: ['widget.ProjectInfoView'],
+    alias: ['widget.ProjectInfoGrid'],
     requires: ['App.project.model.ProjectViewModel'],
     viewModel: 'ProjectViewModel',
     forceFit: false,

@@ -29,7 +29,7 @@ Ext.define('App.main.controller.ViewportController', {
             clazz = 'App.hrm.employee.view.EmployeeInfoView';
             var en = 'einfo';
         } else if (menu.name == '项目信息') {
-            clazz = 'App.project.view.ProjectInfoView';
+            clazz = 'App.projectorder.ProjectOrderInfoView';
             var en = 'pinfo';
         }
         var id = clazz.replace(/\./g, '_') + '_' + en;
