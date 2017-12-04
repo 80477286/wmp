@@ -12,8 +12,8 @@ Ext.define("App.project.view.ProjectFormPanel", {
         '.poinfo{list-style: none;padding: 0;margin: 0;} .poinfo .item{display: flex;height: 28px;line-height: 28px;}  .poinfo .item .title{width: 150px;text-align: right;}  .poinfo .item .content{margin-left: 10px;}',
         '</style>',
         '<ul class="poinfo">',
-        '<li class="item" style=""><div  class="title">PO号:</div><div class="content"> {parent.po}</div></li>',
-        '<li class="item" style=""><div  class="title">PO名称:</div><div class="content"> {parent.name}</div></li>',
+        '<li class="item" style=""><div  class="title">PO号:</div><div class="content"> {po}</div></li>',
+        '<li class="item" style=""><div  class="title">PO名称:</div><div class="content"> {poName}</div></li>',
         '<li class="item" style=""><div  class="title">项目名称:</div><div class="content"> {name}</div></li>',
         '<li class="item" style=""><div  class="title">项目类型:</div><div class="content"> {projectType}</div></li>',
         '<li class="item" style=""><div  class="title">项目编码:</div><div class="content"> {projectCode}</div></li>',
@@ -43,7 +43,8 @@ Ext.define("App.project.view.ProjectFormPanel", {
             renderer: function (loader, response, active) {
                 var result = response.result;
                 if (result.success == true) {
-                    response.result.data.pdu = response.result.data.parent;
+                    response.result.data.po = response.result.data.parent.po;
+                    response.result.data.poName = response.result.data.parent.name;
                     me.setData(response.result.data);
                 }
                 return true;
