@@ -1,99 +1,53 @@
 Ext.define("App.project.view.ProjectFormPanel", {
     extend: 'Ext.form.Panel',
     alias: 'widget.ProjectFormPanel',
-    requires: ['App.hrm.employee.field.EmployeeComboBox', 'App.project.field.ProjectTypeComboBox', 'App.project.field.IsInternetProjectComboBox', 'App.project.field.BillingTypeComboBox',
-        'App.project.field.ImplementationStatusComboBox'],
     defaults: {
         readOnly: true
     },
-    items: [{
-        xtype: 'hidden',
-        name: 'id'
-    }, {
-        xtype: 'hidden',
-        name: 'projectOrder.id'
-    }, {
-        xtype: 'hidden',
-        name: 'creator'
-    }, {
-        xtype: 'hidden',
-        name: 'cdt'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'PO号',
-        name: 'projectOrder.po'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'PO名称',
-        name: 'projectOrder.name'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '项目名称',
-        name: 'name'
-    }, {
-        xtype: 'ProjectTypeComboBox',
-        fieldLabel: '项目类型',
-        name: 'projectType'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '项目编码',
-        name: 'projectCode'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '项目工作量',
-        name: 'projectWorkload'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '业务大类',
-        name: 'businessCategory'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '业务小类',
-        name: 'businessSubclasses'
-    }, {
-        xtype: 'IsInternetProjectComboBox',
-        fieldLabel: '是否上网项目',
-        name: 'isInternetProject'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '规模(KLOC)',
-        name: 'size'
-    }, {
-        xtype: 'EmployeeComboBox',
-        fieldLabel: 'QA',
-        name: 'qa',
-        valueField: 'huaweiNumber'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: 'PO占比(%)',
-        name: 'poProportion'
-    }, {
-        xtype: 'BillingTypeComboBox',
-        fieldLabel: '计费类型',
-        name: 'billingType'
-    }, {
-        xtype: 'ImplementationStatusComboBox',
-        fieldLabel: '实施状态',
-        name: 'implementationStatus'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '项目开始时间',
-        name: 'startDate'
-    }, {
-        xtype: 'textfield',
-        fieldLabel: '计划结项时间',
-        name: 'plannedEndDate'
-    }, {
-        xtype: 'EmployeeComboBox',
-        fieldLabel: '项目经理',
-        name: 'projectManager',
-        extraParams: {
-            'params.role_eq': '项目经理'
+    title: '项目信息',
+    tpl: ['<div style="padding: 5px;">',
+        '<style type="text/css">',
+        '.poinfo{list-style: none;padding: 0;margin: 0;} .poinfo .item{display: flex;height: 28px;line-height: 28px;}  .poinfo .item .title{width: 150px;text-align: right;}  .poinfo .item .content{margin-left: 10px;}',
+        '</style>',
+        '<ul class="poinfo">',
+        '<li class="item" style=""><div  class="title">PO号:</div><div class="content"> {po}</div></li>',
+        '<li class="item" style=""><div  class="title">PO名称:</div><div class="content"> {poName}</div></li>',
+        '<li class="item" style=""><div  class="title">项目名称:</div><div class="content"> {name}</div></li>',
+        '<li class="item" style=""><div  class="title">项目类型:</div><div class="content"> {projectType}</div></li>',
+        '<li class="item" style=""><div  class="title">项目编码:</div><div class="content"> {projectCode}</div></li>',
+        '<li class="item" style=""><div  class="title">项目工作量:</div><div class="content">{projectWorkload}</div></li>',
+        '<li class="item" style=""><div  class="title">业务大类:</div><div class="content"> {businessCategory}</div></li>',
+        '<li class="item" style=""><div  class="title">业务小类:</div><div class="content"> {businessSubclasses}</div></li>',
+        '<li class="item" style=""><div  class="title">是否上网项目:</div><div class="content"> {isInternetProject}</div></li>',
+        '<li class="item" style=""><div  class="title">规模(KLOC):</div><div class="content"> {size}</div></li>',
+        '<li class="item" style=""><div  class="title">QA:</div><div class="content"> {qa}</div></li>',
+        '<li class="item" style=""><div  class="title">PO占比(%):</div><div class="content"> {poProportion}</div></li>',
+        '<li class="item" style=""><div  class="title">计费类型:</div><div class="content"> {billingType}</div></li>',
+        '<li class="item" style=""><div  class="title">实施状态:</div><div class="content"> {implementationStatus}</div></li>',
+        '<li class="item" style=""><div  class="title">项目开始时间:</div><div class="content"> {startDate:substr(0, 10)}</div></li>',
+        '<li class="item" style=""><div  class="title">计划结项时间:</div><div class="content"> {plannedEndDate:substr(0, 10)}</div></li>',
+        '<li class="item" style=""><div  class="title">项目经理:</div><div class="content"> {projectManager}</div></li>',
+        '<li class="item" style=""><div  class="title">描述:</div><div class="content"> {description}</div></li>',
+        '</ul>',
+        '</div>'],
+    initComponent: function () {
+        var me = this;
+        this.loader = {
+            loadMask: '加载...',
+            loadOnRender: true,
+            autoLoad: true,
+            url: 'project/edit',
+            params: {id: me.up('IterationReport').node.data.id},
+            renderer: function (loader, response, active) {
+                var result = response.result;
+                if (result.success == true) {
+                    response.result.data.po = response.result.data.parent.po;
+                    response.result.data.poName = response.result.data.parent.name;
+                    me.setData(response.result.data);
+                }
+                return true;
+            }
         }
-    }, {
-        xtype: 'textarea',
-        fieldLabel: '描述',
-        name: 'description',
-        columnWidth: 1
-    }]
+        this.callParent(arguments);
+    }
 });

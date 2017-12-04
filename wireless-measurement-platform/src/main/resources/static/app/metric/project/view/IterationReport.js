@@ -4,41 +4,7 @@ Ext.define('App.metric.project.view.IterationReport', {
     alias: ['widget.IterationReport'],
     items: [
         {
-            title: '项目信息',
-            xtype: 'panel',
-            layout: 'fit',
-            listeners: {
-                afterrender: function () {
-                    var me = this;
-                    var projectFormPanel = me.down('ProjectFormPanel');
-                    projectFormPanel.load({
-                        url: 'project/edit',
-                        params:
-                            {
-                                id: me.up().node.data.id
-                            },
-                        success: function (form, result, data) {
-                            projectFormPanel.down('[name=projectOrder.name]').setValue(result.result.data.parent.name);
-                            projectFormPanel.down('[name=projectOrder.po]').setValue(result.result.data.parent.po);
-                            var startDate = result.result.data.startDate;
-                            var plannedEndDate = result.result.data.plannedEndDate;
-                            if (startDate != null) {
-                                projectFormPanel.down('[name=startDate]').setValue(substringTime(startDate));
-                            }
-                            if (plannedEndDate != null) {
-                                projectFormPanel.down('[name=plannedEndDate]').setValue(substringTime(plannedEndDate));
-                            }
-                        }
-                    });
-                }
-            },
-            items: [{
-                border: true,
-                labelWidth: 110,
-                columnWidth: 1,
-                height: '100%',
-                xtype: 'ProjectFormPanel'
-            }]
+            xtype: 'ProjectFormPanel'
         },
         {
             title: '需求',
@@ -54,8 +20,7 @@ Ext.define('App.metric.project.view.IterationReport', {
                         });
                     }
                 }
-        }
-        ,
+        },
         {
             title: '设计',
             xtype:
