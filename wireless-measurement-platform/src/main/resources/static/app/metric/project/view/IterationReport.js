@@ -4,7 +4,23 @@ Ext.define('App.metric.project.view.IterationReport', {
     alias: ['widget.IterationReport'],
     items: [
         {
-            xtype: 'ProjectFormPanel'
+            xtype: 'ProjectFormPanel',
+            title: '项目信息'
+        },
+        {
+            title: '迭代管理',
+            xtype:
+                'Report',
+            listeners:
+                {
+                    afterrender: function () {
+                        var me = this;
+                        me.load('report/query_iteration_report', {
+                            'projectId': me.up().node.data.id,
+                            'reportConfigurationType': '迭代度量-迭代管理'
+                        });
+                    }
+                }
         },
         {
             title: '需求',
@@ -38,7 +54,7 @@ Ext.define('App.metric.project.view.IterationReport', {
         }
         ,
         {
-            title: '迭代开发',
+            title: '开发',
             xtype:
                 'Report',
             listeners:
@@ -47,55 +63,7 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-迭代开发'
-                        });
-                    }
-                }
-        }
-        ,
-        {
-            title: '开发防护',
-            xtype:
-                'Report',
-            listeners:
-                {
-                    afterrender: function () {
-                        var me = this;
-                        me.load('report/query_iteration_report', {
-                            'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-开发防护'
-                        });
-                    }
-                }
-        }
-        ,
-        {
-            title: '工程能力',
-            xtype:
-                'Report',
-            listeners:
-                {
-                    afterrender: function () {
-                        var me = this;
-                        me.load('report/query_iteration_report', {
-                            'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-工程能力'
-                        });
-                    }
-                }
-        }
-        ,
-        {
-            title: '转测试',
-            xtype:
-                'Report',
-            listeners:
-                {
-                    afterrender: function () {
-                        var me = this;
-                        me.load('report/query_iteration_report', {
-                            'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-转测试'
+                            'reportConfigurationType': '迭代度量-开发'
                         });
                     }
                 }
@@ -144,54 +112,6 @@ Ext.define('App.metric.project.view.IterationReport', {
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
                             'reportConfigurationType': '迭代度量-构建'
-                        });
-                    }
-                }
-        }
-        ,
-        {
-            title: '迭代管理',
-            xtype:
-                'Report',
-            listeners:
-                {
-                    afterrender: function () {
-                        var me = this;
-                        me.load('report/query_iteration_report', {
-                            'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-迭代管理'
-                        });
-                    }
-                }
-        }
-        ,
-        {
-            title: '验收',
-            xtype:
-                'Report',
-            listeners:
-                {
-                    afterrender: function () {
-                        var me = this;
-                        me.load('report/query_iteration_report', {
-                            'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-验收'
-                        });
-                    }
-                }
-        }
-        ,
-        {
-            title: '客户反馈',
-            xtype:
-                'Report',
-            listeners:
-                {
-                    afterrender: function () {
-                        var me = this;
-                        me.load('report/query_iteration_report', {
-                            'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-客户反馈'
                         });
                     }
                 }
