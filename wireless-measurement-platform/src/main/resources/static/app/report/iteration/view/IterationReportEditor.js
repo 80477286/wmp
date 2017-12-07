@@ -12,7 +12,7 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
             columnWidth: 1
         },
         window: {
-            title: '修改资源信息',
+            title: '报表填写',
             width: 800,
             height: 500,
             resizable: false
@@ -40,7 +40,7 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
     }, {
         name: 'kpis',
         xtype: 'gridfield',
-        fieldLabel: '角色配置',
+        fieldLabel: '指标录入',
         columnWidth: 1,
         height: 300,
         submitFields: ['id', 'name', 'field', 'value'],
