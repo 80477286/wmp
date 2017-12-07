@@ -1,11 +1,12 @@
 Ext.define('App.hrm.employee.view.EmployeeManagementFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.EmployeeManagementFrame'],
+    requires:['App.hrm.employee.view.EmployeeInfoCurdView'],
     title: '人力管理',
-    requires: [],
     tabitems: [{
-        title: '版本列表',
-        iconCls: 'fa-cog'
+        title: '人员管理',
+        iconCls: 'fa-cog',
+        xtype:'EmployeeInfoCurdView'
     }, {
         title: 'Settings',
         iconCls: 'fa-cog',

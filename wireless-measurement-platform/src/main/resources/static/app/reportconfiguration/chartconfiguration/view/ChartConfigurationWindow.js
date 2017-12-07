@@ -183,11 +183,13 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 me.setStore(form.kpiStore);
                             },
                             change: function (combo, nv, ov) {
-                                array = new Array();
-                                var selection = combo.getChecked();
-                                for (var i = 0; i < selection.length; i++) {
-                                    var rec = selection[i];
-                                    array.push(rec.get("field"));
+                                var array = new Array();
+                                var store = combo.getStore();
+                                for (var i = 0; i < nv.length; i++) {
+                                    var re = store.findRecord('name', nv[i]);
+                                    if (re) {
+                                        array.push(re.get("field"));
+                                    }
                                 }
                                 combo.up().down('[dataIndex=fields]').setValue(array.join(","));
                             }
@@ -313,6 +315,10 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                     data: data
                                 });
                                 me.setStore(store);
+                            },
+                            select: function (combo, record, eOpts) {
+                                console.log(record.get('fields'));
+                                combo.up().down('[dataIndex=xField]').setValue(record.get('fields'));
                             }
                         }
                     }
@@ -355,11 +361,13 @@ Ext.define("App.reportconfiguration.chartconfiguration.view.ChartConfigurationWi
                                 this.setStore(store);
                             },
                             change: function (combo, nv, ov) {
-                                array = new Array();
-                                var selection = combo.getChecked();
-                                for (var i = 0; i < selection.length; i++) {
-                                    var rec = selection[i];
-                                    array.push(rec.get("fields"));
+                                var array = new Array();
+                                var store = combo.getStore();
+                                for (var i = 0; i < nv.length; i++) {
+                                    var re = store.findRecord('fieldAliases', nv[i]);
+                                    if (re) {
+                                        array.push(re.get("fields"));
+                                    }
                                 }
                                 combo.up().down('[dataIndex=yFields]').setValue(array.join(","));
                             }
