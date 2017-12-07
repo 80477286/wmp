@@ -8,7 +8,7 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
                 iconCls: 'add',
                 handler: function () {
                     var me = this.up('OrganizationTreeGrid');
-                    var records = me.getSelection();
+                    var records = me.getChecked();
                     if (records.length > 0) {
                         me.editHandler.call(me, me, records[0], null);
                     } else {
@@ -19,9 +19,10 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
             edit: {
                 text: '编辑',
                 iconCls: 'edit',
+                disabled: true,
                 handler: function () {
                     var me = this.up('OrganizationTreeGrid');
-                    var records = me.getSelection();
+                    var records = me.getChecked();
                     if (records.length > 0) {
                         me.editHandler.call(me, me, null, records[0]);
                     } else {
@@ -31,6 +32,7 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
             },
             remove: {
                 text: '删除',
+                disabled: true,
                 handler: function () {
                     var view = this.up('OrganizationTreeGrid');
                     view.removeSelectionNode();
@@ -72,16 +74,19 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
         var me = this;
         this.callParent(arguments);
         me.on({
-            selectionchange: function ($this, selected, eOpts) {
+            checkchange: function (node, checked, eOpts) {
                 var me = this;
+                var selected = me.getChecked();
+
+                me.down('button[text="添加"]').enable();
+                me.down('button[text="编辑"]').disable();
+                me.down('button[text="删除"]').disable();
                 if (selected.length > 0) {
+                    me.down('button[text="编辑"]').enable();
+                    me.down('button[text="删除"]').enable();
                     if (selected[0].get('type').toLowerCase() == 'pdu') {
                         me.down('button[text="添加"]').disable();
-                    } else {
-                        me.down('button[text="添加"]').enable();
                     }
-                } else {
-                    me.down('button[text="添加"]').enable();
                 }
             }
         })
@@ -98,7 +103,7 @@ Ext.define('App.organization.view.OrganizationTreeGrid', {
                         params: {'ids': ids},
                         success: function (resp) {
                             try {
-                                var selection = view.getSelection();
+                                var selection = view.getChecked();
                                 Ext.Array.each(selection, function (item) {
                                     item.remove();
                                 });

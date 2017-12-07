@@ -8,7 +8,14 @@ Ext.define('App.organization.view.BaseOrganizationTree', {
     rowLines: true,
     columnLines: true,
     rootVisible: false,
-    config: {multiCheck: false},
+    config: {
+        multiCheck: false,
+        selModel: {
+            xtype: 'rowmodel',
+            mode: 'SINGLE',
+            allowDeselect: true
+        }
+    },
     initComponent: function () {
         var me = this;
         this.callParent(arguments);
@@ -37,6 +44,12 @@ Ext.define('App.organization.view.BaseOrganizationTree', {
                     Ext.Array.each(selected, function (item) {
                         item.set('checked', true)
                         me.fireEvent('checkchange', item, true, null)
+                    });
+                } else {
+                    selected=me.getChecked();
+                    Ext.Array.each(selected, function (item) {
+                        item.set('checked', false)
+                        me.fireEvent('checkchange', item, false, null)
                     });
                 }
             }
