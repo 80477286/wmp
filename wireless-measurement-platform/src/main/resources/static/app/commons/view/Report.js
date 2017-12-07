@@ -3,6 +3,7 @@ Ext.define('App.commons.view.Report', {
     alias: ['widget.Report'],
     layout: 'vbox',
     items: [],
+    scrollable:true,
     defaults: {margin: '0 0 30 0'},
     load: function (url, params) {
         var me = this;
@@ -69,7 +70,8 @@ Ext.define('App.commons.view.Report', {
         var columns = this.createColumns(reportConfiguration);
         var opts = {
             width: '100%',
-            forceFit: true,
+            forceFit: false,
+            scrollable:true,
             reserveScrollbar: false,// 预留滚动条位置
             disableSelection: false,
             loadMask: true,

@@ -84,7 +84,7 @@ Ext.define('App.reportconfiguration.model.ReportConfigurationViewModel', {
             remoteSort: true,
             sorters: [{
                 property: 'cdt',
-                direction: 'desc'
+                direction: 'asc'
             }],
             proxy: {
                 type: 'majax',

@@ -17,7 +17,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-迭代管理'
+                            'reportConfigurationType': '迭代度量-迭代管理',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }
@@ -32,7 +33,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-需求'
+                            'reportConfigurationType': '迭代度量-需求',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }
@@ -47,7 +49,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-设计'
+                            'reportConfigurationType': '迭代度量-设计',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }
@@ -63,7 +66,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-开发'
+                            'reportConfigurationType': '迭代度量-开发',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }
@@ -79,7 +83,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-测试执行'
+                            'reportConfigurationType': '迭代度量-测试执行',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }
@@ -95,7 +100,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-自动化'
+                            'reportConfigurationType': '迭代度量-自动化',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }
@@ -111,7 +117,8 @@ Ext.define('App.metric.project.view.IterationReport', {
                         var me = this;
                         me.load('report/query_iteration_report', {
                             'projectId': me.up().node.data.id,
-                            'reportConfigurationType': '迭代度量-构建'
+                            'reportConfigurationType': '迭代度量-构建',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
                         });
                     }
                 }

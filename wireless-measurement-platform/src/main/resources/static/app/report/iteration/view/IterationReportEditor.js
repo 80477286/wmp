@@ -98,12 +98,6 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
     }, {
         xtype: 'hidden',
         name: 'id'
-    }, {
-        xtype: 'hidden',
-        name: 'cdt'
-    }, {
-        xtype: 'hidden',
-        name: 'creator'
     }],
     loadRecord: function (record) {
         var me = this;

@@ -50,7 +50,7 @@ Ext.define('App.report.iteration.model.IterationReportViewModel', {
             remoteSort: true,
             sorters: [{
                 property: 'cdt',
-                direction: 'desc'
+                direction: 'ASC'
             }],
             proxy: {
                 type: 'majax',
