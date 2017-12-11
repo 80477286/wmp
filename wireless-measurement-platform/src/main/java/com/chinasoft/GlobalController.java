@@ -40,8 +40,14 @@ public class GlobalController {
     }
 
 
+    @RequestMapping({"/set_user_current_project"})
+    @JSON
+    public Object setUserCurrentProject(String id, HttpServletRequest request) {
+        return projectService.setUserCurrentProject(id);
+    }
+
     @RequestMapping({"/load_initial_information"})
-    @JSON(excludeProperties = {"data.*\\.projectOrder", "data.*\\.iterations"})
+    @JSON(excludeProperties = {"data.*\\.projectOrder", "data.*\\.iterations", "data.*\\.children"})
     public Object loadInitialInformation(HttpServletRequest request) {
         Map<String, Object> inf = new LinkedHashMap<String, Object>(0);
         LinkedHashMap user = versionService.getCurrentUser();

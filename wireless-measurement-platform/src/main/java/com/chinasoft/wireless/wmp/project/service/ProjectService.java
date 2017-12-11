@@ -48,6 +48,27 @@ public class ProjectService extends BaseService<Project, String> implements IPro
     }
 
     @Override
+    public Project setUserCurrentProject(String id) {
+        Project cp = null;
+        String username = (String) userService.getCurrentUser().get("username");
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("projectManager_eq", username);
+        Page<Project> ps = query(params, null);
+        if (ps.getContent().size() > 0) {
+            for (Project p : ps.getContent()) {
+                if (p.getId().equalsIgnoreCase(id)) {
+                    p.setCurrentManaged(true);
+                    cp = p;
+                } else {
+                    p.setCurrentManaged(false);
+                }
+            }
+            save(ps.getContent());
+        }
+        return cp;
+    }
+
+    @Override
     public String getUserCurrentProjectId() {
         Project p = getUserCurrentProject();
         if (p != null) {

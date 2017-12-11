@@ -10,5 +10,7 @@ import com.mouse.web.supports.jpa.service.IBaseService;
 public interface IProjectService extends IBaseService<Project, String> {
     Project getUserCurrentProject();
 
+    Project setUserCurrentProject(String id);
+
     String getUserCurrentProjectId();
 }

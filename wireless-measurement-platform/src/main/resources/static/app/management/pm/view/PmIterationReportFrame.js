@@ -1,5 +1,5 @@
 Ext.define('App.management.pm.view.PmIterationReportFrame', {
-    extend: 'App.commons.tab.BaseFrame',
+    extend: 'App.management.pm.view.PmBaseFrame',
     alias: ['widget.PmIterationReportFrame'],
     requires: ['App.report.iteration.view.IterationReportList'],
     title: '迭代报表管理',
