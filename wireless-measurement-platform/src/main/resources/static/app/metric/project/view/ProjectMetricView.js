@@ -2,13 +2,19 @@ Ext.define('App.metric.project.view.ProjectMetricView', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.ProjectMetricView',
     layout: 'border',
-    requires: ['App.commons.view.NavbarTree', 'App.commons.view.Report', 'App.metric.project.controller.ProjectMetricController'],
+    requires: ['App.commons.view.NavbarTree',
+        'App.commons.view.Report',
+        'App.metric.project.controller.ProjectMetricController'],
     controller: 'ProjectMetricController',
     tbar: {
-        xtype:  'breadcrumb',
+        xtype: 'breadcrumb',
         ui: 'navbar',
-        height: 40, showIcons: true, showMenuIcons: true, overflowHandler: 'scroller',
-        dock: 'top', displayField: 'name',
+        height: 40,
+        showIcons: true,
+        showMenuIcons: true,
+        overflowHandler: 'scroller',
+        dock: 'top',
+        displayField: 'name',
         listeners: {
             change: 'onBreadcrumbChange'
         }
