@@ -1,4 +1,4 @@
-Ext.define('App.reportconfiguration.PmReportConfigurationFrame', {
+Ext.define('App.management.pm.view.PmReportConfigurationFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.PmReportConfigurationFrame'],
     requires: ["App.reportconfiguration.view.ProjectReportConfigurationList"],

@@ -1,4 +1,4 @@
-Ext.define('App.project.QaProjectFrame', {
+Ext.define('App.management.qa.view.QaProjectFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.QaProjectFrame'],
     requires:  ['App.project.view.ProjectTreeGrid'],

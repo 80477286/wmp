@@ -1,4 +1,4 @@
-Ext.define('App.reportconfiguration.QaReportConfigurationFrame', {
+Ext.define('App.management.qa.view.QaReportConfigurationFrame', {
     extend: 'App.commons.tab.BaseFrame',
     alias: ['widget.QaReportConfigurationFrame'],
     requires: ['App.reportconfiguration.view.ReportConfigurationEditorPanel', "App.reportconfiguration.view.CommonReportConfigurationList"],

@@ -1,7 +1,8 @@
 Ext.define('App.management.qa.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.reportconfiguration.QaReportConfigurationFrame', 'App.project.QaProjectFrame'],
+    requires: ['App.management.qa.view.QaReportConfigurationFrame',
+        'App.management.qa.view.QaProjectFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,

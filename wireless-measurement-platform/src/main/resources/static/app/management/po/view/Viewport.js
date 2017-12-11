@@ -1,7 +1,7 @@
 Ext.define('App.management.po.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.projectorder.PoProjectOrderFrame'],
+    requires: ['App.management.po.view.PoProjectOrderFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,

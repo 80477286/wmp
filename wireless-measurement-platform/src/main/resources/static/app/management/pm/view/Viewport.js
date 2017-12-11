@@ -1,7 +1,9 @@
 Ext.define('App.management.pm.view.Viewport', {
     extend: 'Ext.tab.Panel',
     alias: ['widget.Viewport'],
-    requires: ['App.report.PmIterationReportFrame', 'App.reportconfiguration.PmReportConfigurationFrame', 'App.report.PmProjectReportFrame'],
+    requires: ['App.management.pm.view.PmIterationReportFrame',
+        'App.management.pm.view.PmReportConfigurationFrame',
+        'App.management.pm.view.PmProjectReportFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
