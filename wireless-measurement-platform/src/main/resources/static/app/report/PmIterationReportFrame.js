@@ -31,5 +31,9 @@ Ext.define('App.report.PmIterationReportFrame', {
         title: '构建',
         xtype: 'IterationReportList',
         reportConfigurationType: '迭代度量-构建'
+    }, {
+        title: '验收',
+        xtype: 'IterationReportList',
+        reportConfigurationType: '迭代度量-验收'
     }]
 })

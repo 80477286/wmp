@@ -122,6 +122,21 @@ Ext.define('App.metric.project.view.IterationReport', {
                         });
                     }
                 }
+        }, {
+            title: '验收',
+            xtype:
+                'Report',
+            listeners:
+                {
+                    afterrender: function () {
+                        var me = this;
+                        me.load('report/query_iteration_report', {
+                            'projectId': me.up().node.data.id,
+                            'reportConfigurationType': '迭代度量-验收',
+                            'pageable.sort': '[{"property":"cdt","direction":"ASC"}]'
+                        });
+                    }
+                }
         }
     ]
 })

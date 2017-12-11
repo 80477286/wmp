@@ -42,7 +42,7 @@ Ext.define("App.report.iteration.view.IterationReportEditor", {
         xtype: 'gridfield',
         fieldLabel: '指标录入',
         columnWidth: 1,
-        height: 300,
+        height: 330,
         submitFields: ['id', 'name', 'field', 'value'],
         roweditable: true,
         tbar: {add: {hidden: true}, remove: {hidden: true}}, border: false,
