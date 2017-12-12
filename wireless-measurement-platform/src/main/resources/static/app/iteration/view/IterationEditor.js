@@ -13,7 +13,7 @@ Ext.define("App.iteration.view.IterationEditor", {
     defaults: {
         columnWidth: 1,
         xtype: 'textfield',
-        labelWidth: 120,
+        labelWidth: 121,
         beforeLabelTextTpl: ['<span style="color:red;">*</span>'],
         allowBlank: false,
         blankText: '不允许为空'
