@@ -12,16 +12,24 @@ Ext.define('App.iteration.viewmodel.IterationViewModel', {
             dataIndex: 'name'
         }, {
             header: '迭代计划开始日期',
-            dataIndex: 'planedStartDate'
+            dataIndex: 'planedStartDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d'
         }, {
             header: '迭代计划结束日期',
-            dataIndex: 'planedEndDate'
+            dataIndex: 'planedEndDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d'
         }, {
             header: '迭代实际开始日期',
-            dataIndex: 'actuaStartDate'
+            dataIndex: 'actuaStartDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d'
         }, {
             header: '迭代实际结束日期',
-            dataIndex: 'actualEndDate'
+            dataIndex: 'actualEndDate',
+            xtype: 'datecolumn',
+            format: 'Y-m-d'
         }, {
             header: '所属项目',
             dataIndex: 'project',
