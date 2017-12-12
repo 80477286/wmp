@@ -41,8 +41,7 @@ Ext.define('App.iteration.viewmodel.IterationViewModel', {
             dataIndex: 'description'
         }, {
             header: '创建人',
-            dataIndex: 'creator',
-            hidden: true
+            dataIndex: 'creator'
         }, {
             xtype: 'cdtcolumn',
             header: '创建时间',

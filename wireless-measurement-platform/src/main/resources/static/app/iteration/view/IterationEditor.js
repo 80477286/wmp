@@ -1,13 +1,14 @@
 Ext.define("App.iteration.view.IterationEditor", {
     extend: 'Extend.window.FormWindow',
     alias: 'widget.iteration_editor',
+    requires: ['App.project.field.ProjectComboBox'],
     config: {
         window: {
             title: '修改迭代信息',
             width: 1024,
             height: 600
         },
-        entity: ''
+        entity: 'entity'
     },
     defaults: {
         columnWidth: 1,
@@ -47,7 +48,8 @@ Ext.define("App.iteration.view.IterationEditor", {
         format: 'Y-m-d'
     }, {
         fieldLabel: '所属项目',
-        name: 'project.name'
+        name: 'project.id',
+        xtype: 'ProjectComboBox'
     }, {
         fieldLabel: '描述',
         name: 'description',

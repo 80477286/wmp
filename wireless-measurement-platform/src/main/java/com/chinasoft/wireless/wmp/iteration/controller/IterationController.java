@@ -10,6 +10,7 @@ import com.mouse.web.supports.mvc.bind.annotation.MapParam;
 import com.mouse.web.supports.mvc.request.PageParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +35,15 @@ public class IterationController extends BaseController<Iteration, String> {
     @RequestMapping(value = "/query_simple")
     public Page<Iteration> querySimple(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return getService().query(params, pageable);
+    }
+
+    @JSON()
+    @RequestMapping(value = "/save")
+    public Iteration save(@EntityParam Iteration entity) {
+        if (entity.getCreator() == null) {
+            entity.setCreator(SecurityContextHolder.getContext().getAuthentication().getName());
+        }
+        Iteration result = getService().save(entity);
+        return result;
     }
 }
