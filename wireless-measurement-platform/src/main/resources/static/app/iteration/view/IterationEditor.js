@@ -5,8 +5,8 @@ Ext.define("App.iteration.view.IterationEditor", {
     config: {
         window: {
             title: '修改迭代信息',
-            width: 1024,
-            height: 600
+            width: 800,
+            height: 400
         },
         entity: 'entity'
     },
@@ -54,7 +54,8 @@ Ext.define("App.iteration.view.IterationEditor", {
         fieldLabel: '描述',
         name: 'description',
         beforeLabelTextTpl: [''],
-        allowBlank: true
+        allowBlank: true,
+        xtype: 'textarea'
     }, {
         fieldLabel: '创建人',
         name: 'creator',
