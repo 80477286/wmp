@@ -3,7 +3,8 @@ Ext.define('App.management.pm.view.Viewport', {
     alias: ['widget.Viewport'],
     requires: ['App.management.pm.view.PmIterationReportFrame',
         'App.management.pm.view.PmReportConfigurationFrame',
-        'App.management.pm.view.PmProjectReportFrame'],
+        'App.management.pm.view.PmProjectReportFrame',
+        'App.management.pm.view.IterationPlanFrame'],
     ui: 'navigation',
     tabBarHeaderPosition: 1,
     titleRotation: 0,
@@ -32,6 +33,10 @@ Ext.define('App.management.pm.view.Viewport', {
         iconCls: 'fa-user'
     }, {
         xtype: 'PmProjectReportFrame',
+        iconCls: 'fa-user'
+    }, {
+        xtype: 'IterationPlanFrame',
+        title: '迭代计划管理',
         iconCls: 'fa-user'
     }
     ]
