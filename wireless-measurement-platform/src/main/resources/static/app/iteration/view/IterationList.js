@@ -16,11 +16,10 @@ Ext.define('App.iteration.view.IterationList', {
         search: '{search}'
     },
     editor: {
-        model: 'App.authorization.user.UserModel',
-        formClazz: 'App.authorization.user.view.UserEditor',
-        save: 'authorization/user/save',
-        get: 'authorization/user/get_by_id',
-        del: 'authorization/user/deletes',
-        dataType: 'User'
+        formClazz: 'App.iteration.view.IterationEditor',
+        save: 'iteration/save',
+        get: 'iteration/get_by_id',
+        del: 'iteration/deletes',
+        model:'App.iteration.model.IterationModel'
     }
 });
