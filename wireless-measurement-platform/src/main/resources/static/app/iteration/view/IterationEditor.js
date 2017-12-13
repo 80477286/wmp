@@ -30,22 +30,62 @@ Ext.define("App.iteration.view.IterationEditor", {
         fieldLabel: '迭代计划开始日期',
         name: 'planedStartDate',
         xtype: 'datefield',
-        format: 'Y-m-d'
+        format: 'Y-m-d',
+        listeners: {
+            change: function ($this, newValue, oldValue, eOpts) {
+                if (this.up().down('[name=id]').getValue() == "") {
+                    return;
+                }
+                if (readOnly(Ext.Date.format(newValue, 'Y-m-d'), Ext.Date.format(new Date(), 'Y-m-d'))) {
+                    this.setReadOnly(true);
+                }
+            }
+        }
     }, {
         fieldLabel: '迭代计划结束日期',
         name: 'planedEndDate',
         xtype: 'datefield',
-        format: 'Y-m-d'
+        format: 'Y-m-d',
+        listeners: {
+            change: function ($this, newValue, oldValue, eOpts) {
+                if (this.up().down('[name=id]').getValue() == "") {
+                    return;
+                }
+                if (readOnly(Ext.Date.format(newValue, 'Y-m-d'), Ext.Date.format(new Date(), 'Y-m-d'))) {
+                    this.setReadOnly(true);
+                }
+            }
+        }
     }, {
         fieldLabel: '迭代实际开始日期',
         name: 'actuaStartDate',
         xtype: 'datefield',
-        format: 'Y-m-d'
+        format: 'Y-m-d',
+        listeners: {
+            change: function ($this, newValue, oldValue, eOpts) {
+                if (this.up().down('[name=id]').getValue() == "") {
+                    return;
+                }
+                if (readOnly(Ext.Date.format(newValue, 'Y-m-d'), Ext.Date.format(new Date(), 'Y-m-d'))) {
+                    this.setReadOnly(true);
+                }
+            }
+        }
     }, {
         fieldLabel: '迭代实际结束日期',
         name: 'actualEndDate',
         xtype: 'datefield',
-        format: 'Y-m-d'
+        format: 'Y-m-d',
+        listeners: {
+            change: function ($this, newValue, oldValue, eOpts) {
+                if (this.up().down('[name=id]').getValue() == "") {
+                    return;
+                }
+                if (readOnly(Ext.Date.format(newValue, 'Y-m-d'), Ext.Date.format(new Date(), 'Y-m-d'))) {
+                    this.setReadOnly(true);
+                }
+            }
+        }
     }, {
         fieldLabel: '所属项目',
         name: 'project.id',
@@ -67,5 +107,23 @@ Ext.define("App.iteration.view.IterationEditor", {
         dataIndex: 'cdt',
         allowBlank: true,
         hidden: true
-    }]
-})
+    }
+    ]
+});
+
+function readOnly(oldDate, newDate) {
+    var oldYear = oldDate.substring(0, oldDate.indexOf('-'));
+    var newYear = newDate.substring(0, newDate.indexOf('-'));
+    if (newYear > oldYear) {
+        return true;
+    } else if (newYear == oldYear) {
+        oldYear = oldDate.substring(oldDate.indexOf('-') + 1, oldDate.length);
+        newYear = newDate.substring(newDate.indexOf('-') + 1, newDate.length);
+        var oldMonth = oldYear.substring(0, oldYear.indexOf('-'));
+        var newMonth = newYear.substring(0, newYear.indexOf('-'));
+        if (oldMonth < newMonth) {
+            return true;
+        }
+    }
+    return false;
+}
